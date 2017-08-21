@@ -2,4 +2,77 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.newer.phone.dao.CartMapper"></mapper>
+  
+  <mapper namespace="com.newer.phone.dao.CartMapper">
+   <!-- 查询当前用户购物车中所有的商品 -->
+    <select id="getCartByUser" parameterType="int" resultMap="cart-result">
+      select image.i_path,a.* from image join 
+      (select product.*,cart.c_amount from cart join product on 
+                        cart.u_id=#{u_id}
+                        and
+                        cart.p_id=product.p_id)a on a.p_id=image.p_id and p_status=1;
+    </select>
+    <!-- cart结果 -->
+    <resultMap type="com.newer.phone.pojo.Cart" id="cart-result">
+      <association property="product" javaType="com.newer.phone.pojo.Product"
+      resultMap="product-result"/>
+    </resultMap>
+    <!-- product结果 -->
+    <resultMap type="com.newer.phone.pojo.Product" id="product-result">
+         <id property="p_id" column="p_id"/>
+         <result property="p_name" column="p_name"/>
+         <result property="p_import" column="p_import"/>
+         <result property="p_price" column="p_price"/>
+         <result property="p_stock" column="p_stock"/>
+         <result property="p_sale" column="p_sale"/>
+         <result property="p_info" column="p_info"/>
+         <result property="p_status" column="p_status"/>
+         <collection property="images" ofType="com.newer.phone.pojo.Image" 
+         resultMap="image-result"/>
+    </resultMap>
+    <!-- image结果 -->
+    <resultMap type="com.newer.phone.pojo.Image" id="image-result">
+       <id property="i_id" column="i_id"/>
+       <result property="i_path" column="i_path"/>
+       <association property="product" column="p_id" javaType="com.newer.phone.pojo.Product"
+        resultMap="product-result"/>
+    </resultMap>
+    
+    <!-- 添加商品到购物车 -->
+    <insert id="addCartByUser">
+       insert into cart(p_id,u_id,c_amount) values(#{p_id},#{u_id},#{c_amount})
+    </insert>
+    
+    <!-- 根据用户id和商品id查询cart表中数据，返回一个Cart实体对象 -->
+    <select id="getCartByUserAndProduct" parameterType="int" 
+    resultType="com.newer.phone.pojo.Cart">
+       select a.* from(select product.*,cart.c_amount from cart join product on 
+                        cart.u_id=#{u_id}
+                        and
+                        cart.p_id=product.p_id)a where a.p_id=#{p_id}
+    </select>
+    
+    <!-- 根据商品id和用户id删除购物车中的商品 -->
+    <delete id="removeCartByProduct">
+      delete from cart where p_id=#{p_id} and u_id=#{u_id}
+    </delete>
+    
+    <!-- 根据商品id 用户id 更新的商品数量更新购物车中商品梳数量 -->
+    <update id="updateCartByProduct">
+      update cart set c_amount=#{c_amount} where p_id=#{p_id} and u_id=#{u_id}
+    </update>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </mapper>

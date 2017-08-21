@@ -10,6 +10,7 @@ import com.newer.phone.pojo.Product;
 import com.newer.phone.service.front.ProductService;
 
 @Controller
+@RequestMapping("product")
 public class ProdcutController {
 	@Autowired
 	private ProductService productService;

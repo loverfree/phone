@@ -9,6 +9,7 @@
   		<result property="p_sale" column="p_sale"/>
   		<result property="p_info" column="p_info"/>
   		<result property="p_price" column="p_price"/>
+  		<result property="p_stock" column="p_stock"/>
   		<!-- 关联多个图片 -->
   		<collection property="images" ofType="com.newer.phone.pojo.Image" resultMap="image-result"></collection>
   	</resultMap>
@@ -31,7 +32,14 @@
   		select p.p_name,p.p_info,p.p_sale,i.i_path from product p,image i where p.b_id = #{b_id} and p.p_id = i.p_id 
   	</select>
   	
-  	<!-- <select id="findById" resultMap="product" parameterType="int">
-  		
-  	</select> -->
+  	<!-- 根据商品id去查询单个商品详情 -->
+  	<select id="findById" parameterType="int" resultMap="product-result">
+  	    select * from product where p_status=1 and p_id=#{p_id}
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	
   </mapper>
