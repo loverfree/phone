@@ -20,4 +20,15 @@ public class ProductServiceImpl implements ProductService{
 		List<Product> product = productMapper.findAllProduct();
 		return product;
 	}
+
+	public List<Product> getByBrand(Integer b_id) {
+		List<Product> products = productMapper.findByBrand(b_id);
+		return products;
+	}
+
+	@Override
+	public Product getById(Integer p_id) {
+		Product product = productMapper.findById(p_id);
+		return product;
+	}
 }

@@ -20,5 +20,5 @@ public interface ProductMapper {
 	//根据商品类别查询商品
 	List<Product> findByBrand(@Param("b_id")Integer b_id);
 	//根据商品id查询商品详细
-	List<Product> findById(@Param("p_id")Integer p_id);
+	Product findById(@Param("p_id")Integer p_id);
 }
