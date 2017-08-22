@@ -8,18 +8,33 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/animate-shadow.js"></script>
 <script type="text/javascript">
 
 	$(function() {
-		$('ul span#xiaomi').on('click',function(){
-			$(this).next().slideToggle('fast',function(){
+
+	    $('ul span#xiaomi').on('click', function() {
+			$(this).next().slideToggle('fast', function() {
 			})
 		})
+
+ 		$('.search').mouseover(function() {
+			/* $(this).css("box-shadow", " 0 0 1px #000") */
+			$(this).animate({boxShadow: '0 0 50px #EDEDED'})
+		}) 
+		
+ 		$('.search').mouseout(function() {
+			/* $(this).css("box-shadow", " 0 0 1px #000") */
+			$(this).animate({boxShadow: '0 0 0.1px #EDEDED'})
+		}) 
+
 	})
 </script>
 </head>
 <body>
-<div id="searchBar"><input class="search" type="text"/></div>
+<div id="searchBar"><img id="shopLogo" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input class="search" type="text"/></div>
 <h2>我们的商品</h2>
 <div id="leftPanel">
 	<ul style="line-height:400%">
@@ -43,17 +58,17 @@
 <div id="rightPanel">
 <table border="0" cellspacing="5px" width="100%">
 	<tr>
-		<td><img src="${pageContext.request.contextPath }/resources/image/All.png"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/Apple.png"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/Xiaomi.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/logo/All.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/logo/Apple.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/logo/Xiaomi.png"></td>
 	</tr>
 	<tr>
 		<td>所有手机</td><td>苹果</td><td>小米</td>
 	</tr>
 	<tr>
-		<td><img src="${pageContext.request.contextPath }/resources/image/samsung.jpg"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/oppo.png"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/tools.ico"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/logo/samsung.jpg"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/logo/oppo.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/logo/tools.ico"></td>
 	</tr>
 	<tr>
 		<td>三星</td>

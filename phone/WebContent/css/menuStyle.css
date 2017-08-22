@@ -17,13 +17,19 @@ li:first-child {border-top: none;}
 #searchBar{
 	background-color: white;
 	width: 100%;
-	height: 10%;
+	height: 15%;
+	position:relative;
 }
 
 .search{
-	border-radius:8px;
-	border: 1px solid #EDEDED;
-	width: 10%;
+	border-radius:10px;
+	border: 2px solid #E6E6E6;
+	width: 50%;
+	height: 40%;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url(${pageContext.request.contextPath }/resources/image/test.jpg);
 }
 
 div#leftPanel{
@@ -57,6 +63,11 @@ tr:nth-child(even) td{
 	border-left: 2px solid #EDEDED;
 	text-align: center;
 }  
+
+img#shopLogo{
+	height: 30%;
+	width: 18%;
+}
 
 td img{
 	height: 100%;
