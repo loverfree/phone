@@ -13,13 +13,13 @@
 	$(function() {
 		$('ul span#xiaomi').on('click',function(){
 			$(this).next().slideToggle('fast',function(){
-				
 			})
 		})
 	})
 </script>
 </head>
 <body>
+<div id="searchBar"><input class="search" type="text"/></div>
 <h2>我们的商品</h2>
 <div id="leftPanel">
 	<ul style="line-height:400%">
@@ -41,18 +41,24 @@
 	</ul>
 </div>
 <div id="rightPanel">
-<table border="1" cellspacing="10px" width="100%">
+<table border="0" cellspacing="5px" width="100%">
 	<tr>
-		<td>图片1</td><td>图片2</td><td>图片3</td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/All.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/Apple.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/Xiaomi.png"></td>
 	</tr>
 	<tr>
 		<td>所有手机</td><td>苹果</td><td>小米</td>
 	</tr>
 	<tr>
-		<td>图片4</td><td>图片5</td><td>图片6</td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/samsung.jpg"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/oppo.png"></td>
+		<td><img src="${pageContext.request.contextPath }/resources/image/tools.ico"></td>
 	</tr>
 	<tr>
-		<td>三星</td><td>OPPO</td><td>配件</td>
+		<td>三星</td>
+		<td>OPPO</td>
+		<td>配件</td>
 	</tr>
 </table>
 </div>
