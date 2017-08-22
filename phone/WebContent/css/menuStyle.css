@@ -1,0 +1,22 @@
+body{
+	background-color: #EDEDED;
+}
+
+h2{
+	margin-left: 2%;
+}
+
+li{
+    list-style-type: none;
+    border-top: 1px solid #EDEDED;
+    font-family: Î¢ÈíÑÅºÚ;
+}
+
+li:first-child {border-top: none;}
+
+#leftPanel{
+	margin-left: 2%;
+	background-color: white;
+	height: 1260px;
+	width: 180px;
+}

@@ -1,0 +1,63 @@
+body{
+	background-color: #3598dc;
+}
+
+#panel{
+	margin-left: 25%;
+	margin-top: 5%;
+	width: 600px;
+	height: 400px;
+	background-color: white;
+	border-radius: 5px;
+	border:1px solid white;
+	box-shadow:0px 0px 5px 5px #005FBD;
+}
+
+#loginInfo{
+	margin-left: 40%;
+	font-size: 30px;
+	font-family: Î¢ÈíÑÅºÚ;
+	font-weight: bolder;
+	color: #999896;
+}
+
+#regBlank{
+	color: #999896;	
+	width: 40%;
+	margin-left: 30%;
+}
+
+#inputBlank{
+	background-color: #E3E3E3;
+	border-radius: 5px;
+	border: 3px solid #DBDBD9;
+	width: 98%;
+	height: 28px;
+	color: #B4B7C0;
+}
+
+#sign{
+	background-color: #2ECC71;
+	border-radius: 5px;
+	border: 2px solid #86AF74;
+	width: 95px;
+	height: 28px;
+	color: white;
+	padding-left: 2px;
+	margin-left: 5px;
+}
+
+#reset{
+	background-color: #73B4E3;
+	border-radius: 5px;
+	border: 2px solid #556FF;
+	width: 95px;
+	height: 28px;
+	color: white;
+	padding-left: 2px;
+}
+
+#backPwd{
+	color: #ffdf00;
+}
+
