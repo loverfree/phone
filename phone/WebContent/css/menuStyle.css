@@ -14,9 +14,19 @@ li{
 
 li:first-child {border-top: none;}
 
-#leftPanel{
+div#leftPanel{
+	float: left;
 	margin-left: 2%;
 	background-color: white;
-	height: 1260px;
-	width: 180px;
+	height: 530px;
+	width: 16%;
 }
+
+div#rightPanel{
+	float: left;
+	margin-left: 3%;
+	background-color: white;	
+	width: 76%;
+	height: auto;
+}
+

@@ -24,21 +24,37 @@
 <div id="leftPanel">
 	<ul style="line-height:400%">
 		<li>所有手机</li>
-		<li>苹果</li>
-		<li class="menu"><span id="xiaomi">安卓</span>
+		<li>苹果iPhone</li>
+		<li class="menu"><span id="xiaomi">安卓Android</span>
 			<ol style="display: none;">
 				<li>三星</li>
 				<li>小米</li>
 				<li>OPPO</li>
 			</ol>
 		</li>
-		<li class="menu"><span id="xiaomi">小米</span>
+		<li class="menu"><span id="xiaomi">小米MI</span>
 			<ol style="display: none;">
 				<li>小米5</li>
 				<li>小米Mix</li>
 			</ol>
 		</li>
 	</ul>
+</div>
+<div id="rightPanel">
+<table border="1" cellspacing="10px" width="100%">
+	<tr>
+		<td>图片1</td><td>图片2</td><td>图片3</td>
+	</tr>
+	<tr>
+		<td>所有手机</td><td>苹果</td><td>小米</td>
+	</tr>
+	<tr>
+		<td>图片4</td><td>图片5</td><td>图片6</td>
+	</tr>
+	<tr>
+		<td>三星</td><td>OPPO</td><td>配件</td>
+	</tr>
+</table>
 </div>
 </body>
 </html>
