@@ -3,4 +3,109 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.newer.phone.dao.OrdersMapper"></mapper>
+  <mapper namespace="com.newer.phone.dao.OrdersMapper">
+  
+     <!-- 根据当前用户id和订单id来删除此订单 -->
+     <delete id="removeOrderById">
+        delete from orders where o_id=#{o_id} and u_id=#{u_id}
+     </delete>
+     
+     <!-- 根据当前用户的id来查询该用户的所有订单 -->
+     <select id="getOrderByUser" parameterType="int" resultMap="orders-result">
+        select b.*,user.u_name,user.u_id from
+        (select a.*,image.i_path,review.r_id,review.r_info,review.r_time from 
+		(select d.*,
+		product.p_name,product.P_IMPORT,
+		product.P_PRICE,product.P_STOCK,
+		product.p_sale,product.P_INFO,product.B_ID 
+        from product,
+        (select a.*,p.p_id,p.c_amount from 
+        p_o p join 
+        (select o.*,
+        u.u_name,u.U_NICKNAME,u.U_PIC,u.U_PWD,u.U_CARD 
+        from orders o join user u on o.u_id=1 and o.u_id=u.u_id)a
+        on p.o_id=a.o_id)d 
+        where product.p_id=d.p_id)a,review,image 
+		where a.p_id=review.p_id and a.p_id=image.p_id)b 
+		join user on user.u_id=b.u_id;
+     </select>
+     
+     <!-- ORDERS订单的结果集 -->
+     <resultMap type="com.newer.phone.pojo.Orders" id="orders-result">
+        <id property="o_id" column="o_id"/>
+        <result property="o_total" column="o_total"/>
+        <result property="a_province" column="a_province"/>
+        <result property="a_city" column="a_city"/>
+        <result property="a_street" column="a_street"/>
+        <result property="a_recv" column="a_recv"/>
+        <result property="a_recvtel" column="a_recvtel"/>
+        <result property="o_status" column="o_status"/>
+        <result property="o_time" column="o_time"/>
+        <association property="user" javaType="com.newer.phone.pojo.User"
+         column="u_id" resultMap="user-result"/>
+         <collection property="p_os" ofType="com.newer.phone.pojo.P_O"
+         resultMap="p_o-result"/>
+     </resultMap>
+     
+     <!-- USER用户的结果集 -->
+     <resultMap type="com.newer.phone.pojo.User" id="user-result">
+        <id property="u_id" column="u_id"/>
+        <result property="u_name" column="u_name"/>
+        <result property="u_pwd" column="u_pwd"/>
+        <result property="u_nickname" column="u_nickname"/>
+        <result property="u_pic" column="u_pic"/>
+        <result property="u_card" column="u_card"/>
+     </resultMap>
+     
+     <!-- P_O结果集 -->
+     <resultMap type="com.newer.phone.pojo.P_O" id="p_o-result">
+        <result property="c_amount" column="c_amount"/>
+        <association property="product" javaType="com.newer.phone.pojo.Product" column="p_id"
+         resultMap="product-result"/>
+        <association property="order" javaType="com.newer.phone.pojo.Orders" column="o_id"
+        resultMap="orders-result"/>
+     </resultMap>
+     
+     <!-- 查询所有商品界面简单描述结果集 -->
+  	 <resultMap type="com.newer.phone.pojo.Product" id="product-result">
+  		<id property="p_id" column="p_id"/>
+  		<result property="p_name" column="p_name"/>
+  		<result property="p_sale" column="p_sale"/>
+  		<result property="p_info" column="p_info"/>
+  		<result property="p_price" column="p_price"/>
+  		<result property="p_status" column="p_status"/>
+  		<result property="p_stock" column="p_stock"/>
+  		<result property="p_stock" column="p_stock"/>
+  		<!-- 关联多个图片结果集 -->
+  		<collection property="images" ofType="com.newer.phone.pojo.Image" 
+  			resultMap="image-result"/>
+  		<!-- 关联多个回复结果集 -->
+  		<collection property="reviews" ofType="com.newer.phone.pojo.Review"
+         	resultMap="review-result" />
+  	</resultMap>
+  	
+  	<!-- 图片结果集关联商品 -->
+  	<resultMap type="com.newer.phone.pojo.Image" id="image-result">
+  		<id property="i_id" column="i_id"/>
+  		<result property="i_path" column="i_path"/>
+  		<association property="product" column="p_id" javaType="com.newer.phone.pojo.Product" resultMap="product-result"/>
+  	</resultMap>
+	
+	  <!-- 商品评论结果集关联商品结果集以及发表此评论用户的结果集 -->
+    <resultMap type="com.newer.phone.pojo.Review" id="review-result">
+    	<id property="r_id" column="r_id"/>
+    	<result property="r_info" column="r_info"/>
+    	<result property="r_time" column="r_time"/>
+    	<association property="product" column="p_id" 
+    	javaType="com.newer.phone.pojo.Product" resultMap="product-result"/>
+    	<association property="user" javaType="com.newer.phone.pojo.User">
+    	  <id property="u_id" column="u_id"/>
+    	  <result property="u_name" column="u_name"/>
+    	</association>
+    </resultMap>
+     
+     
+     
+     
+     
+  </mapper>
