@@ -57,22 +57,5 @@ public interface CartMapper {
 	int updateCartByProduct(@Param("p_id")Integer p_id,
 			                @Param("u_id")Integer u_id,
 			                @Param("c_amount")Integer c_amount);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 

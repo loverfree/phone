@@ -36,31 +36,61 @@
     	<result property="r_info" column="r_info"/>
     	<result property="r_time" column="r_time"/>
     	<association property="product" column="p_id" 
-    	javaType="com.newer.phone.pojo.Product" resultMap="product-result"/>
+    		javaType="com.newer.phone.pojo.Product" resultMap="product-result"/>
     	<association property="user" javaType="com.newer.phone.pojo.User">
-    	  <id property="u_id" column="u_id"/>
-    	  <result property="u_name" column="u_name"/>
+    	 	<id property="u_id" column="u_id"/>
+    	 	<result property="u_name" column="u_name"/>
     	</association>
     </resultMap>
     
+    <!-- 所有商品品牌的结果集 -->
+    <resultMap type="com.newer.phone.pojo.Brand" id="brand-result">
+    	<id property="b_id" column="b_id"/>
+    	<result property="b_name" column="b_name"/>
+    	<result property="b_logo" column="b_logo"/>
+    	<result property="b_status" column="b_status"/>
+    </resultMap>
+    
+    
+    <!-- 查询所有商品品牌的sql语句 -->
+    <select id="findAllBrand" resultMap="brand-result">
+    	select b_id,b_name,b_logo,b_status from brand where b_status = 1
+    </select>
+    
   	<!-- 查询所有商品的sql语句 -->
   	<select id="findAllProduct" resultMap="product-result">
-  		select p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,i.i_path 
-  		from product p,image i where p.p_id = i.p_id and p.p_status = 1
+  		select p.p_name,p.p_info,p.p_price,
+  			p.p_sale,p.p_status,i.i_path 
+  			from product p,image i 
+  			where p.p_id = i.p_id and p.p_status = 1
   	</select>
+  	
+  	<!-- 根据关键字进行模糊查询的sql语句 -->
+    <select id="findBySelect" resultMap="product-result" parameterType="String">
+    	select p.p_name,p.p_info,p.p_price,
+  			p.p_sale,p.p_status,i.i_path 
+  			from product p,image i 
+  			where p.p_name like #{p_name} and p.p_id = i.p_id and p.p_status = 1
+    </select>
   	
   	<!-- 根据商品类别查询商品的sql语句 -->
   	<select id="findByBrand" resultMap="product-result" parameterType="int">
-  		select p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,i.i_path from 
-  		product p,image i where p.b_id = #{b_id} and p.p_id = i.p_id and p.p_status = 1 
+  		select p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,i.i_path 
+  			from product p,image i 
+  			where p.b_id = #{b_id} 
+  			and p.p_id = i.p_id 
+  			and p.p_status = 1 
   	</select>
 
   	<!-- 根据商品id查询单个商品详细的sql语句 -->
   	<select id="findById" resultMap="product-result" parameterType="int">
-  		select b.*,user.u_name,user.u_id from (select a.*,image.i_path,
-  		review.u_id,review.r_id,review.r_info,review.r_time from 
-		(select * from product where p_id=1 and p_status=1)a,review,image 
-		where a.p_id=review.p_id and a.p_id=image.p_id)b join user on user.u_id=b.u_id;
+  		select b.*,user.u_name,user.u_id from (
+  			select a.*,image.i_path, 
+  				review.u_id,review.r_id,review.r_info,review.r_time 
+  				from (select * from product where p_id= #{p_id}  
+  				and p_status=1)a,review,image 
+				where a.p_id=review.p_id and a.p_id=image.p_id)b  
+				join user on user.u_id=b.u_id;
   	</select> 
 
   </mapper>
