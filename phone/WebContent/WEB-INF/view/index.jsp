@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,7 +35,11 @@
 <body>
 <div id="searchBar"><img id="shopLogo" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input class="search" type="text"/></div>
+<form action="" method="post">
+<input class="search" type="text"/>
+<input type="submit" value="搜索" class="submit">
+</form>
+</div>
 <h2>我们的商品</h2>
 <div id="leftPanel">
 	<ul style="line-height:400%">
@@ -57,23 +62,34 @@
 </div>
 <div id="rightPanel">
 <table border="0" cellspacing="5px" width="100%">
+	<%-- 	<c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
+		<c:if test="${brand.count }%3==0"><br></c:if>
+		 <tr>
+			<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
+		</tr>
+		<tr>
+			<td><a href = "./${brand.b_id}/list">${brand.b_name }</a></td>
+		</tr>
+		</c:forEach> --%>
 	<tr>
-		<td><img src="${pageContext.request.contextPath }/resources/image/logo/All.png"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/logo/Apple.png"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/logo/Xiaomi.png"></td>
+	 <c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
+		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
+	</c:forEach>
+	</tr>
+		<tr>
+	 <c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
+		<td><a href = "./${brand.b_id}">${brand.b_name }</a></td>
+	</c:forEach>
 	</tr>
 	<tr>
-		<td>所有手机</td><td>苹果</td><td>小米</td>
+	 <c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
+		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
+	</c:forEach>
 	</tr>
-	<tr>
-		<td><img src="${pageContext.request.contextPath }/resources/image/logo/samsung.jpg"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/logo/oppo.png"></td>
-		<td><img src="${pageContext.request.contextPath }/resources/image/logo/tools.ico"></td>
-	</tr>
-	<tr>
-		<td>三星</td>
-		<td>OPPO</td>
-		<td>配件</td>
+		<tr>
+	 <c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
+		<td>${brand.b_name }</td>
+	</c:forEach>
 	</tr>
 </table>
 </div>

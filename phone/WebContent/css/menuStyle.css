@@ -26,10 +26,24 @@ li:first-child {border-top: none;}
 	border: 2px solid #E6E6E6;
 	width: 50%;
 	height: 40%;
+	margin-left:22%;
 	position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-image: url(${pageContext.request.contextPath }/resources/image/test.jpg);
+}
+
+.submit{
+	margin-left: 73%;
+	width:5%;
+	height:30px;
+	position: absolute;
+	top: 50%;
+    transform: translateY(-50%);
+    border-radius:10px;
+    background-color: white;
+    font-weight: bold;
+    border: 2px solid #E6E6E6;
 }
 
 div#leftPanel{

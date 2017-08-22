@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.newer.phone.pojo.Brand;
 import com.newer.phone.pojo.Product;
@@ -39,9 +42,9 @@ public class ProdcutController {
 	 * @return
 	 * @time:2017年8月22日 上午10:24:49
 	 */
-	@RequestMapping("/id")
-	public String getByBrand(){
-		List<Product> products = productService.getByBrand(2);
+	@RequestMapping(value = "/{b_id}/list",method = RequestMethod.GET)
+	public String getByBrand(@PathVariable int b_id){
+		List<Product> products = productService.getByBrand(b_id);
 		for(int i = 0;i < products.size();i++ ){
 			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
 					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
@@ -89,8 +92,9 @@ public class ProdcutController {
 	 * @time:2017年8月22日 上午10:40:01
 	 */
 	@RequestMapping("brand")
-	public String getAllBrand(){
+	public String getAllBrand(Model model){
 		List<Brand> brands = productService.getAllBrand();
+		model.addAttribute("brands",brands);
 		for(int i = 0;i < brands.size();i++){
 			System.out.println("品牌名："+brands.get(i).getB_name()+"--品牌图片："+
 					brands.get(i).getB_logo());
