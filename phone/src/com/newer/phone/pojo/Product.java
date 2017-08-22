@@ -144,6 +144,13 @@ public class Product implements Serializable {
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [p_id=" + p_id + ", p_name=" + p_name + ", p_import=" + p_import + ", p_price=" + p_price
+				+ ", p_stock=" + p_stock + ", p_sale=" + p_sale + ", p_info=" + p_info + ", p_status=" + p_status
+				+ ", images=" + images + "]";
+	}
 	
 	
 

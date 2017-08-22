@@ -1,5 +1,5 @@
 package com.newer.phone.service.front;
 
-public class TestService {
+public interface ImageService {
 
 }
