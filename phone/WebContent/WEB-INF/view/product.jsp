@@ -75,25 +75,17 @@
 		</tr>
 		</c:forEach> --%>
 	<tr>
-	 <c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
-		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
+	 <c:forEach items="${products }" var="product" begin="0" end="2" step="1">
+	 <tr>
+		<td><img src ="${pageContext.request.contextPath }/${product.images[0].i_path}"></td>
+	</tr>
+	<tr>	
+		<td><a href = "../${product.p_id}/details">${product.p_name } 
+			&nbsp;&nbsp;&nbsp;&nbsp;${product.p_price }元
+		</a></td>
 	</c:forEach>
 	</tr>
-		<tr>
-	 <c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
-		<td><a href = "./${brand.b_id}/list">${brand.b_name }</a></td>
-	</c:forEach>
-	</tr>
-	<tr>
-	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
-		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
-	</c:forEach>
-	</tr>
-		<tr>
-	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
-		<td>${brand.b_name }</td>
-	</c:forEach>
-	</tr>
+
 </table>
 </div>
 </body>

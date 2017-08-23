@@ -41,59 +41,24 @@
 	</form>
 </div>
 <h2>我们的商品</h2>
-<div id="leftPanel">
-	<ul style="line-height:400%">
-	 <c:forEach items="${brands }" var="brand" begin="0" end="1" step="1">
-		<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
-
-	</c:forEach>
-		<li class="menu"><span id="xiaomi">安卓Android</span>
-			<ol style="display: none;">
-		<c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
-				<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
-		</c:forEach>
-			</ol>
-		</li>
-		<li class="menu"><span id="xiaomi">小米MI</span>
-			<ol style="display: none;">
-				<li>小米5</li>
-				<li>小米Mix</li>
-			</ol>
-		</li>
-		
-	</ul>
-</div>
 <div id="rightPanel">
 <table border="0" cellspacing="5px" width="100%">
-	<%-- 	<c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
-		<c:if test="${brand.count }%3==0"><br></c:if>
-		 <tr>
-			<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
-		</tr>
-		<tr>
-			<td><a href = "./${brand.b_id}/list">${brand.b_name }</a></td>
-		</tr>
-		</c:forEach> --%>
 	<tr>
-	 <c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
-		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
-	</c:forEach>
+
+	 	<td>
+	 		<c:forEach items="${details.images }" var="image">
+	 			<img src = "../../${image.i_path }">
+	 		</c:forEach>
+	 		
+	 	</td>
+		<td>${details.p_name }</td>
+		<td><c:forEach items="${details.reviews }" var="review">
+			${review.r_info}&nbsp;&nbsp;&nbsp;${review.user.u_name }&nbsp;&nbsp;${review.r_time }
+			</c:forEach>
+		</td>
 	</tr>
-		<tr>
-	 <c:forEach items="${brands }" var="brand" begin="0" end="2" step="1">
-		<td><a href = "./${brand.b_id}/list">${brand.b_name }</a></td>
-	</c:forEach>
-	</tr>
-	<tr>
-	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
-		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
-	</c:forEach>
-	</tr>
-		<tr>
-	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
-		<td>${brand.b_name }</td>
-	</c:forEach>
-	</tr>
+	
+
 </table>
 </div>
 </body>

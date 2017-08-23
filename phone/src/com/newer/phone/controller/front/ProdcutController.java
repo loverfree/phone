@@ -18,6 +18,8 @@ import com.newer.phone.service.front.ProductService;
 public class ProdcutController {
 	@Autowired
 	private ProductService productService;
+	private String sort = "p_price";
+	private String order = "desc" ;
 	
 	/**
 	 * 查询所有商品列表
@@ -43,14 +45,15 @@ public class ProdcutController {
 	 * @time:2017年8月22日 上午10:24:49
 	 */
 	@RequestMapping(value = "/{b_id}/list",method = RequestMethod.GET)
-	public String getByBrand(@PathVariable int b_id){
-		List<Product> products = productService.getByBrand(b_id);
+	public String getByBrand(@PathVariable int b_id,Model model){
+		List<Product> products = productService.getByBrand(b_id, sort, order);
+		model.addAttribute("products", products);
 		for(int i = 0;i < products.size();i++ ){
 			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
 					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
-					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getImages().get(0));
+					"--销量："+products.get(i).getP_sale()+"--图片：");
 		}
-		return "index";
+		return "product";
 	}
 	
 	/**
@@ -58,27 +61,30 @@ public class ProdcutController {
 	 * @return
 	 * @time:2017年8月22日 上午10:25:41
 	 */
-	@RequestMapping("/aaa")
-	public String getById(){
-		Product products = productService.getById(1);
+	@RequestMapping(value = "/{p_id}/details",method = RequestMethod.GET)
+	public String getById(@PathVariable int p_id,Model model){
+		Product products = productService.getById(p_id);
+		model.addAttribute("details", products);
 			System.out.println("商品名："+products.getP_name()+"---价格："+
 					products.getP_price()+"--描述："+products.getP_info()+
 					"--销量："+products.getP_sale()+"--库存："+products.getP_stock()+
 					"评论："+products.getReviews().get(0).getR_info()+"评论人："+
 					"评论人："+products.getReviews().get(0).getUser().getU_name()+
 					"评论时间"+products.getReviews().get(0).getR_time()+
-					"--图片："+products.getImages().get(0));
+					"--图片："+products.getImages().get(0).getI_path()+
+					"图片个数："+products.getImages().size());
 		
-		return "index";
+		return "productdetails";
 	}
 	/**
 	 * 根据关键字进行模糊查询
 	 * @return
 	 * @time:2017年8月22日 上午10:27:33
 	 */
-	@RequestMapping("select")
-	public String getBySelect(){
-		List<Product> products = productService.findBySelect("6");
+	@RequestMapping(value = "/fuzzy",method = RequestMethod.POST)
+	public String getBySelect(String pname){
+		List<Product> products = productService.findBySelect(pname);
+		System.out.println(pname);
 		for(int i = 0;i < products.size();i++ ){
 			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
 					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+

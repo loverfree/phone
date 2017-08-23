@@ -3,4 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.newer.phone.dao.ImageMapper"></mapper>
+  <mapper namespace="com.newer.phone.dao.ImageMapper">
+  	<!-- 商品图片结果集 -->
+  	<resultMap type="com.newer.phone.pojo.Image" id="image-result">
+  		<id property="i_id" column="i_id"/>
+  		<result property="i_path" column="i_path"/>
+  		
+  	</resultMap>
+  
+  	<select id="getImage" resultMap="image-result">
+  		select i_path from image where p_id = #{p_id} 
+  	</select>
+  </mapper>
+  

@@ -14,7 +14,7 @@ public interface ProductService {
 	List<Brand> getAllBrand();
 	
 	//根据商品类别查询商品列表
-	List<Product> getByBrand(Integer b_id);
+	List<Product> getByBrand(Integer b_id,String sort,String order);
 	
 	//根据商品id查询商品详细
 	Product getById(Integer p_id);
