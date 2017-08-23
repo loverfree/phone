@@ -21,7 +21,10 @@ public interface ProductMapper {
 	//查询所有商品
 	List<Product> findAllProduct();
 	//根据商品类别查询商品
-	List<Product> findByBrand(@Param("b_id")Integer b_id);
+	List<Product> findByBrand(
+			@Param("b_id")Integer b_id,
+			@Param("sort")String sort,
+			@Param("order")String order);
 	//根据商品id查询商品详细
 	Product findById(@Param("p_id")Integer p_id);
 	//根据用户输入的关键字进行模糊查询

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,14 +23,15 @@
 <body>
 <h2>我们的商品</h2>
 <div id="leftPanel">
-	<ul style="line-height:400%">
-		<li>所有手机</li>
-		<li>苹果</li>
-		<li class="menu"><span id="xiaomi">安卓</span>
+	<c:forEach items="${brands }" var="brand" begin="0" end="1" step="1">
+		<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
+
+	</c:forEach>
+		<li class="menu"><span id="xiaomi">安卓Android</span>
 			<ol style="display: none;">
-				<li>三星</li>
-				<li>小米</li>
-				<li>OPPO</li>
+		<c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
+				<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
+		</c:forEach>
 			</ol>
 		</li>
 		<li class="menu"><span id="xiaomi">小米</span>

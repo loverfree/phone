@@ -61,18 +61,5 @@
     <update id="updateCartByProduct">
       update cart set c_amount=#{c_amount} where p_id=#{p_id} and u_id=#{u_id}
     </update>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
   </mapper>

@@ -6,15 +6,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.newer.phone.dao.ImageMapper;
 import com.newer.phone.dao.ProductMapper;
+import com.newer.phone.dao.ReviewMapper;
 import com.newer.phone.pojo.Brand;
+import com.newer.phone.pojo.Image;
 import com.newer.phone.pojo.Product;
+import com.newer.phone.pojo.Review;
 import com.newer.phone.service.front.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductMapper productMapper;
+	@Autowired
+	private ImageMapper imageMapper;
+	@Autowired
+	private ReviewMapper reviewMapper;
 	
 	//查询所有商品列表
 	@Override
@@ -24,8 +32,10 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	//根据商品类别查询商品
-	public List<Product> getByBrand(Integer b_id) {
-		List<Product> products = productMapper.findByBrand(b_id);
+	public List<Product> getByBrand(Integer b_id,String sort,String order) {
+		List<Product> products = productMapper.findByBrand(b_id, sort, order);
+		List<Image> images = imageMapper.getImage(b_id);
+		
 		return products;
 	}
 	
@@ -33,6 +43,10 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Product getById(Integer p_id) {
 		Product product = productMapper.findById(p_id);
+		List<Image> images = imageMapper.getImage(p_id);
+		List<Review> reviews = reviewMapper.getReview(p_id);
+		product.setImages(images);
+		product.setReviews(reviews);
 		return product;
 	}
 	

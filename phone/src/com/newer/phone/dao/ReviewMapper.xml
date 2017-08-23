@@ -3,4 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.newer.phone.dao.ReviewMapper"></mapper>
+  <mapper namespace="com.newer.phone.dao.ReviewMapper">
+  	<!-- 评论结果集 -->
+  	<resultMap type="com.newer.phone.pojo.Review" id="result-review">
+  		<id property="r_id" column="r_id"/>
+  		<result property="r_info" column="r_info"/>
+  		<result property="r_time" column="r_time"/>
+  		<association property="user" javaType="com.newer.phone.pojo.User">
+    	 	<id property="u_id" column="u_id"/>
+    	 	<result property="u_name" column="u_name"/>
+    	</association>
+  	</resultMap>
+  	
+  	<select id="getReview" resultMap="result-review">
+  		SELECT u.u_name,a.* FROM USER u
+			JOIN
+		(SELECT r.u_id,r.r_info,r.r_time FROM review r WHERE r.p_id = #{p_id})a
+ 			ON a.u_id = u.u_id
+  	</select>
+  </mapper>

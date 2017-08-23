@@ -80,6 +80,10 @@ public class CartController {
 	}
 	
 	//¹ºÎï³µ½áËã
+	@RequestMapping("payCart")
+	public String payByCart(){
+		return "index";
+	}
 
 	
 	

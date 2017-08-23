@@ -17,31 +17,14 @@
   		<!-- 关联多个图片结果集 -->
   		<collection property="images" ofType="com.newer.phone.pojo.Image" 
   			resultMap="image-result"/>
-  		
-  		<!-- 关联多个回复结果集 -->
-  		<collection property="reviews" ofType="com.newer.phone.pojo.Review"
-         	resultMap="review-result" />
   	</resultMap>
-  	
-  	<!-- 图片结果集关联商品 -->
+    
+    <!-- 图片结果集关联商品 -->
   	<resultMap type="com.newer.phone.pojo.Image" id="image-result">
   		<id property="i_id" column="i_id"/>
   		<result property="i_path" column="i_path"/>
   		<association property="product" column="p_id" javaType="com.newer.phone.pojo.Product" resultMap="product-result"/>
   	</resultMap>
-	
-	  <!-- 商品评论结果集关联商品结果集以及发表此评论用户的结果集 -->
-    <resultMap type="com.newer.phone.pojo.Review" id="review-result">
-    	<id property="r_id" column="r_id"/>
-    	<result property="r_info" column="r_info"/>
-    	<result property="r_time" column="r_time"/>
-    	<association property="product" column="p_id" 
-    		javaType="com.newer.phone.pojo.Product" resultMap="product-result"/>
-    	<association property="user" javaType="com.newer.phone.pojo.User">
-    	 	<id property="u_id" column="u_id"/>
-    	 	<result property="u_name" column="u_name"/>
-    	</association>
-    </resultMap>
     
     
     <!-- 所有商品品牌的结果集 -->
@@ -57,14 +40,7 @@
     <select id="findAllBrand" resultMap="brand-result">
     	select b_id,b_name,b_logo,b_status from brand where b_status = 1
     </select>
-    
-  	<!-- 查询所有商品的sql语句 -->
-  	<select id="findAllProduct" resultMap="product-result">
-  		select p.p_name,p.p_info,p.p_price,
-  			p.p_sale,p.p_status,i.i_path 
-  			from product p,image i 
-  			where p.p_id = i.p_id and p.p_status = 1
-  	</select>
+
   	
   	<!-- 根据关键字进行模糊查询的sql语句 -->
     <select id="findBySelect" resultMap="product-result" parameterType="String">
@@ -73,25 +49,42 @@
   			from product p,image i 
   			where p.p_name like #{p_name} and p.p_id = i.p_id and p.p_status = 1
     </select>
-  	
-  	<!-- 根据商品类别查询商品的sql语句 -->
-  	<select id="findByBrand" resultMap="product-result" parameterType="int">
-  		select p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,i.i_path 
+    
+        
+  	<!-- 查询所有商品的sql语句  可暂时不要-->
+  	<select id="findAllProduct" resultMap="product-result">
+  		select p.p_name,p.p_info,p.p_price,
+  			p.p_sale,p.p_status,i.i_path 
   			from product p,image i 
-  			where p.b_id = #{b_id} 
-  			and p.p_id = i.p_id 
-  			and p.p_status = 1 
+  			where p.p_id = i.p_id and p.p_status = 1
   	</select>
+  	
+  	<!-- 根据商品类别查询商品的sql语句  -->
+  	<select id="findByBrand" resultMap="product-result">
+  		select p.p_id,p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,i.i_path
+  			from product p,image i
+  			where i.p_id = p.p_id and p.p_status = 1 
+  			<!-- 如果传入的id是1 则查询所有。不是1则根据商品品牌的Id查询商品 -->
+  		<if test="b_id != 1">
+  			and p.b_id = #{b_id} 
+  		</if>
+  		<include refid="orderBy" />
+  	</select>
+  	
+  	<sql id="orderBy">
+  		order by
+  		<choose>
+  			<when test="sort == 'p_sale'">product.p_sale</when>
+  			<when test="sort == 'p_price'">p.p_price</when>
+  			<otherwise>p.p_id</otherwise>
+  		</choose>
+  		<if test="order == 'asc'">asc</if>
+  		<if test="order == 'desc'">desc</if>
+  	</sql>
 
   	<!-- 根据商品id查询单个商品详细的sql语句 -->
   	<select id="findById" resultMap="product-result" parameterType="int">
-  		select b.*,user.u_name,user.u_id from (
-  			select a.*,image.i_path, 
-  				review.u_id,review.r_id,review.r_info,review.r_time 
-  				from (select * from product where p_id= #{p_id}  
-  				and p_status=1)a,review,image 
-				where a.p_id=review.p_id and a.p_id=image.p_id)b  
-				join user on user.u_id=b.u_id;
+ 		select p.p_name,p.p_sale,p.p_info,p.p_price,p_stock,p_status
+ 			from product p where p_status = 1 and p_id = #{p_id}
   	</select> 
-
   </mapper>
