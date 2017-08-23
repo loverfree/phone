@@ -27,7 +27,16 @@ body{
 	margin-left: 30%;
 }
 
-#inputBlank{
+#uname{
+	background-color: #E3E3E3;
+	border-radius: 5px;
+	border: 3px solid #DBDBD9;
+	width: 98%;
+	height: 28px;
+	color: #B4B7C0;
+}
+
+#password{
 	background-color: #E3E3E3;
 	border-radius: 5px;
 	border: 3px solid #DBDBD9;

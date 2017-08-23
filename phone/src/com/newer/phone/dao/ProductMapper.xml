@@ -43,6 +43,7 @@
     	</association>
     </resultMap>
     
+    
     <!-- 所有商品品牌的结果集 -->
     <resultMap type="com.newer.phone.pojo.Brand" id="brand-result">
     	<id property="b_id" column="b_id"/>

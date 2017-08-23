@@ -10,27 +10,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/animate-shadow.js"></script>
-<script type="text/javascript">
-
-	$(function() {
-
-	    $('ul span#xiaomi').on('click', function() {
-			$(this).next().slideToggle('fast', function() {
-			})
-		})
-
- 		$('.search').mouseover(function() {
-			/* $(this).css("box-shadow", " 0 0 1px #000") */
-			$(this).animate({boxShadow: '0 0 50px #EDEDED'})
-		}) 
-		
- 		$('.search').mouseout(function() {
-			/* $(this).css("box-shadow", " 0 0 1px #000") */
-			$(this).animate({boxShadow: '0 0 0.1px #EDEDED'})
-		}) 
-
-	})
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/my.js"></script>
 </head>
 <body>
 <div id="searchBar"><img id="shopLogo" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
@@ -82,12 +62,12 @@
 	</c:forEach>
 	</tr>
 	<tr>
-	 <c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
+	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
 		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
 	</c:forEach>
 	</tr>
 		<tr>
-	 <c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
+	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
 		<td>${brand.b_name }</td>
 	</c:forEach>
 	</tr>

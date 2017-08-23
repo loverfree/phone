@@ -18,6 +18,7 @@
       <param-value>classpath:resouce/spring-mvc.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
     <multipart-config>
       <location>F:\</location>
       <max-file-size>5242880</max-file-size>

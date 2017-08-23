@@ -6,6 +6,11 @@ h2{
 	margin-left: 2%;
 }
 
+a{
+	text-decoration: none;
+	color: black;
+}
+
 li{
     list-style-type: none;
     border-top: 1px solid #EDEDED;

@@ -2,4 +2,31 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.newer.phone.dao.UserMapper"></mapper>
+  <mapper namespace="com.newer.phone.dao.UserMapper">
+  
+  <resultMap type="com.newer.phone.pojo.User" id="user-result">
+  	<id property="u_id" column="u_id"/>
+  	<result property="u_name" column="u_name"/>
+  	<result property="u_pwd" column="u_pwd"/>
+  	<result property="u_nickname" column="u_nickname"/>
+  	<result property="u_pic" column="u_card"/>
+  </resultMap>
+  
+  <!-- 查询数据库中用户是否存在 -->
+    <select id="chkUser" resultMap="user-result" parameterType="String">
+    	select u_name from USER where u_name = #{u_name}
+    </select>
+    
+    <!-- 将用户信息插入数据库中 -->
+    <insert id="regUser" parameterType="com.newer.phone.pojo.User">
+    	INSERT INTO USER(u_name,u_pwd,u_nickname) 
+    	values (#{u_name},#{u_pwd},'new user')   	
+    </insert>
+    
+    <!-- 查询用户是否存在 -->
+    <select id="loginUser" resultMap="user-result" parameterType="com.newer.phone.pojo.User">
+    	select u_name,u_pwd from USER 
+    	where u_name = #{u_name} and u_pwd = #{u_pwd} 
+    </select>
+  
+  </mapper>
