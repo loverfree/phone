@@ -25,3 +25,16 @@ function callback(data){
     $("#result").html(data);  
     //动态的改变页面节点div中的内容  
 }  
+
+// 检验手机号格式
+    function checkMobile(mobile) {
+	if (mobile != '') {
+		var pattern = /^(((13[0-9]{1})|15[0-9]{1}|18[0-9]{1}|)+\d{8})$/;
+		if (pattern.test(mobile) == false) {
+			$("#result").html('请输入正确的格式~');
+			return false;
+		} else {
+			return true;
+		}
+	}
+}

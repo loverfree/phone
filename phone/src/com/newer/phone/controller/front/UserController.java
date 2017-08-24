@@ -65,6 +65,7 @@ public class UserController {
 		if (user != null) {   
 			System.out.println("登录成功");
 			model.addAttribute("curuname", uname );
+			return "redirect:../product/brand";
 		}
 		else {
 			System.out.println("信息可能有误哦！");
@@ -73,7 +74,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="logout",method = RequestMethod.GET)
-	public String logOut(@ModelAttribute("curuname")User user,SessionStatus ss) {
+	public String logOut(@ModelAttribute("curuname")String uname,SessionStatus ss) {
 		ss.setComplete();
 		return "redirect:login";
 	}

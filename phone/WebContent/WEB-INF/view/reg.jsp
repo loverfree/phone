@@ -31,7 +31,7 @@
 			<table id="regBlank" border="0">
 				<tr>
 					<td colspan="2"><input id="uname" type="text" value="用户名"
-						name="uname" onblur="checkName(this.value)" /> <span id="result"></span>
+						name="uname" onclick="checkMobile(this.value)" onblur="checkName(this.value)" /> <span id="result"></span>
 					</td>
 				</tr>
 				<tr>

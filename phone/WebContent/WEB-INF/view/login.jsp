@@ -63,7 +63,7 @@
 				<span> 当前用户：${sessionScope.curuname} </span>
 		</form>
  		<form action="logout" method="get">
-			<input type="submit" value="还不能退出登录">
+			<input type="submit" value="退出登录">
 		</form> 
 	</div>
 	<span id="one"></span>

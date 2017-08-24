@@ -1,5 +1,6 @@
 package com.newer.phone.controller.front;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class ProdcutController {
 					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
 					"--销量："+products.get(i).getP_sale()+"--图片：");
 		}
+		//
 		return "product";
 	}
 	
@@ -105,6 +107,10 @@ public class ProdcutController {
 			System.out.println("品牌名："+brands.get(i).getB_name()+"--品牌图片："+
 					brands.get(i).getB_logo());
 		}
+		//
+		int total = brands.size();
+		int line = total%3==0?total/3:total/3+1;
+		model.addAttribute("line", line);
 		return "index";
 	}
 }
