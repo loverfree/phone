@@ -24,13 +24,13 @@
 <h2>我们的商品</h2>
 <div id="leftPanel">
 	<c:forEach items="${brands }" var="brand" begin="0" end="1" step="1">
-		<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
+		<li><a href = "./${brand.b_id}">${brand.b_name }</a></li>
 
 	</c:forEach>
 		<li class="menu"><span id="xiaomi">安卓Android</span>
 			<ol style="display: none;">
 		<c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
-				<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
+				<li><a href = "./${brand.b_id}">${brand.b_name }</a></li>
 		</c:forEach>
 			</ol>
 		</li>

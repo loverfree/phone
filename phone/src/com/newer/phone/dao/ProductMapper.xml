@@ -68,6 +68,9 @@
   		<if test="b_id != 1">
   			and p.b_id = #{b_id} 
   		</if>
+  		<if test="p_name != null and p_name != ''">
+  			and p.p_name like #{p_name}
+  		</if>
   		<include refid="orderBy" />
   	</select>
   	

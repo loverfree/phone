@@ -26,15 +26,23 @@ public class ProductServiceImpl implements ProductService{
 	
 	//查询所有商品列表
 	@Override
-	public List<Product> getAllProduct() {
-		List<Product> product = productMapper.findAllProduct();
+	public List<Product> getAllProduct(String p_name) {
+		String name = null;
+		if(p_name != null && p_name != "") {
+			name = "%"+p_name+"%";
+		}
+		List<Product> product = productMapper.findAllProduct(name);
 		return product;
 	}
 	
 	//根据商品类别查询商品
-	public List<Product> getByBrand(Integer b_id,String sort,String order) {
-		List<Product> products = productMapper.findByBrand(b_id, sort, order);
-		List<Image> images = imageMapper.getImage(b_id);
+	public List<Product> getByBrand(Integer b_id,String p_name,String sort,String order) {
+		String name = null;
+		if (p_name != null && p_name != "") {
+			name = "%"+p_name+"%";
+		}
+		System.out.println("----------"+name);
+		List<Product> products = productMapper.findByBrand(b_id,name,sort, order);
 		
 		return products;
 	}

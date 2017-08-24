@@ -16,17 +16,22 @@
 <jsp:include page="LeftNavi.jsp"></jsp:include>
 <div id="rightPanel">
 <table border="0" cellspacing="5px" width="100%">
-	<tr>
-	 <c:forEach items="${products }" var="product" begin="0" end="2" step="1">
-	 <tr>
-		<td><img src ="${pageContext.request.contextPath }/${product.images[0].i_path}"></td>
-	</tr>
-	<tr>	
-		<td><a href = "../${product.p_id}/details">${product.p_name } 
-			&nbsp;&nbsp;&nbsp;&nbsp;${product.p_price }元
-		</a></td>
-	</c:forEach>
-	</tr>
+	<c:set var="total" value="${products.size() }"></c:set>
+			
+		 <c:forEach items="${products }" var="product" varStatus="abc">
+		   <c:if test="${abc.count%3==1}">
+		     <tr>
+		 </c:if>
+	  	 <td><img src ="${pageContext.request.contextPath }/${product.images[0].i_path}">
+	  	 	<br>
+	  	 	<a href = "../${product.p_id}/details">${product.p_name } 
+			&nbsp;&nbsp;&nbsp;&nbsp;${product.p_price }元</a>
+	  	 </td>
+
+	  	 <c:if test="${abc.count%3== 0 || abc.count==total}">
+	  	     </tr>
+	  	 </c:if>	
+	  	</c:forEach>
 
 </table>
 </div>

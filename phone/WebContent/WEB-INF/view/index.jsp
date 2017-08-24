@@ -32,21 +32,7 @@
 	  	     </tr>
 	  	 </c:if>	
 	  	</c:forEach>
-	<%-- 	
-		<tr>
-		<td><a href = "./${brand.b_id}/list">${brand.b_name }</a></td>
-	     </tr> --%>
-	
-	<%-- <tr>
-	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
-		<td><img src ="${pageContext.request.contextPath }/${brand.b_logo}"></td>
-	</c:forEach>
-	</tr>
-		<tr>
-	 <c:forEach items="${brands }" var="brand" begin="3" end="5" step="1">
-		<td>${brand.b_name }</td>
-	</c:forEach>
-	</tr> --%>
+
 </table>
 </div>
 </body>

@@ -56,12 +56,5 @@ public class OrderController {
 		System.out.println(isTrue);
 		return "index";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
