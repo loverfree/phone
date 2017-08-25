@@ -1,57 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台登录</title>
-</head>
-<body>
-<div class="bubble"></div>
-
-	<div id="panel">
-		<br><br><br><br>
-		<span id="loginInfo">欢迎光临！</span>
-		<br><br><br>
-		<form action="loginUser" method="post">
-			<table id="regBlank" border="0">
-
-				<tr>
-					<td colspan="2"><input id="uname" type="text" value="用户名"
-						name="uname" onblur="#" /> <span id="result"></span>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input id="password" type="password"
-						value="密码" name="password" /></td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-				<tr>
-					<td><input id="reset" type="button" value="重置" />
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="sign" type="submit" value="登录" /></td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-				<tr>
-					<td align="center">忘记密码了吗？<a id="backPwd">重置密码！</a></td>
-				</tr>
-			</table>
-				<span> 当前用户：${sessionScope.curuname} </span>
-		</form>
- 		<form action="logout" method="get">
-			<input type="submit" value="还不能退出登录">
-		</form> 
-	</div>
-	<span id="one"></span>
-</body>
-</html>
+<%
+out.println("<!DOCTYPE html>");
+out.println("html>");
+out.println("head>");
+out.println("meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+out.println("title>后台登录界面</title>");
+out.println("link href=\"style/authority/login_css.css\" rel=\"stylesheet\" type=\"text/css\" />");
+out.println("script type=\"text/javascript\" src=\"scripts/jquery/jquery-1.7.1.js\"></script>");
+out.println("script type=\"text/javascript\">");
+out.println("$(document).ready(function(){");
+out.println("	$(\"#login_sub\").click(function(){");
+out.println("		$(\"#submitForm\").attr(\"action\", \"index.html\").submit();");
+out.println("	});");
+out.println("});");
+out.println("");
+out.println("/*回车事件*/");
+out.println("function EnterPress(e){ //传入 event ");
+out.println("	var e = e || window.event; ");
+out.println("	if(e.keyCode == 13){ ");
+out.println("		$(\"#submitForm\").attr(\"action\", \"index.html\").submit();");
+out.println("	} ");
+out.println("} ");
+out.println("/script>");
+out.println("/head>");
+out.println("body>");
+out.println("<div id=\"login_center\">");
+out.println("	<div id=\"login_area\">");
+out.println("		<div id=\"login_box\">");
+out.println("			<div id=\"login_form\">");
+out.println("				<form id=\"submitForm\" action=\"\" method=\"post\">");
+out.println("					<div id=\"login_tip\">");
+out.println("						<span id=\"login_err\" class=\"sty_txt2\"></span>");
+out.println("					</div>");
+out.println("					<div>");
+out.println("						 用户名：<input type=\"text\" name=\"userEntity.userCode\" class=\"username\" id=\"name\">");
+out.println("					</div>");
+out.println("					<div>");
+out.println("						密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type=\"password\" name=\"userEntity.password\" class=\"pwd\" id=\"pwd\" onkeypress=\"EnterPress(event)\" onkeydown=\"EnterPress()\">");
+out.println("					</div>");
+out.println("					<div id=\"btn_area\">");
+out.println("						<input type=\"button\" class=\"login_btn\" id=\"login_sub\"  value=\"登  录\">");
+out.println("						<input type=\"reset\" class=\"login_btn\" id=\"login_ret\" value=\"重 置\">");
+out.println("					</div>");
+out.println("				</form>");
+out.println("			</div>");
+out.println("		</div>");
+out.println("	</div>");
+out.println("</div>");
+out.println("div style=\"display:none\"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>");
+out.println("/body>");
+out.println("/html>");
+%>
