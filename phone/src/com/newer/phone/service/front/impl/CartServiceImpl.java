@@ -64,4 +64,12 @@ public class CartServiceImpl implements CartService{
 		return 0;
 	}
 
+	/**
+	 * 根据用户id清空购物车
+	 */
+	@Override
+	public int removeCartAll(Integer u_id) {
+		return cartMapper.removeCartAll(u_id);
+	}
+
 }

@@ -13,4 +13,6 @@ public interface CartService {
 	int removeCartByProduct(Integer p_id,Integer u_id);
 	
 	int updateCartByProduct(Integer p_id,Integer u_id,Integer c_amount);
+	
+	int removeCartAll(Integer u_id);
 }
