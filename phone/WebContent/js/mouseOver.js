@@ -1,5 +1,5 @@
 $(function() {
 	$(".search").hover(function() {
-		$(this).toggleClass('shadow');
+		$(this).toggleClass('shadowOut');
 	});
 })
