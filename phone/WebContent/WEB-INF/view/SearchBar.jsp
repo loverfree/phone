@@ -12,7 +12,7 @@
 <body>
 <div id="searchBar"><img id="shopLogo" onclick="window.location.href='brand'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<form action="./1/list" method="post">
+	<form action="../1/list" method="post">
 		<input class="search" type="text" name = "pname"/>
 	<input type="submit" value="搜索" class="submit">
 	</form>

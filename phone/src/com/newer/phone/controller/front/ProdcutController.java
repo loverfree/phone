@@ -100,7 +100,7 @@ public class ProdcutController {
 	 * @return
 	 * @time:2017年8月22日 上午10:40:01
 	 */
-	@RequestMapping("brand")
+	@RequestMapping("/brand/list")
 	public String getAllBrand(Model model){
 		List<Brand> brands = productService.getAllBrand();
 		model.addAttribute("brands",brands);

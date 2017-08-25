@@ -25,7 +25,7 @@
 		 </c:if>
 	  	 <td><img src ="${pageContext.request.contextPath }/${brand.b_logo}">
 	  	 	<br>
-	  	 	<a href="./${brand.b_id }/list">${brand.b_name }</a>
+	  	 	<a href="../${brand.b_id }/list">${brand.b_name }</a>
 	  	 </td>
 
 	  	 <c:if test="${abc.count%3== 0 || abc.count==total}">
