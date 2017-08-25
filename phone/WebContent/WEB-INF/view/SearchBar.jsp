@@ -7,15 +7,16 @@
 <title>搜索框</title>
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" />
-<script src="${pageContext.request.contextPath }/resources/js/animate-shadow.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/my.js"></script>
 <body>
 <div id="searchBar"><img id="shopLogo" onclick="window.location.href='brand'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<form action="../1/list" method="post">
-		<input class="search" type="text" name = "pname"/>
+		<input class="search" type="text" name = "pname" />
 	<input type="submit" value="搜索" class="submit">
 	</form>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mouseOver.js"></script>
 </body>
 </html>

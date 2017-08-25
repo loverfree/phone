@@ -6,11 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/my.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <title>左边的导航栏</title>
 </head>
 <body>
 <div id="leftPanel">
+<script type="text/javascript">
+
+	$(function() {
+		$('ul span#xiaomi').on('click', function() {
+			/* 左边导航栏滑动菜单 */
+			$(this).next().slideToggle('fast', function() {
+			})
+		})
+	})
+	
+</script>
 	<ul style="line-height:400%">
 	 <c:forEach items="${brands }" var="brand" begin="0" end="1" step="1">
 		<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>

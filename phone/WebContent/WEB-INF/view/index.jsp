@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/animate-shadow.js"></script>
 </head>
 <body>
 <jsp:include page="SearchBar.jsp"></jsp:include>
@@ -32,8 +31,8 @@
 	  	     </tr>
 	  	 </c:if>	
 	  	</c:forEach>
-
 </table>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
 </body>
 </html>

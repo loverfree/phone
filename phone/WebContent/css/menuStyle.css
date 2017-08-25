@@ -38,6 +38,12 @@ li:first-child {border-top: none;}
     background-image: url(${pageContext.request.contextPath }/resources/image/test.jpg);
 }
 
+.shadow{
+	-moz-box-shadow: 0 100px 12px 0 rgba(237, 237, 237, 0.2), 0 1px 25px 0 rgba(237, 237, 237, 99); 
+    -webkit-box-shadow: 0 100px 12px 0 rgba(237, 237, 237, 0.2), 0 1px 25px 0 rgba(237, 237, 237, 99); 
+    box-shadow: 0 100px 12px 0 rgba(237, 237, 237, 0.2), 0 1px 25px 0 rgba(237, 237, 237, 99); 
+}
+
 .submit{
 	margin-left: 73%;
 	width:5%;

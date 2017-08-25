@@ -35,5 +35,6 @@
 
 </table>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
 </body>
 </html>
