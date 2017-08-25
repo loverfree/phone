@@ -61,5 +61,10 @@
     <update id="updateCartByProduct">
       update cart set c_amount=#{c_amount} where p_id=#{p_id} and u_id=#{u_id}
     </update>
-
+    
+    <!-- 根据用户id清空该用户的购物车 -->
+    <delete id="removeCartAll">
+      delete from cart where u_id=#{u_id}
+    </delete>
+    
   </mapper>

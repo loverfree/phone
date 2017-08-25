@@ -79,6 +79,20 @@ public class CartController {
 		return "index";
 	}
 	
+	/**
+	 * 根据用户id去清空该用户的购物车中所有商品，参数由前端传入
+	 * @param u_id  用户id
+	 * @return
+	 * @author samluby
+	 */
+	@RequestMapping("emptyCart")
+	public String removeCartAll(Integer u_id){
+		u_id = 2;//参数由前端传入
+		int isTrue = cartService.removeCartAll(u_id);
+		System.out.println(isTrue);
+		return "index";
+	}
+	
 	//购物车结算
 	@RequestMapping("payCart")
 	public String payByCart(){

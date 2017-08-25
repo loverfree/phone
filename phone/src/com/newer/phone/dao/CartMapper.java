@@ -54,8 +54,23 @@ public interface CartMapper {
 	int removeCartByProduct(@Param("p_id")Integer p_id,
 			                @Param("u_id")Integer u_id);
 	
+	/**
+	 * 更新购物车
+	 * @param p_id
+	 * @param u_id
+	 * @param c_amount
+	 * @return
+	 * @author samluby
+	 */
 	int updateCartByProduct(@Param("p_id")Integer p_id,
 			                @Param("u_id")Integer u_id,
 			                @Param("c_amount")Integer c_amount);
+	/**
+	 * 根据用户id清空购物车
+	 * @param u_id
+	 * @return
+	 * @author samluby
+	 */
+	int removeCartAll(@Param("u_id")Integer u_id);
 }
 
