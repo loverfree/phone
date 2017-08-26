@@ -46,27 +46,38 @@ http://www.springframework.org/schema/util/spring-util.xsd">
   
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
+      <property name="mapperLocations" value="classpath:com/newer/phone/dao/*.xml"></property>
+
+		<!-- pageHelper 分页插件 -->
+	<property name="plugins">
+   	<array>
+     	<bean class="com.github.pagehelper.PageHelper">
+       		<property name="properties">
+         		<value>
+          			 dialect=mysql
+           			rowBoundsWithCount=true
+         		</value>
+       		</property>
+    	 </bean>
+   </array>
+	</property>
   </bean>
   
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <property name="basePackage" value="com.newer.phone.dao"/>
   </bean>
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+	  
+  <!-- 分页查询 -->
+<!--     <beans>
+  <bean class = "com.github.pagehelper.PageHelper">
+  	<property name="dialect" value = "mysql"/>
+  	<property name="offsetAsPageNum" value = "true"/>
+  	<property name="rowBoundsWithCount" value = "true"/>
+  	<property name="pageSizeZero" value = "ture"/>
+  	<property name="reasonable" value = "false"/>
+  	<property name="params" value = "pageNum=start;pageSize=limit;"/>
+  	<property name="returnPageInfo" value = "check"/>
+  </bean>
+  </beans> -->
 </beans>
