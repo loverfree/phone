@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.newer.phone.pojo.Brand;
 import com.newer.phone.pojo.Product;
 import com.newer.phone.service.front.ProductService;
@@ -22,41 +24,61 @@ public class ProdcutController {
 	private String sort = "p_price";
 	private String order = "desc" ;
 	
-	/**
-	 * 查询所有商品列表
-	 * @return  返回主页面
-	 * @time:2017年8月22日 上午10:24:24
-	 */
-	@RequestMapping("/all")
-	public String getAllProduct(){
-		System.out.println("启动完成");
-		List<Product> products = productService.getAllProduct("5");
-		System.out.println(products.size());
-		for(int i = 0;i < products.size();i++ ){
-			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
-					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
-					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getImages().get(0));
-		}
-		return "index";
-	}
 	
+
 	/**
 	 * 根据商品品牌查询商品列表
+	 * 
 	 * @return
 	 * @time:2017年8月22日 上午10:24:49
 	 */
 	@RequestMapping(value = "/{b_id}/list")
-	public String getByBrand(@PathVariable Integer b_id,@RequestParam(value="pname",required=false) String pname,Model model){
-		System.out.println("====="+pname);
-		List<Product> products = productService.getByBrand(b_id, pname,sort, order);
-		model.addAttribute("products", products);
+	public String getByBrand(
+			@PathVariable Integer b_id,
+			@RequestParam(value="pname",required=false) String pname,
+			Integer pageNo, Integer pageSize,
+			Model model){
+		System.out.println("---bid"+b_id);
+		
+		PageInfo<Product> page = productService.getByBrand(
+				b_id, pname,sort, order,pageNo, pageSize);
+		model.addAttribute("page", page);
+		model.addAttribute("bid",b_id);
+		System.out.println("--------page"+page);
+		List<Product> products=page.getList(); 
 		for(int i = 0;i < products.size();i++ ){
 			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
 					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
-					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getImages().get(0).getI_path());
+					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getP_image());
 		}
 		return "product";
 	}
+	
+	
+	
+	@RequestMapping(value = "/fuzzy/list")
+	public String getA(
+
+			@RequestParam(value="pname",required=false) String pname,
+			Integer pageNo, Integer pageSize,
+			Model model){
+		System.out.println("=====pname"+pname);
+		
+		PageInfo<Product> page = productService.getAllProrduct(
+				pname,sort, order,pageNo, pageSize);
+		System.out.println("--------oage"+page);
+		model.addAttribute("page", page);
+		model.addAttribute("pname",pname);
+		List<Product> products=page.getList();
+		
+		for(int i = 0;i < products.size();i++ ){
+			System.out.println(products.get(i).getP_id()+"商品名："+products.get(i).getP_name()+"---价格："+
+					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
+					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getP_image());
+		}
+		return "productfuzzy";
+	} 
+	
 	
 	/**
 	 * 根据商品id查询商品详细内容
@@ -64,7 +86,7 @@ public class ProdcutController {
 	 * @time:2017年8月22日 上午10:25:41
 	 */
 	@RequestMapping(value = "/{p_id}/details",method = RequestMethod.GET)
-	public String getById(@PathVariable int p_id,Model model){
+	public String getById(@PathVariable Integer p_id,Model model){
 		Product products = productService.getById(p_id);
 		model.addAttribute("details", products);
 			System.out.println("商品名："+products.getP_name()+"---价格："+
@@ -78,36 +100,30 @@ public class ProdcutController {
 		
 		return "productdetails";
 	}
-	/**
-	 * 根据关键字进行模糊查询
-	 * @return
-	 * @time:2017年8月22日 上午10:27:33
-	 */
-//	@RequestMapping(value = "/fuzzy",method = RequestMethod.POST)
-//	public String getBySelect(String pname,Model model){
-//		List<Product> products = productService.findBySelect(pname);
-//		model.addAttribute("products",products);
-//		System.out.println(pname);
-//		for(int i = 0;i < products.size();i++ ){
-//			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
-//					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
-//					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getImages().get(0));
-//		}
-//		return "product";
-//	}
+
 	/**
 	 * 查询所有商品的品牌
 	 * @return
 	 * @time:2017年8月22日 上午10:40:01
 	 */
 	@RequestMapping("/brand/list")
-	public String getAllBrand(Model model){
-		List<Brand> brands = productService.getAllBrand();
-		model.addAttribute("brands",brands);
+	public String getAllBrand(Model model,Integer pageNo, Integer pageSize){
+		PageInfo<Brand> page =  productService.getAllBrand(pageNo, pageSize);
+		List<Brand> brands = page.getList();
+		model.addAttribute("page",page);
+		model.addAttribute("brands", brands);
+		System.out.println("------------page"+page);
 		for(int i = 0;i < brands.size();i++){
 			System.out.println("品牌名："+brands.get(i).getB_name()+"--品牌图片："+
 					brands.get(i).getB_logo());
 		}
 		return "index";
 	}
+//	@RequestMapping("test")
+//	public String queryByPageTest(){
+//		PageInfo<Brand> page = productService.queryPage(1,3);
+//		List<Brand> list = page.getList();
+//		System.out.println("------------page"+list.size());
+//		return "index";
+//	}
 }

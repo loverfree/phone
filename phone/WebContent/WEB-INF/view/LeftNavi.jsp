@@ -24,16 +24,20 @@
 	
 </script>
 	<ul style="line-height:400%">
-	 <c:forEach items="${brands }" var="brand" begin="0" end="1" step="1">
-		<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
-
+	 <c:forEach items="${page.getList() }" var="brand" varStatus="abc">
+	 <c:if test="${abc.count <= 2}">
+	 	<li><a href = "../${brand.b_id}/list">${brand.b_name }</a></li> 
+	 </c:if>
 	</c:forEach>
-		<li class="menu"><span id="xiaomi">安卓Android</span>
-			<ol style="display: none;">
-		<c:forEach items="${brands }" var="brand" begin="2" end="4" step="1">
-				<li><a href = "./${brand.b_id}/list">${brand.b_name }</a></li>
-		</c:forEach>
-			</ol>
+	<li class="menu"><span id="xiaomi">安卓Android</span>
+		<ol style="display: none;">
+	 <c:forEach items="${page.getList() }" var="brand" varStatus="abc">
+	 <c:if test="${abc.count>2}">
+	 	<li><a href = "../${brand.b_id}/list">${brand.b_name }</a></li> 
+	 </c:if>
+	 
+	</c:forEach>
+		</ol>
 		</li>
 		<li class="menu"><span id="xiaomi">小米MI</span>
 			<ol style="display: none;">

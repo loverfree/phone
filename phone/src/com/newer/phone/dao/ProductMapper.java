@@ -19,7 +19,10 @@ public interface ProductMapper {
 	//查询所有商品品牌
 	List<Brand> findAllBrand();
 	//查询所有商品
-	List<Product> findAllProduct(@Param("p_name") String p_name);
+	List<Product> findAllProduct(
+			@Param("p_name") String p_name,
+			@Param("sort")String sort,
+			@Param("order")String order);
 	//根据商品类别查询商品
 	List<Product> findByBrand(
 			@Param("b_id")Integer b_id,

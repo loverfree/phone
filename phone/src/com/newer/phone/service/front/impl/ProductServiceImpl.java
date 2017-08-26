@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.newer.phone.dao.ImageMapper;
 import com.newer.phone.dao.ProductMapper;
 import com.newer.phone.dao.ReviewMapper;
@@ -24,27 +26,41 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ReviewMapper reviewMapper;
 	
-	//查询所有商品列表
-	@Override
-	public List<Product> getAllProduct(String p_name) {
+	
+	//根据商品类别查询商品 、查询所有商品   以及模糊查询 以及根据价格或者销量进行排序 
+	public PageInfo<Product> getByBrand(
+			Integer b_id,String p_name,
+			String sort,String order,
+			Integer pageNo,Integer pageSize) {
 		String name = null;
-		if(p_name != null && p_name != "") {
+		if (p_name != null && p_name != "") {
 			name = "%"+p_name+"%";
 		}
-		List<Product> product = productMapper.findAllProduct(name);
-		return product;
+		
+		pageNo = pageNo == null?1:pageNo;
+	    pageSize = pageSize == null?1:pageSize;
+	    PageHelper.startPage(pageNo, pageSize);
+		List<Product> products = productMapper.findByBrand(b_id,name,sort, order);
+//		System.out.println("----------"+products.get(0).getBrand().getB_id());
+		PageInfo<Product> page = new PageInfo<Product>(products);
+		return page;
 	}
 	
-	//根据商品类别查询商品
-	public List<Product> getByBrand(Integer b_id,String p_name,String sort,String order) {
+	@Override
+	public PageInfo<Product> getAllProrduct(String p_name, String sort, String order, Integer pageNo,
+			Integer pageSize) {
 		String name = null;
 		if (p_name != null && p_name != "") {
 			name = "%"+p_name+"%";
 		}
 		System.out.println("----------"+name);
-		List<Product> products = productMapper.findByBrand(b_id,name,sort, order);
-		
-		return products;
+		pageNo = pageNo == null?1:pageNo;
+	    pageSize = pageSize == null?3:pageSize;
+	    PageHelper.startPage(pageNo, pageSize);
+		List<Product> products = productMapper.findAllProduct(name,sort, order);
+		System.out.println("--======="+products.get(0).getP_id());
+		PageInfo<Product> page = new PageInfo<Product>(products);
+		return page;
 	}
 	
 	//根据商品ID查询商品详细
@@ -58,18 +74,45 @@ public class ProductServiceImpl implements ProductService{
 		return product;
 	}
 	
-	//根据用户输入的关键字进行模糊查询
-	@Override
-	public List<Product> findBySelect(String p_name) {
-		String name = "%"+p_name+"%";
-		List<Product> products = productMapper.findBySelect(name);
-		return products;
-	}
 	
 	//查询所有商品品牌
 	@Override
-	public List<Brand> getAllBrand() {
-		List<Brand> brands = productMapper.findAllBrand();
-		return brands;
+	public PageInfo<Brand> getAllBrand(Integer pageNo,Integer pageSize) {
+		pageNo = pageNo == null?1:pageNo;
+	    pageSize = pageSize == null?6:pageSize;
+	    PageHelper.startPage(pageNo, pageSize);
+	    List<Brand> list = productMapper.findAllBrand();
+	    PageInfo<Brand> page = new PageInfo<Brand>(list);
+		return page;
 	}
+	
+	//测试分页方法
+	@Override
+	public PageInfo<Brand> queryPage(Integer pageNo, Integer pageSize) {
+		 	pageNo = pageNo == null?1:pageNo;
+		    pageSize = pageSize == null?6:pageSize;
+		    PageHelper.startPage(pageNo, pageSize);
+		    List<Brand> list = productMapper.findAllBrand();
+		    //用PageInfo对结果进行包装
+		    PageInfo<Brand> page = new PageInfo<Brand>(list);
+		    
+		    //测试PageInfo全部属性
+		    System.out.println("--------------");
+		    for(Brand brand:list){
+		    	System.out.println(brand.getB_name()+"--"+brand.getB_logo());
+		    }
+		    System.out.println(page.getPageNum());
+		    System.out.println(page.getPageSize());
+		    System.out.println(page.getStartRow());
+		    System.out.println(page.getEndRow());
+		    System.out.println(page.getTotal());
+		    System.out.println(page.getPages());
+		    System.out.println(page.getFirstPage());
+		    System.out.println(page.getLastPage());
+		    System.out.println(page.isHasPreviousPage());
+		    System.out.println(page.isHasNextPage());
+		    return page;
+	}
+
+
 }

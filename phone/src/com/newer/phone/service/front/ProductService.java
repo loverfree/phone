@@ -2,23 +2,32 @@ package com.newer.phone.service.front;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.newer.phone.pojo.Brand;
 import com.newer.phone.pojo.Product;
 
 public interface ProductService {
 	
-	//查询所有商品列表
-	List<Product> getAllProduct(String p_name);
 	
 	//查询所有商品品牌
-	List<Brand> getAllBrand();
+	PageInfo<Brand> getAllBrand(Integer pageNo,Integer pageSize);
 	
 	//根据商品类别查询商品列表
-	List<Product> getByBrand(Integer b_id,String p_name,String sort,String order);
+	PageInfo<Product> getByBrand(
+			Integer b_id,String p_name,
+			String sort,String order,
+			Integer pageNo,Integer pageSize);
+	
+	//查询所有商品
+	PageInfo<Product> getAllProrduct(
+			String p_name,
+			String sort,String order,
+			Integer pageNo,Integer pageSize);
 	
 	//根据商品id查询商品详细
 	Product getById(Integer p_id);
 	
-	//根据用户输入的关键字查询商品列表  如果没数据可能会抛出异常
-	List<Product> findBySelect(String p_name);
+	//测试分页方法
+	PageInfo<Brand> queryPage(Integer pageNo,Integer pageSize);
+
 }

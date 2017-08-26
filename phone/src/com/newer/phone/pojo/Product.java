@@ -40,6 +40,7 @@ public class Product implements Serializable {
 	private List<Cart> carts;
 	private List<P_O> p_os;
 	private List<Image> images;
+	private String p_image;
 
 	public Integer getP_id() {
 		return p_id;
@@ -144,12 +145,21 @@ public class Product implements Serializable {
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
+	
+
+	public String getP_image() {
+		return p_image;
+	}
+
+	public void setP_image(String p_image) {
+		this.p_image = p_image;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [p_id=" + p_id + ", p_name=" + p_name + ", p_import=" + p_import + ", p_price=" + p_price
 				+ ", p_stock=" + p_stock + ", p_sale=" + p_sale + ", p_info=" + p_info + ", p_status=" + p_status
-				+ ", images=" + images + "]";
+				+ ", images=" + images +  ", p_image=" + p_image+ ", brand=" + brand.getB_id()+" ]";
 	}
 	
 	
