@@ -101,3 +101,30 @@ td img{
 	max-width: 100%;
 }
 
+div#userMenu{
+	margin-left: 80%;
+	width: 4%;
+	height: 46%;
+	position: absolute;
+	top: 50%;
+    transform: translateY(-50%);
+}
+
+img#userMenu{
+	width: 100%;
+    height: 100%;
+}
+
+div.dropDown{
+	margin-left: 64%;
+	width: 20%;
+	height: 20%;
+	background-color: yellow;
+}
+
+ul.dropDown{
+	line-height: 300%;
+	color: black;
+	box-shadow: 3px 3px white;
+}
+

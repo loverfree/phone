@@ -17,6 +17,27 @@
 		<input class="search" type="text" name = "pname" />
 	<input type="submit" value="搜索" class="submit">
 	</form>
+	<div id="userMenu">
+		<img id="userMenu" alt="当前状态" src="${pageContext.request.contextPath }/resources/image/uMenu.png">
+	</div>
 </div>
+	<div class="dropDown">
+	<ul class="dropDown">
+	<li>
+	<span> 当前用户：${sessionScope.curuname} </span>
+	</li>
+	<li>
+	<span> 查看订单 </span>
+	</li>
+	<li>
+	<span> 个人信息 </span>
+	</li>
+	<li>
+	 	<form action="${pageContext.request.contextPath }/user/logout" method="post">
+			<input type="submit" value="退出登录">
+		</form> 
+		</li>
+		</ul>
+		</div>
 </body>
 </html>

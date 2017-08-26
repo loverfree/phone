@@ -17,16 +17,22 @@
     	select u_name from USER where u_name = #{u_name}
     </select>
     
-    <!-- 将用户信息插入数据库中 -->
+    <!-- （用户注册）将用户信息插入数据库中 -->
     <insert id="regUser" parameterType="com.newer.phone.pojo.User">
     	INSERT INTO USER(u_name,u_pwd,u_nickname) 
     	values (#{u_name},#{u_pwd},'new user')   	
     </insert>
     
-    <!-- 查询用户是否存在 -->
+    <!-- 查询用户是否存在,同时登录后获得用户的信息 -->
     <select id="loginUser" resultMap="user-result" parameterType="com.newer.phone.pojo.User">
-    	select u_name,u_pwd from USER 
+    	select * from USER 
     	where u_name = #{u_name} and u_pwd = #{u_pwd} 
     </select>
+    
+    <!-- 用户编辑自己的信息 -->
+    <update id="updateUser" parameterType="com.newer.phone.pojo.User">
+    	UPDATE USER SET u_pwd = #{u_pwd},u_nickname = #{u_nickname},u_card = #{u_card} 
+    	WHERE u_id = #{u_id}
+    </update>
   
   </mapper>

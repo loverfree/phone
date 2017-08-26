@@ -57,14 +57,11 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td align="center">忘记密码了吗？<a id="backPwd">重置密码！</a></td>
+					<td align="center">忘记密码了吗？<a id="backPwd">重置密码！</a></td>				
 				</tr>
 			</table>
-				<span> 当前用户：${sessionScope.curuname} </span>
+
 		</form>
- 		<form action="logout" method="get">
-			<input type="submit" value="退出登录">
-		</form> 
 	</div>
 	<span id="one"></span>
 </body>

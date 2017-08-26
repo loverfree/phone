@@ -65,7 +65,7 @@ public class UserController {
 		if (user != null) {   
 			System.out.println("登录成功");
 			model.addAttribute("curuname", uname );
-			return "redirect:../product/brand";
+			return "redirect:../product/brand/list";
 		}
 		else {
 			System.out.println("信息可能有误哦！");
@@ -73,9 +73,23 @@ public class UserController {
 		return "redirect:login";
 	}
 	
-	@RequestMapping(value="logout",method = RequestMethod.GET)
+	@RequestMapping(value="logout",method = RequestMethod.POST)
 	public String logOut(@ModelAttribute("curuname")String uname,SessionStatus ss) {
 		ss.setComplete();
+		return "redirect:login";
+	}
+	
+	@RequestMapping("/upt")
+	public String updateUser( ) {
+		String pwd = "ssl";
+		String nickname = "Mary";
+		int uid = 33;
+		User testuser = new User();
+		testuser.setU_pwd(pwd);
+		testuser.setU_nickname(nickname);
+		testuser.setU_id(uid);
+		userService.updateUser(testuser);
+		System.out.println("修改成功");
 		return "redirect:login";
 	}
 	

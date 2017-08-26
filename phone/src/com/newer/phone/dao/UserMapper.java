@@ -21,4 +21,7 @@ public interface UserMapper {
 	
 	// 用户登录
 	User loginUser(@Param("u_name")String u_name,@Param("u_pwd")String u_pwd);
+	
+	// 用户修改自己的信息
+	int updateUser(User user);
 }

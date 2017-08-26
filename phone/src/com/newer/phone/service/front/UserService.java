@@ -13,4 +13,7 @@ public interface UserService {
 	// 验证用户是否存在
 	User loginUser(String u_name,String u_pwd);
 	
+	// 用户修改自己的信息
+	int updateUser(User user);
+	
 }

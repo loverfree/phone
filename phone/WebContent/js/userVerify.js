@@ -10,7 +10,7 @@
     //2.将文本框中的数据发送给服务器的servlet  
     //使用jquery的xmlHttpRequest对象的get请求的封装 这几种方法都行  
     //$.get(url,date,回调函数)  
-    $.get("chkUser?name="+username,null,callback);  
+    $.post("chkUser?name="+username,null,callback);  
     //$.get("AjaxServlet",username,callback);  
     //$.get("AjaxServlet","name="+username,callback);     
       
