@@ -22,8 +22,7 @@ public class OrderServiceImpl implements OrdersService{
 
 	@Override
 	public int removeOrderById(Integer u_id, Integer o_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ordersMapper.removeOrderById(u_id, o_id);
 	}
 
 }
