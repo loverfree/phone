@@ -9,7 +9,8 @@
   	<result property="u_name" column="u_name"/>
   	<result property="u_pwd" column="u_pwd"/>
   	<result property="u_nickname" column="u_nickname"/>
-  	<result property="u_pic" column="u_card"/>
+  	<result property="u_pic" column="u_pic"/>
+  	<result property="u_card" column="u_card"/>
   </resultMap>
   
   <!-- 查询数据库中用户是否存在 -->
@@ -34,5 +35,14 @@
     	UPDATE USER SET u_pwd = #{u_pwd},u_nickname = #{u_nickname},u_card = #{u_card} 
     	WHERE u_id = #{u_id}
     </update>
+    
+    <!-- 后台查询所有用户信息 -->
+    <select id="findUserAll" resultMap="user-result">
+        select * from user;
+    </select>
   
+    <!-- 后台根据用户id查找用户 -->
+    <select id="getUserById" resultType="com.newer.phone.pojo.User" parameterType="int">
+       select * from user where u_id=#{u_id}
+    </select>
   </mapper>

@@ -1,6 +1,8 @@
 package com.newer.phone.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 /**
@@ -24,4 +26,12 @@ public interface UserMapper {
 	
 	// 用户修改自己的信息
 	int updateUser(User user);
+	
+	//后台管理员查看所有用户对的信息
+	List<User> findUserAll();
+	
+//	//后天管理员编辑用户的信息
+//	int updateUserBack(User user);
+	
+	User getUserById(@Param("u_id")Integer u_id);
 }

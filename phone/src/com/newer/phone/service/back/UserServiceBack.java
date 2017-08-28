@@ -9,10 +9,12 @@ import com.newer.phone.pojo.User;
  * @author Kiven
  *
  */
-public interface UserService {
+public interface UserServiceBack {
 	//查看所有用户
-	List<User> findAllUser();
+	List<User> findUserAll();
 	//编辑用户信息
-	int updateCartByProduct(Integer u_id);
+	int updateUser(User user);
+	//根据id查找用户
+	User getUserById(Integer u_id);
 	
 }

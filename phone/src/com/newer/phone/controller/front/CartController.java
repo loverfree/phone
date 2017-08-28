@@ -93,6 +93,7 @@ public class CartController {
 		return "index";
 	}
 	
+	//由顶当单累结算
 	//购物车结算
 	@RequestMapping("payCart")
 	public String payByCart(){
