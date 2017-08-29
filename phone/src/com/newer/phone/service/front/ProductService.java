@@ -1,5 +1,4 @@
 package com.newer.phone.service.front;
-
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
@@ -22,7 +21,8 @@ public interface ProductService {
 	PageInfo<Product> getAllProrduct(
 			String p_name,
 			String sort,String order,
-			Integer pageNo,Integer pageSize);
+			Integer pageNo,Integer pageSize,
+			Integer start,Integer end);
 	
 	//根据商品id查询商品详细
 	Product getById(Integer p_id);

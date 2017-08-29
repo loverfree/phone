@@ -1,6 +1,7 @@
 package com.newer.phone.service.front.impl;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,14 @@ public class ProductServiceImpl implements ProductService{
 			Integer b_id,String p_name,
 			String sort,String order,
 			Integer pageNo,Integer pageSize) {
+		
 		String name = null;
 		if (p_name != null && p_name != "") {
 			name = "%"+p_name+"%";
 		}
 		
 		pageNo = pageNo == null?1:pageNo;
-	    pageSize = pageSize == null?1:pageSize;
+	    pageSize = pageSize == null?2:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
 		List<Product> products = productMapper.findByBrand(b_id,name,sort, order);
 //		System.out.println("----------"+products.get(0).getBrand().getB_id());
@@ -47,18 +49,32 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public PageInfo<Product> getAllProrduct(String p_name, String sort, String order, Integer pageNo,
-			Integer pageSize) {
+	public PageInfo<Product> getAllProrduct(
+			String p_name, String sort, 
+			String order, Integer pageNo,
+			Integer pageSize,
+			Integer start,Integer end) {
+		if (start == null || end  == null ) {
+			start = 0;
+			end = 1000000;
+		}
+		if (sort == null || sort == "") {
+			sort = "p_price";
+		}
+		if (order == null || order == "") {
+			order = "asc";
+		}
 		String name = null;
 		if (p_name != null && p_name != "") {
 			name = "%"+p_name+"%";
 		}
-		System.out.println("----------"+name);
+		System.out.println("----------"+start);
+		System.out.println("----------"+end);
+		System.out.println(sort);
 		pageNo = pageNo == null?1:pageNo;
-	    pageSize = pageSize == null?3:pageSize;
+	    pageSize = pageSize == null?2:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
-		List<Product> products = productMapper.findAllProduct(name,sort, order);
-//		System.out.println("--======="+products.get(0).getP_id());
+		List<Product> products = productMapper.findAllProduct(name,sort, order,start,end);
 		PageInfo<Product> page = new PageInfo<Product>(products);
 		return page;
 	}

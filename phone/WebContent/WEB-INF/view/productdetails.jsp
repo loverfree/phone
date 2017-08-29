@@ -6,63 +6,123 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>手机商城</title>
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" /> --%>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/animate-shadow.js"></script>
-<script type="text/javascript">
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js "></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css ">
 
-	$(function() {
 
-	    $('ul span#xiaomi').on('click', function() {
-			$(this).next().slideToggle('fast', function() {
-			})
-		})
-
- 		$('.search').mouseover(function() {
-			/* $(this).css("box-shadow", " 0 0 1px #000") */
-			$(this).animate({boxShadow: '0 0 50px #EDEDED'})
-		}) 
-		
- 		$('.search').mouseout(function() {
-			/* $(this).css("box-shadow", " 0 0 1px #000") */
-			$(this).animate({boxShadow: '0 0 0.1px #EDEDED'})
-		}) 
-
-	})
-</script>
 </head>
 <body>
-<%-- <jsp:include page="SearchBar.jsp"></jsp:include> --%>
+<div id="searchBar">
+<img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 </div>
-<h2>我们的商品</h2>
-<div id="rightPanel">
-<table border="0" cellspacing="5px" width="100%">
-	<tr>
-	 	<td rowspan="3">
-	 		<c:forEach items="${details.images }" var="image">
-	 			<img src = "../../${image.i_path }">
+<div>商品详情</div>
+<form action="../../cart/addCart" method="post">
+	<div style="background-color: #EDEDED">
+		<div style="float:left; margin-left: 15%;">
+			<c:forEach items="${details.images }" var="image">
+	 			<img src = "../../${image.i_path }" height="150px" width="120px">
 	 		</c:forEach>
-	 	</td>
-		<td>商品名：${details.p_name }<br>商品描述：${details.p_info }</td>
-		
-	</tr>
-	
-	<tr><td>商品价格：${details.p_price }<br>商品销量：${details.p_sale }</td></tr>
-	<tr><td>商品库存：${details.p_sale }<br>
-	购买数量：<input type=text name=amount value=1>
-	<input type=button value="+" onClick="javascript:this.form.amount.value++;">
-	<input type=button value="-" onClick="javascript:this.form.amount.value--;">
-	<br><br>
-	<input type="button" value="立即购买">
-	</td></tr>
+		</div>
+				<div class="panel panel-default" ; style="margin-left: 45%;margin-right: 25% ;border: 0" >
+					<div class="panel-heading">商品名：${details.p_name }</div>
+					<div class="panel-body">
+						<p>商品描述：${details.p_info }</p>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">商品价格：${details.p_price }</li>
+						<li class="list-group-item">商品销量：${details.p_sale }</li>
+						<li class="list-group-item">商品库存：${details.p_sale }</li>
+						<li class="list-group-item">购买数量：
+						<input type=button value="-" id="sub" onClick="javascript:void(0);">
+						<input type=text name="amount" id="amount" value="1" size="5">
+						<input type="text" class="form-control" id="amount" name="amount" width="5px">
+						<input type=button value="+" id="add" onClick="javascript:void(0);">
+						</li>
+						
+					</ul>
+					<button type="submit" class="btn btn-info">加入购物车</button>
+				</div>
+				
+				
+				<div>
+					<div class="panel panel-info" style="margin-top:10%;  margin-left: 16%;margin-right: 16%">
+						
+						<div class="panel-body">
+							<table class="table table table-hover">
+								<thead>
+									<tr style="background-color: #9DEDF6">
+										<th>评论详情</th>
+										<th>评论人</th>
+										<th>评论时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${details.reviews }" var="review">
+										<tr>
+											<td>${review.r_info}</td>
+											<td>${review.user.u_name }</td>
+											<td>${review.r_time }</td>
+										</tr>
+									</c:forEach>
 
-	<tr><td colspan="2"><c:forEach items="${details.reviews }" var="review">
-			${review.r_info}&nbsp;&nbsp;&nbsp;${review.user.u_name }&nbsp;&nbsp;${review.r_time }<br>
-			</c:forEach>
-		</td></tr>
-
-</table>
+								</tbody>
+								
+							</table>
+							
+						</div>
+					</div>
+				</div>
+	<input type = "hidden" name = "pid" value = "${details.p_id }">
+	<input type = "hidden" name = "uid" value = "${sessionScope.curuser.u_id}">
 </div>
+</form>
+
 </body>
+<script type="text/javascript">
+	$("#amount").keypress(function(b) {
+	var keyCode = b.keyCode ? b.keyCode : b.charCode;
+		if (keyCode != 0 && (keyCode < 48 || keyCode > 57) && keyCode != 8 && keyCode != 37 && keyCode != 39) {
+			return false;
+		} else {
+			return true;
+		}
+		});
+	
+	$("#amount").keypress(function(b) {
+	var keyCode = b.keyCode ? b.keyCode : b.charCode;
+		if (keyCode != 0 && (keyCode < 48 || keyCode > 57) && keyCode != 8 && keyCode != 37 && keyCode != 39) {
+			return false;
+		} else {
+			return true;
+		};
+			}).keyup(function(e) {
+	var keyCode = e.keyCode ? e.keyCode : e.charCode;
+		console.log(keyCode);
+		if (keyCode != 8) {
+			var numVal = parseInt($("#amount").val()) || 0;
+			numVal = numVal < 1 ? 1 : numVal;
+			numVal = numVal > ${details.p_sale } ? ${details.p_sale }:numVal;
+		$("#amount").val(numVal);
+			}
+		}).blur(function() {
+	var numVal = parseInt($("#amount").val()) || 0;
+		numVal = numVal < 1 ? 1 : numVal;
+		$("#amount").val(numVal);
+	}); 
+
+//增加
+	$("#add").click(function() {
+		var num = parseInt($("#amount").val()) || 0;
+		num = num > ${details.p_sale } ? ${details.p_sale }:num;
+	$("#amount").val(num + 1);
+	});
+//减去
+	$("#sub").click(function() {
+		var num = parseInt($("#amount").val()) || 0;
+		num = num - 1;
+		num = num < 1 ? 1 : num;
+	$("#amount").val(num);
+	}); 
+</script>
 </html>
