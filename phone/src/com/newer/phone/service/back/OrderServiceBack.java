@@ -9,7 +9,7 @@ import com.newer.phone.pojo.Orders;
  * @author Kiven
  *
  */
-public interface OrderService {
+public interface OrderServiceBack {
 	//²é¿´¶©µ¥
 	List<Orders> findAllOrders();
 }

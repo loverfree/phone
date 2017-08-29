@@ -1,9 +1,9 @@
 package com.newer.phone.service.back.impl;
 
 import com.newer.phone.pojo.Product;
-import com.newer.phone.service.back.ProductService;
+import com.newer.phone.service.back.ProductServiceBack;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceBackImpl implements ProductServiceBack{
 
 	@Override
 	public int addProduct(Product product) {

@@ -7,7 +7,7 @@ import com.newer.phone.pojo.Product;
  * @author Kiven
  *
  */
-public interface ProductService {
+public interface ProductServiceBack {
 	//ÃÌº”…Ã∆∑
 	int addProduct(Product product);
 	
