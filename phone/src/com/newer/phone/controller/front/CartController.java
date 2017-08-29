@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.newer.phone.pojo.Cart;
 import com.newer.phone.pojo.Product;
@@ -18,20 +21,21 @@ public class CartController {
 	private CartService cartService;
 	
 	/**
-	 * 查看当前用户的购物车信息:当前测试，接入前端需添加参数
-	 * @return
+	 * 查看当前用户的购物车信息:
+	 * @return OK
 	 * @author samluby
 	 */
 	@RequestMapping("/")
-	public String getCartByUser(){
+	public String getCartByUser(Model model){
 		Integer u_id = 1;//前端传过来的参数用户id u_id
 		List<Cart> carts = cartService.getCartByUser(u_id);
 		System.out.println(carts.size());
-		for (Cart cart : carts) {
-			Product p = cart.getProduct();
-			System.out.println(p.toString());
-		}
-		return "index";
+//		for (Cart cart : carts) {
+//			Product p = cart.getProduct();
+//			System.out.println(p.toString());
+//		}
+		model.addAttribute("carts",carts);
+		return "cart";
 	}
 	
 	/**
@@ -52,16 +56,17 @@ public class CartController {
 	
 	/**
 	 * 对当前用户的购物车进行删除商品，参数由前台传入，包括用户id，商品id，商品数量
-	 * @return
+	 * @return OK
 	 * @author samluby
 	 */
-	@RequestMapping("removeCart")
-	public String removeCartByProduct(){
-		Integer u_id = 1;//前端传过来的参数，用户id
-		Integer p_id = 3;//前端传过来的参数，商品id
+	@RequestMapping("removeCart/{p_id}")
+	public String removeCartByProduct(@PathVariable("p_id")Integer p_id,
+			                          @SessionAttribute("curuser")Integer u_id){
+//		Integer u_id = 1;//前端传过来的参数，用户id
+//		Integer p_id = 3;//前端传过来的参数，商品id
 		int isTrue = cartService.removeCartByProduct(p_id,u_id);
 		System.out.println(isTrue);
-		return "index";
+		return "redirect:/";
 	}
 	
 	/**
@@ -82,15 +87,15 @@ public class CartController {
 	/**
 	 * 根据用户id去清空该用户的购物车中所有商品，参数由前端传入
 	 * @param u_id  用户id
-	 * @return
+	 * @return OK
 	 * @author samluby
 	 */
 	@RequestMapping("emptyCart")
-	public String removeCartAll(Integer u_id){
+	public String removeCartAll(@SessionAttribute("curuser")Integer u_id){
 		u_id = 2;//参数由前端传入
 		int isTrue = cartService.removeCartAll(u_id);
 		System.out.println(isTrue);
-		return "index";
+		return "redirect:/";
 	}
 	
 	//由顶当单累结算

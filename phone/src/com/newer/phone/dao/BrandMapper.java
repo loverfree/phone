@@ -1,5 +1,7 @@
 package com.newer.phone.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.newer.phone.pojo.Brand;
@@ -21,5 +23,12 @@ public interface BrandMapper {
 	 * @author samluby
 	 */
 	int removeBrand(@Param("b_id")Integer b_id);
+	
+	/**
+	 * 查看所有商品的类别
+	 * @return
+	 * @author samluby
+	 */
+	List<Brand> getAllBrand();
 
 }

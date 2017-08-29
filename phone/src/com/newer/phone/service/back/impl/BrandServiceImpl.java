@@ -1,5 +1,7 @@
 package com.newer.phone.service.back.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class BrandServiceImpl implements BrandService{
 
 	@Override
 	public int addBrand(Brand brand) {
+		brand.setB_status(1);
 		return brandMapper.addBrand(brand);
 	}
 
@@ -27,6 +30,14 @@ public class BrandServiceImpl implements BrandService{
 	@Override
 	public int removeBrand(Integer b_id) {
 		return brandMapper.removeBrand(b_id);
+	}
+
+	/**
+	 * 查看所有类别
+	 */
+	@Override
+	public List<Brand> getAllBrand() {
+		return brandMapper.getAllBrand();
 	}
 
 }

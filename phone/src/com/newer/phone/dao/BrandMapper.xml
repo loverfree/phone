@@ -11,4 +11,15 @@
     <update id="removeBrand" parameterType="int">
         update brand set b_status=0 where b_id=#{b_id}
     </update>
+    
+    <select id="getAllBrand" resultMap="brand-result">
+       select * from brand;
+    </select>
+    
+    <resultMap type="com.newer.phone.pojo.Brand" id="brand-result">
+       <id property="b_id" column="b_id"/>
+       <result property="b_name" column="b_name"/>
+       <result property="b_status" column="b_status"/>
+       <result property="b_logo" column="b_logo"/>
+    </resultMap>
   </mapper>

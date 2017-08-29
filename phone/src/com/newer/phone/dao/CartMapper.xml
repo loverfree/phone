@@ -6,14 +6,14 @@
   <mapper namespace="com.newer.phone.dao.CartMapper">
    <!-- 查询当前用户购物车中所有的商品 -->
     <select id="getCartByUser" parameterType="int" resultMap="cart-result">
-      select image.i_path,a.* from image join 
-      (select product.*,cart.c_amount from cart join product on 
+      select product.*,cart.c_amount from cart join product on 
                         cart.u_id=#{u_id}
                         and
-                        cart.p_id=product.p_id)a on a.p_id=image.p_id and p_status=1;
+                        cart.p_id=product.p_id
     </select>
     <!-- cart结果 -->
     <resultMap type="com.newer.phone.pojo.Cart" id="cart-result">
+      <result property="c_amount" column="c_amount"/>
       <association property="product" javaType="com.newer.phone.pojo.Product"
       resultMap="product-result"/>
     </resultMap>
@@ -27,6 +27,7 @@
          <result property="p_sale" column="p_sale"/>
          <result property="p_info" column="p_info"/>
          <result property="p_status" column="p_status"/>
+         <result property="p_image" column="p_image"/>
          <collection property="images" ofType="com.newer.phone.pojo.Image" 
          resultMap="image-result"/>
     </resultMap>
