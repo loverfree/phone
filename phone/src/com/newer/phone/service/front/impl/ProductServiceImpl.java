@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService{
 	    pageSize = pageSize == null?3:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
 		List<Product> products = productMapper.findAllProduct(name,sort, order);
-		System.out.println("--======="+products.get(0).getP_id());
+//		System.out.println("--======="+products.get(0).getP_id());
 		PageInfo<Product> page = new PageInfo<Product>(products);
 		return page;
 	}

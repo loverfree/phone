@@ -29,7 +29,7 @@ public class User implements Serializable {
 	private String u_nickname;
 	private String u_pic;
 	private String u_card;
-	private List<Address> addres;
+	private List<Address> addresses;
 	private List<Orders> orders;
 	private List<Cart> carts;
 	private List<Review> reviews;
@@ -83,11 +83,11 @@ public class User implements Serializable {
 	}
 
 	public List<Address> getAddres() {
-		return addres;
+		return addresses;
 	}
 
-	public void setAddres(List<Address> addres) {
-		this.addres = addres;
+	public void setAddres(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	public List<Orders> getOrders() {

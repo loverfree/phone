@@ -24,13 +24,17 @@
 	<div class="dropDown">
 	<ul class="dropDown">
 	<li>
-	<span> 当前用户：${sessionScope.curuname} </span>
+	<div class="curuser">
+			当前用户
+	</div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="display: inline-block;vertical-align: middle;font-size: 18px">${sessionScope.curuser.u_nickname} </span>
 	</li>
 	<li>
-	<span> 查看订单 </span>
+	<span>查看订单 </span>
 	</li>
 	<li>
-	<span> 个人信息 </span>
+	<span><a href="../../user/userUpdate"> 个人信息</a> </span>
 	</li>
 	<li>
 	 	<form action="${pageContext.request.contextPath }/user/logout" method="post">

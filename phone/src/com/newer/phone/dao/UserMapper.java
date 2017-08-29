@@ -1,6 +1,8 @@
 package com.newer.phone.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 /**
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 
+import com.newer.phone.pojo.Address;
 import com.newer.phone.pojo.User;
 @Repository
 public interface UserMapper {
@@ -24,4 +27,7 @@ public interface UserMapper {
 	
 	// 用户修改自己的信息
 	int updateUser(User user);
+	
+	// 获取用户的地址信息
+	List<Address> getUserAddr(@Param("u_id")Integer u_id);
 }

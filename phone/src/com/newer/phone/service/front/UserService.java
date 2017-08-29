@@ -1,5 +1,7 @@
 package com.newer.phone.service.front;
 
+import java.util.List;
+import com.newer.phone.pojo.Address;
 import com.newer.phone.pojo.User;
 
 public interface UserService {
@@ -16,4 +18,6 @@ public interface UserService {
 	// 用户修改自己的信息
 	int updateUser(User user);
 	
+	// 获取用户的地址信息
+	List<Address> getUserAddr(Integer u_id);
 }

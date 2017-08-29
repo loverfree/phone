@@ -3,14 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.newer.phone.dao.UserMapper">
-  
-  <resultMap type="com.newer.phone.pojo.User" id="user-result">
-  	<id property="u_id" column="u_id"/>
-  	<result property="u_name" column="u_name"/>
-  	<result property="u_pwd" column="u_pwd"/>
-  	<result property="u_nickname" column="u_nickname"/>
-  	<result property="u_pic" column="u_card"/>
-  </resultMap>
+
+	<!-- 用户个人信息结果集 -->
+	<resultMap type="com.newer.phone.pojo.User" id="user-result">
+		<id property="u_id" column="u_id" />
+		<result property="u_name" column="u_name" />
+		<result property="u_pwd" column="u_pwd" />
+		<result property="u_nickname" column="u_nickname" />
+		<result property="u_pic" column="u_card" />
+		<collection property="addresses" ofType="com.newer.phone.pojo.Address"
+			resultMap="address-result" />
+	</resultMap>
+
+	<!-- 用户地址信息结果集 -->
+	<resultMap type="com.newer.phone.pojo.Address" id="address-result">
+		<id property="a_id" column="a_id" />
+		<result property="a_province" column="a_province" />
+		<result property="a_city" column="a_city" />
+		<result property="a_street" column="a_street" />
+		<result property="a_recv" column="a_recv" />
+		<result property="a_recvtel" column="a_recvtel" />
+		<association property="user" column="u_id"
+			javaType="com.newer.phone.pojo.User" resultMap="user-result" />
+	</resultMap>
   
   <!-- 查询数据库中用户是否存在 -->
     <select id="chkUser" resultMap="user-result" parameterType="String">
@@ -34,5 +49,10 @@
     	UPDATE USER SET u_pwd = #{u_pwd},u_nickname = #{u_nickname},u_card = #{u_card} 
     	WHERE u_id = #{u_id}
     </update>
+    
+    <!-- 用户查看收货地址 -->
+    <select id="getUserAddr" resultMap="address-result" parameterType="com.newer.phone.pojo.Address">
+    	select * from address where u_id = #{u_id}
+    </select>
   
   </mapper>

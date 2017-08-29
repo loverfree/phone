@@ -1,8 +1,10 @@
 package com.newer.phone.service.front.impl;
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.newer.phone.dao.UserMapper;
+import com.newer.phone.pojo.Address;
 import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.UserService;
 import com.newer.phone.util.PwdEncrypt;
@@ -33,10 +35,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User loginUser(String u_name, String u_pwd) {
+	public User loginUser(String u_name,String u_pwd) {
 		PwdEncrypt pe = new PwdEncrypt();
 		String sha_pwd = pe.md5Pwd(u_pwd);
-		User user = userMapper.loginUser(u_name, sha_pwd);
+		User user = userMapper.loginUser(u_name,sha_pwd);
 	    return user;
 	}
 
@@ -49,10 +51,15 @@ public class UserServiceImpl implements UserService{
 		String sha_pwd = pe.md5Pwd(user.getU_pwd());
 		user.setU_pwd(sha_pwd);
 		System.out.println("SHA后密码："+sha_pwd);
-		System.out.println("修改后昵称："+user.getU_nickname());
+		System.out.println("service修改后昵称："+user.getU_nickname());
 		userMapper.updateUser(user);
 		System.out.println("进入service层");
 		return count;
+	}
+
+	@Override
+	public List<Address> getUserAddr(Integer u_id) {
+		return userMapper.getUserAddr(u_id);
 	}
 	
 }
