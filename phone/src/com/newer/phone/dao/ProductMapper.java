@@ -1,5 +1,6 @@
 package com.newer.phone.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -22,7 +23,9 @@ public interface ProductMapper {
 	List<Product> findAllProduct(
 			@Param("p_name") String p_name,
 			@Param("sort")String sort,
-			@Param("order")String order);
+			@Param("order")String order,
+			@Param("start")Integer start,
+			@Param("end")Integer end);
 	//根据商品类别查询商品
 	List<Product> findByBrand(
 			@Param("b_id")Integer b_id,

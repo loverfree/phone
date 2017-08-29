@@ -1,5 +1,6 @@
 package com.newer.phone.controller.front;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ import com.newer.phone.service.front.ProductService;
 public class ProdcutController {
 	@Autowired
 	private ProductService productService;
-	private String sort = "p_price";
-	private String order = "desc" ;
+//	private String sort = "p_price";
+//	private String order = "desc" ;
 	
 	
 
@@ -37,14 +38,15 @@ public class ProdcutController {
 			@PathVariable Integer b_id,
 			@RequestParam(value="pname",required=false) String pname,
 			Integer pageNo, Integer pageSize,
+			String sort,String order,
 			Model model){
-		System.out.println("---bid"+b_id);
 		
 		PageInfo<Product> page = productService.getByBrand(
-				b_id, pname,sort, order,pageNo, pageSize);
+				b_id, pname,sort, order, pageNo, pageSize);
 		model.addAttribute("page", page);
 		model.addAttribute("bid",b_id);
 		System.out.println("--------page"+page);
+		System.out.println(sort);
 		List<Product> products=page.getList(); 
 		for(int i = 0;i < products.size();i++ ){
 			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
@@ -61,12 +63,16 @@ public class ProdcutController {
 
 			@RequestParam(value="pname",required=false) String pname,
 			Integer pageNo, Integer pageSize,
+			Integer start,Integer end,
+			String sort,String order,
 			Model model){
-		System.out.println("=====pname"+pname);
 		
+		System.out.println(sort);
+		System.out.println(order);
+		System.out.println(pname);
 		PageInfo<Product> page = productService.getAllProrduct(
-				pname,sort, order,pageNo, pageSize);
-		System.out.println("--------oage"+page);
+				pname,sort, order,pageNo, pageSize,start,end);
+	
 		model.addAttribute("page", page);
 		model.addAttribute("pname",pname);
 		List<Product> products=page.getList();
@@ -89,7 +95,7 @@ public class ProdcutController {
 	public String getById(@PathVariable Integer p_id,Model model){
 		Product products = productService.getById(p_id);
 		model.addAttribute("details", products);
-			System.out.println("商品名："+products.getP_name()+"---价格："+
+			System.out.println("商品id:"+products.getP_id()+"商品名："+products.getP_name()+"---价格："+
 					products.getP_price()+"--描述："+products.getP_info()+
 					"--销量："+products.getP_sale()+"--库存："+products.getP_stock()+
 					"评论："+products.getReviews().get(0).getR_info()+"评论人："+

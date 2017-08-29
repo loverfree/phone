@@ -9,15 +9,26 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/pageHelp.js"></script> --%>
 </head>
 <body>
 <jsp:include page="SearchBar.jsp"></jsp:include>
 <h2>我们的商品</h2>
 <%-- <jsp:include page="LeftNavi.jsp"></jsp:include> --%>
 <div id="rightPanel">
+<form id = "seach" action = "${pageContext.request.contextPath }/product/fuzzy/list" method="post">
+价格区间<input type = "text" name = "start">~<input type = "text" name = "end">
+<input type="submit" value = "搜索"> 
+<a href="javascript:goSort('p_price')">价格</a>
+<a href="javascript:goSort(1)">升序</a>
+<input type = "hidden" name = "asc" id = "asc" >
+<input type = "hidden" name = "psort" id = "psort">
+</form>
 <form id="pageForm" action="${pageContext.request.contextPath }/product/${bid}/list" method="post">
-<table border="0" cellspacing="5px" width="100%">
-	<c:set var="total" value="${products.size() }"></c:set>
+
+
+<table border="0" cellspacing="5px" width="80%">
+	<c:set var="total" value="${page.getList().size() }"></c:set>
 			
 		 <c:forEach items="${page.getList() }" var="product" varStatus="abc">
 		   <c:if test="${abc.count%3==1}">
@@ -26,12 +37,13 @@
 	  	 <td><img src ="${pageContext.request.contextPath }/${product.p_image}">
 	  	 	<br>
 	  	 	<a href = "../${product.p_id}/details">${product.p_name } 
-			&nbsp;&nbsp;&nbsp;&nbsp;${product.p_price }元</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;${product.p_price }元</a>${(total - 1)%3}
 	  	 </td>
-		<c:if test="${abc.count%3==2}">
-			<td></td>
-		</c:if>
+
 	  	 <c:if test="${abc.count%3== 0 || abc.count==total}">
+	  	 <c:if test="${total == 2 }">
+	  	 	<td></td>
+	  	 </c:if>
 	  	     </tr>
 	  	 </c:if>	
 	  	</c:forEach>
@@ -56,6 +68,20 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
 </body>
 <script type="text/javascript">
+	function goSort(sort){
+		if(sort =="p_price"){
+			document.getElementById("psort").value = "p_price";
+			document.getElementById("seach").submit();	
+		}
+		if(sort == "asc"){
+			document.getElementById("asc").value = "asc";
+			document.getElementById("seach").submit();
+		}
+		if(sort == 1){
+			document.getElementById("asc").value = "asc";
+			document.getElementById("seach").submit();
+		}
+	}
 
  	function goPage(currentPage) {
 		// 将页码和当前页显示的记录数 隐藏起来
@@ -75,5 +101,4 @@
 	 }
 
 </script>
-
 </html>

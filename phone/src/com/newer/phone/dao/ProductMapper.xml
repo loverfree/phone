@@ -49,37 +49,39 @@
         
   	<!-- 查询所有商品的sql语句  可暂时不要-->
   	<select id="findAllProduct" resultMap="product-result">
-  		select p.p_id,p.p_name,p.p_info,p.p_price,p.b_id, 
-  			p.p_sale,p.p_status,p.p_image 
-  			from product p 
-  			where p.p_status = 1 
+  		select *
+  			from product 
+  			where p_status = 1 
   			<if test="p_name != null and p_name != ''">
-  			and p.p_name like #{p_name} 
-  			<include refid="orderBy" />
+  			and p_name like #{p_name} 
   		</if>
-  	</select>
+  		and p_price between #{start} and #{end} 
+  		<include refid="orderBy" />
+  	</select> 
   	
   	<!-- 根据商品类别查询商品的sql语句  -->
   	<select id="findByBrand" resultMap="product-result">
-  		select p.p_id,p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,p_image,p.b_id
-  			from product p 
-  			where p.p_status = 1 
+  		select <!-- p.p_id,p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,p_image,p.b_id
+  			from product p --> 
+  			* from product
+  			where p_status = 1 
   			<!-- 如果传入的id是1 则查询所有。不是1则根据商品品牌的Id查询商品 -->
   		<if test="b_id != 1">
-  			and p.b_id = #{b_id} 
+  			and b_id = #{b_id} 
   		</if>
-  		<if test="p_name != null and p_name != ''">
-  			and p.p_name like #{p_name}
-  		</if>
+<!--   		<if test="p_name != null and p_name != ''">
+  			and p_name like #{p_name}
+  		</if> -->
+
   		<include refid="orderBy" />
   	</select>
   	
   	<sql id="orderBy">
   		order by
   		<choose>
-  			<when test="sort == 'p_sale'">product.p_sale</when>
-  			<when test="sort == 'p_price'">p.p_price</when>
-  			<otherwise>p.p_id</otherwise>
+  			<when test="sort == 'p_sale'">p_sale</when>
+  			<when test="sort == 'p_price'">p_price</when>
+  			<otherwise>p_id</otherwise>
   		</choose>
   		<if test="order == 'asc'">asc</if>
   		<if test="order == 'desc'">desc</if>
@@ -87,7 +89,7 @@
 
   	<!-- 根据商品id查询单个商品详细的sql语句 -->
   	<select id="findById" resultMap="product-result" parameterType="int">
- 		select p.p_name,p.p_sale,p.p_info,p.p_price,p_stock,p_status
+ 		select p.p_id,p.p_name,p.p_sale,p.p_info,p.p_price,p_stock,p_status
  			from product p where p_status = 1 and p_id = #{p_id}
   	</select> 
   </mapper>
