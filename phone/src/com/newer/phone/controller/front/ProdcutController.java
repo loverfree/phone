@@ -22,8 +22,7 @@ import com.newer.phone.service.front.ProductService;
 public class ProdcutController {
 	@Autowired
 	private ProductService productService;
-//	private String sort = "p_price";
-//	private String order = "desc" ;
+
 	
 	
 
@@ -67,9 +66,9 @@ public class ProdcutController {
 			String sort,String order,
 			Model model){
 		
-		System.out.println(sort);
-		System.out.println(order);
-		System.out.println(pname);
+		System.out.println("sort"+sort);
+		System.out.println("order"+order);
+		System.out.println("name"+pname);
 		PageInfo<Product> page = productService.getAllProrduct(
 				pname,sort, order,pageNo, pageSize,start,end);
 	

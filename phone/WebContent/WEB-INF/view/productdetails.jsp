@@ -8,10 +8,12 @@
 <title>手机商城</title>
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js "></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
   $(function(){
 	  $("#addCart").on("click",function(){
-		  $.get("${pageContext.request.contextPath/cart/addCart}",
+		  $.get("${pageContext.request.contextPath}/cart/addCart",
 				  {"p_id":$("#p_id").val(),"c_amount":$("#amount").val()},
 				  function(date){
 					  alert(date);
