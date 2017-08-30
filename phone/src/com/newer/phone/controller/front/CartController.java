@@ -1,16 +1,20 @@
 package com.newer.phone.controller.front;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.newer.phone.pojo.Cart;
 import com.newer.phone.pojo.Product;
+import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.CartService;
 
 @Controller
@@ -44,13 +48,21 @@ public class CartController {
 	 * @author samluby
 	 */
 	@RequestMapping("addCart")
-	public String addCartByUser(){
-		Integer u_id = 1;//前端传过来的参数，用户id u_id
-		Integer p_id = 3;//前端传过来对的参数，商品id p_id
-		Integer c_amount = 5;//前端传过来的参数，添加到购物车的商品的数量 c_amount
-		int inTrue = cartService.addCartByUser(u_id,p_id,c_amount);
+	public @ResponseBody Map<String,String> addCartByUser(@SessionAttribute("curuser")User user,
+			                     Integer p_id,
+			                     Integer c_amount){
+//		Integer u_id = 1;//前端传过来的参数，用户id u_id
+//		Integer p_id = 3;//前端传过来对的参数，商品id p_id
+//		Integer c_amount = 5;//前端传过来的参数，添加到购物车的商品的数量 c_amount
+		Map<String,String> map = new HashMap<>();
+		int inTrue = cartService.addCartByUser(user.getU_id(),p_id,c_amount);
 		System.out.println(inTrue);
-		return "index";
+		if(inTrue>0){
+			map.put("msg", "添加成功");
+		}else{
+			map.put("msg", "添加失败");
+		}
+		return map;
 		
 	}
 	

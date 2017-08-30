@@ -8,6 +8,17 @@
 <title>手机商城</title>
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js "></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript">
+  $(function(){
+	  $("#addCart").on("click",function(){
+		  $.get("${pageContext.request.contextPath/cart/addCart}",
+				  {"p_id":$("#p_id").val(),"c_amount":$("#amount").val()},
+				  function(date){
+					  alert(date);
+				  });
+	  });
+  });
+</script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css ">
 
 
@@ -17,7 +28,6 @@
 <img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 </div>
 <div>商品详情</div>
-<form action="../../cart/addCart" method="post">
 	<div style="background-color: #EDEDED">
 		<div style="float:left; margin-left: 15%;">
 			<c:forEach items="${details.images }" var="image">
@@ -36,12 +46,12 @@
 						<li class="list-group-item">购买数量：
 						<input type=button value="-" id="sub" onClick="javascript:void(0);">
 						<input type=text name="amount" id="amount" value="1" size="5">
-						<input type="text" class="form-control" id="amount" name="amount" width="5px">
+						<!-- <input type="text" class="form-control" id="amount" name="amount" width="5px"> -->
 						<input type=button value="+" id="add" onClick="javascript:void(0);">
 						</li>
 						
 					</ul>
-					<button type="submit" class="btn btn-info">加入购物车</button>
+					<button type="button" class="btn btn-info" id="addCart">加入购物车</button>
 				</div>
 				
 				
@@ -73,10 +83,9 @@
 						</div>
 					</div>
 				</div>
-	<input type = "hidden" name = "pid" value = "${details.p_id }">
+	<input type = "hidden" name = "pid" value = "${details.p_id }" id="p_id">
 	<input type = "hidden" name = "uid" value = "${sessionScope.curuser.u_id}">
 </div>
-</form>
 
 </body>
 <script type="text/javascript">
