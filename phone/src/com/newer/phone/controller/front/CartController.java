@@ -33,9 +33,9 @@ public class CartController {
 	 * @author samluby
 	 */
 	@RequestMapping("/")
-	public String getCartByUser(Model model){
-		Integer u_id = 1;//前端传过来的参数用户id u_id
-		List<Cart> carts = cartService.getCartByUser(u_id);
+	public String getCartByUser(Model model,@SessionAttribute("curuser")User user){
+//		Integer u_id = 1;//前端传过来的参数用户id u_id
+		List<Cart> carts = cartService.getCartByUser(user.getU_id());
 		System.out.println(carts.size());
 //		for (Cart cart : carts) {
 //			Product p = cart.getProduct();
@@ -52,11 +52,9 @@ public class CartController {
 	 */
 	@RequestMapping("addCart")
 	public @ResponseBody List<String> addCartByUser(
+			                     @SessionAttribute("curuser")User user,
 			                     @RequestParam Integer p_id,
 			                     @RequestParam Integer c_amount){
-		User user = new User();
-		Integer u_id = 1;
-		user.setU_id(u_id);//前端传过来的参数，用户id u_id
 //		Integer p_id = 3;//前端传过来对的参数，商品id p_id
 //		Integer c_amount = 5;//前端传过来的参数，添加到购物车的商品的数量 c_amount
 		List<String> msg = new ArrayList<>();
@@ -78,10 +76,10 @@ public class CartController {
 	 */
 	@RequestMapping("removeCart/{p_id}")
 	public String removeCartByProduct(@PathVariable("p_id")Integer p_id,
-			                          @SessionAttribute("curuser")Integer u_id){
+			                          @SessionAttribute("curuser")User user){
 //		Integer u_id = 1;//前端传过来的参数，用户id
 //		Integer p_id = 3;//前端传过来的参数，商品id
-		int isTrue = cartService.removeCartByProduct(p_id,u_id);
+		int isTrue = cartService.removeCartByProduct(p_id,user.getU_id());
 		System.out.println(isTrue);
 		return "redirect:/";
 	}
@@ -108,9 +106,9 @@ public class CartController {
 	 * @author samluby
 	 */
 	@RequestMapping("emptyCart")
-	public String removeCartAll(@SessionAttribute("curuser")Integer u_id){
-		u_id = 2;//参数由前端传入
-		int isTrue = cartService.removeCartAll(u_id);
+	public String removeCartAll(@SessionAttribute("curuser")User user){
+//		u_id = 2;//参数由前端传入
+		int isTrue = cartService.removeCartAll(user.getU_id());
 		System.out.println(isTrue);
 		return "redirect:/";
 	}
