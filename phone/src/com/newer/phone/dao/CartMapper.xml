@@ -30,6 +30,8 @@
          <result property="p_image" column="p_image"/>
          <collection property="images" ofType="com.newer.phone.pojo.Image" 
          resultMap="image-result"/>
+         <collection property="carts" ofType="com.newer.phone.pojo.Cart"
+         resultMap="cart-result"/>
     </resultMap>
     <!-- image结果 -->
     <resultMap type="com.newer.phone.pojo.Image" id="image-result">

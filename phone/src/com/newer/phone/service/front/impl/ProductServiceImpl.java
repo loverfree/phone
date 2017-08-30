@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 		pageNo = pageNo == null?1:pageNo;
-	    pageSize = pageSize == null?2:pageSize;
+	    pageSize = pageSize == null?1:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
 		List<Product> products = productMapper.findByBrand(b_id,name,sort, order);
 //		System.out.println("----------"+products.get(0).getBrand().getB_id());

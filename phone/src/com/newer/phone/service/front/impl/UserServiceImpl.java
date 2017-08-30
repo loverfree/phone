@@ -61,5 +61,12 @@ public class UserServiceImpl implements UserService{
 	public List<Address> getUserAddr(Integer u_id) {
 		return userMapper.getUserAddr(u_id);
 	}
+
+	@Override
+	public int addAddr(Address addr) {
+		int count = 0;
+		userMapper.addAddr(addr);
+		return count;
+	}
 	
 }

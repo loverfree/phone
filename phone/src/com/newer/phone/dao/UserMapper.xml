@@ -64,5 +64,10 @@
     <select id="getUserById" resultType="com.newer.phone.pojo.User" parameterType="int">
        select * from user where u_id=#{u_id}
      </select>
+
+	<insert id="addAddr" parameterType="com.newer.phone.pojo.Address">
+		INSERT INTO address VALUES 
+		(NULL,#{a_province},#{a_city},#{a_street},#{a_recv},#{a_recvtel},#{user.u_id})
+	</insert>
   
   </mapper>

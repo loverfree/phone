@@ -59,22 +59,6 @@ public class UserController {
 		return "redirect:login";
 	}
 	
-//	@RequestMapping(value="/loginUser",method=RequestMethod.POST) 
-//	public String loginUser(Model model,String uname,String password) {
-//		model.addAttribute("uname", uname );
-//		model.addAttribute("password", password);
-//		User user = userService.loginUser(uname, password);
-//		if (user != null) {   
-//			System.out.println("登录成功");
-//			model.addAttribute("curuname", uname );
-//			return "redirect:../product/brand/list";
-//		}
-//		else {
-//			System.out.println("信息可能有误哦！");
-//		}
-//		return "redirect:login";
-//	}
-	
 	@RequestMapping(value="/loginUser",method=RequestMethod.POST) 
 	public String loginUser(Model model,String uname,String password) {
 		model.addAttribute("uname", uname);
@@ -122,16 +106,18 @@ public class UserController {
 		return "userUpdate";
 	}
 	
-//	@RequestMapping(value="/addrUpdate")
-//	public String enterAddrUpdate() {
-//		return "addrUpdate";
-//	}
-	
 	@RequestMapping("/addrUpdate")
 	public String getUserAddr(Model m,@SessionAttribute("curuser")User user) {
 		List<Address> aList = userService.getUserAddr(user.getU_id());
 		m.addAttribute("alist", aList);
 		return "addrUpdate";
+	}
+	
+	@RequestMapping(value="/addAddr",method = RequestMethod.POST) 
+	public String addAddr(@ModelAttribute("curuser")User user,SessionStatus ss,Address addr) {
+		addr.setUser(user);
+		userService.addAddr(addr);
+		return "redirect:addrUpdate";
 	}
 	
 }

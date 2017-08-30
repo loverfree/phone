@@ -78,10 +78,10 @@
 	  	</c:forEach>
 	 <tr>
 	 <td colspan="3" align="right">
-         <a href="javascript:goPage(1)">首页</a>
-         <a href="javascript:goPage(${page.getPageNum()-1 })">上一页</a>
-         <a href="javascript:goPage(${page.getPageNum()+1 })">下一页</a>
-          <a href="javascript:goPage(${page.getLastPage() })">末页</a>
+         <a href="javascript:goPage(1,${page.getLastPage()})">首页</a>
+         <a href="javascript:goPage(${page.getPageNum()-1 },${page.getLastPage()})">上一页</a>
+         <a href="javascript:goPage(${page.getPageNum()+1 },${page.getLastPage()})">下一页</a>
+          <a href="javascript:goPage(${page.getLastPage() },${page.getLastPage()})">末页</a>
            跳转到<input type="text" name="gpage" id="gpage" size="5" style="border-radius:5px;background-color: #FDE56A">页，<a href="javascript:goPage2()">跳转 </a>
          ${page.getPageNum() }/${page.getPages() }
     </td>
@@ -115,24 +115,7 @@
 			document.getElementById("seach").submit();
 		}
 	}
-
- 	function goPage(currentPage) {
-		// 将页码和当前页显示的记录数 隐藏起来
-		if(currentPage<=1) {
-			currentPage = 1;
-		}
-		if(currentPage>${page.getLastPage()}){
-			  currentPage = ${page.getLastPage()};
-		  }
-		  $("#curPage").value=currentPage;
-		  $("#pageForm").submit();	
-	}
-	
-	 function goPage2(){
-		  var gPage = $("#gpage").value;
-		  goPage(gPage);
-	 }
-
+ 	
 
 </script>
 </html>

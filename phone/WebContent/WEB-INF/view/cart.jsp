@@ -5,30 +5,67 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户购物车页面</title>
+<title>用户购物车面板</title>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/userMenu.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
 </head>
+<style type="text/css">
+#DQ,#title th{
+	vertical-align: middle;
+	text-align: center;
+}
+</style>
 <body>
-    <a href="${pageContext.request.contextPath }/cart/emptyCart"></a>
-    <c:if test="${empty carts }">无数据</c:if>
-    <c:if test="${not empty carts }">
-   <table border="1">
-     <tr>
-       <th>商品图片</th>
-       <th>商品名</th>
-       <th>商品单价</th>
-       <th>数量</th>
-       <th>操作</th>
-     </tr>
-     <c:forEach items="${carts }" var="cart">
-       <tr>
-         <td><img src="${pageContext.request.contextPath }/${cart.product.p_image}"></td>
-         <td>${cart.product.p_name }</td>
-         <td>${cart.product.p_price }</td>
-         <td>${cart.c_amount }</td>
-         <td><a href="${pageContext.request.contextPath }/cart/removeCart/${cart.product.p_id}">删除</a></td>
-       </tr>
-     </c:forEach>
-   </table>
-   </c:if>
+	<div class="Navi">
+		<img id="shopLogo"
+			onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'"
+			src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
+	</div>
+	<h2 style="margin-left: 2%">功能菜单</h2>
+	<jsp:include page="userFunc.jsp"></jsp:include>
+
+	<div class="panel panel-default"
+		style="margin-left: 3%; width: 76%; height: auto; float: left; font-family: Microsoft Yahei">
+		<div class="panel-heading">
+			<h3 class="panel-title">购物车</h3>
+		</div>
+		<div class="panel-body">
+
+			<a href="${pageContext.request.contextPath }/cart/emptyCart"></a>
+			<c:if test="${empty carts }">无数据</c:if>
+			<c:if test="${not empty carts }">
+				<table class="table table-hover">
+					<tr id="title" style="background-color: #F5F5F5">
+						<th></th>
+						<th>商品图片</th>
+						<th>商品名</th>
+						<th>商品单价</th>
+						<th>数量</th>
+						<th>操作</th>
+					</tr>
+					<c:forEach items="${carts }" var="cart">
+						<tr>
+							<td id="DQ"><input type="checkbox"></td>
+							<td width="75px"><img style="width: 100%; height: 10%"
+								src="${pageContext.request.contextPath }/${cart.product.p_image}"></td>
+							<td id="DQ">${cart.product.p_name }</td>
+							<td id="DQ">${cart.product.p_price }</td>
+							<td id="DQ">${cart.c_amount }</td>
+							<td id="DQ"><a
+								href="${pageContext.request.contextPath }/cart/removeCart/${cart.product.p_id}">删除</a></td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td colspan="6"><a style="float: right; width: 9.1%"
+							class="button button-highlight button-pill button-small">结算</a></td>
+					</tr>
+				</table>
+			</c:if>
+		</div>
+	</div>
 </body>
 </html>

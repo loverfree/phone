@@ -20,4 +20,7 @@ public interface UserService {
 	
 	// 获取用户的地址信息
 	List<Address> getUserAddr(Integer u_id);
+	
+	// 用户添加地址
+	int addAddr(Address addr);
 }

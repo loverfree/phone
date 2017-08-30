@@ -25,7 +25,9 @@ public class CartServiceImpl implements CartService{
 	 */
 	@Override
 	public List<Cart> getCartByUser(Integer u_id) {
-		return cartMapper.getCartByUser(u_id);
+		List<Cart> carts = cartMapper.getCartByUser(u_id);
+		System.out.println("cartService:"+carts.size());
+		return carts;
 	}
 	
 	/**

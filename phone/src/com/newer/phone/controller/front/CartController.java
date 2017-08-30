@@ -34,6 +34,7 @@ public class CartController {
 	 */
 	@RequestMapping("/")
 	public String getCartByUser(Model model,@SessionAttribute("curuser")User user){
+		System.out.println(user.getU_id());
 //		Integer u_id = 1;//前端传过来的参数用户id u_id
 		List<Cart> carts = cartService.getCartByUser(user.getU_id());
 		System.out.println(carts.size());

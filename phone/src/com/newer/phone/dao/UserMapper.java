@@ -31,6 +31,9 @@ public interface UserMapper {
 	// 获取用户的地址信息
 	List<Address> getUserAddr(@Param("u_id")Integer u_id);
 
+	// 用户添加地址
+	int addAddr(Address addr);
+	
 	List<User> findUserAll();
 
 	User getUserById(Integer u_id);
