@@ -1,6 +1,9 @@
 package com.newer.phone.service.front;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.newer.phone.pojo.Address;
 import com.newer.phone.pojo.User;
 
@@ -23,4 +26,7 @@ public interface UserService {
 	
 	// 用户添加地址
 	int addAddr(Address addr);
+	
+	// 用户上传头像（存入数据库的是地址）
+	int addPic(@Param("u_pic")String u_pic,@Param("u_id")Integer u_id);
 }

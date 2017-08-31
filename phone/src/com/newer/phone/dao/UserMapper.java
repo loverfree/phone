@@ -34,6 +34,9 @@ public interface UserMapper {
 	// 用户添加地址
 	int addAddr(Address addr);
 	
+	// 用户上传头像（存入数据库的是地址）
+	int addPic(@Param("u_pic")String u_pic,@Param("u_id")Integer u_id);
+	
 	List<User> findUserAll();
 
 	User getUserById(Integer u_id);

@@ -10,7 +10,8 @@
 		<result property="u_name" column="u_name" />
 		<result property="u_pwd" column="u_pwd" />
 		<result property="u_nickname" column="u_nickname" />
-		<result property="u_pic" column="u_card" />
+		<result property="u_pic" column="u_pic" />
+		<result property="u_card" column="u_card" />
 		<collection property="addresses" ofType="com.newer.phone.pojo.Address"
 			resultMap="address-result" />
 	</resultMap>
@@ -69,5 +70,9 @@
 		INSERT INTO address VALUES 
 		(NULL,#{a_province},#{a_city},#{a_street},#{a_recv},#{a_recvtel},#{user.u_id})
 	</insert>
+	
+	<update id="addPic" parameterType="com.newer.phone.pojo.User">
+		UPDATE USER SET u_pic = #{u_pic} WHERE u_id = #{u_id}
+	</update>
   
   </mapper>

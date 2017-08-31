@@ -68,5 +68,12 @@ public class UserServiceImpl implements UserService{
 		userMapper.addAddr(addr);
 		return count;
 	}
+
+	@Override
+	public int addPic(String u_pic, Integer u_id) {
+		int count = 0;
+		userMapper.addPic(u_pic, u_id);
+		return count;
+	}
 	
 }

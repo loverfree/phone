@@ -7,6 +7,7 @@
 <title>搜索框</title>
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" />
+<link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mouseOver.js"></script>
@@ -38,7 +39,7 @@
 	</li>
 	<li>
 	 	<form action="${pageContext.request.contextPath }/user/logout" method="post">
-			<input type="submit" value="退出登录">
+			<input type="submit" class="button button-pill button-tiny" value="注销" style="vertical-align: middle;position: absolute;">
 		</form> 
 		</li>
 		</ul>
