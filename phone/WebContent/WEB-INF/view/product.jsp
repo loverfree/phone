@@ -13,6 +13,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/paging.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/sort.js"></script>
 </head>
 <style type="text/css">
 	#sinput{
@@ -34,7 +35,7 @@
 				<ul class="pure-menu-list">
 				<li class="pure-menu-item pure-menu-disabled">排序方式</li>
 				<li class="pure-menu-item"><a href="javascript:goSort('p_price')" class="pure-menu-link">价格</a></li>
-				<li class="pure-menu-item"><a href="javascript:goSort('p_price')" class="pure-menu-link">销量</a></li>
+				<li class="pure-menu-item"><a href="javascript:goSort('p_sale')" class="pure-menu-link">销量</a></li>
 				<li class="pure-menu-item"><a href="javascript:goSort('asc')" class="pure-menu-link">升序</a></li>
 				<li class="pure-menu-item"><a href="javascript:goSort('desc')" class="pure-menu-link">降序</a></li>
 				</ul>
@@ -47,8 +48,7 @@
 								class="btn btn-info" value="搜索"
 								style="height: 26px; width: 50px; font-size: 11px">
 						</div>
-				<input type="hidden" name="order" id="order"> <input
-					type="hidden" name="sort" id="sort">
+				<input type="hidden" name="order" id="order"> <input type="hidden" name="sort" id="sort">
 			</div>
 
 		</form>
@@ -96,26 +96,4 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
 </body>
-<script type="text/javascript">
-	function goSort(sort){
-		if(sort =="p_price"){
-			document.getElementById("sort").value = "p_price";
-			document.getElementById("seach").submit();	
-		}
-		if(sort == "asc"){
-			document.getElementById("order").value = "asc";
-			document.getElementById("seach").submit();
-		}
-		if(sort == "p_sale"){
-			document.getElementById("sort").value = "p_sale";
-			document.getElementById("seach").submit();
-		}
-		if(sort == "desc"){
-			document.getElementById("order").value = "desc";
-			document.getElementById("seach").submit();
-		}
-	}
- 	
-
-</script>
 </html>

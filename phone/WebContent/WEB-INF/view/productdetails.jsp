@@ -22,8 +22,6 @@
   });
 </script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css ">
-
-
 </head>
 <body>
 <div id="searchBar">
@@ -44,7 +42,7 @@
 					<ul class="list-group">
 						<li class="list-group-item">商品价格：${details.p_price }</li>
 						<li class="list-group-item">商品销量：${details.p_sale }</li>
-						<li class="list-group-item">商品库存：${details.p_sale }</li>
+						<li class="list-group-item">商品库存：${details.p_stock }</li>
 						<li class="list-group-item">购买数量：
 						<input type=button value="-" id="sub" onClick="javascript:void(0);">
 						<input type=text name="amount" id="amount" value="1" size="5">
@@ -53,40 +51,44 @@
 						</li>
 						
 					</ul>
-					<button type="button" class="btn btn-info" id="addCart">加入购物车</button>
+					<button type="button" class="btn btn-info" id="addCart" style="margin-left: 30%">加入购物车</button>
 				</div>
-				
-				
-				<div>
-					<div class="panel panel-info" style="margin-top:10%;  margin-left: 16%;margin-right: 16%">
-						
-						<div class="panel-body">
-							<table class="table table table-hover">
-								<thead>
-									<tr style="background-color: #9DEDF6">
-										<th>评论详情</th>
-										<th>评论人</th>
-										<th>评论时间</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${details.reviews }" var="review">
-										<tr>
-											<td>${review.r_info}</td>
-											<td>${review.user.u_name }</td>
-											<td>${review.r_time }</td>
-										</tr>
-									</c:forEach>
+		<div>
+			<div class="panel panel-info"
+				style="margin-top: 10%; margin-left: 16%; margin-right: 16%">
 
-								</tbody>
-								
-							</table>
-							
-						</div>
-					</div>
+				<div class="panel-body">
+					<table class="table table table-hover">
+						<thead>
+							<tr style="background-color: #9DEDF6">
+								<th>评论详情</th>
+								<th>评论人</th>
+								<th>评论时间</th>
+							</tr>
+						</thead>
+						<tbody id="example">
+							<c:forEach items="${details.reviews }" var="review">
+								<tr>
+									<td>${review.r_info}</td>
+									<td>${review.user.u_name }</td>
+									<td>${review.r_time }</td>
+								</tr>
+							</c:forEach>
+
+						</tbody>
+						<c:if test="${empty page.getList()}">
+							<tr>
+								<td colspan="6">没有更多数据！</td>
+							</tr>
+						</c:if>
+					</table>
 				</div>
-	<input type = "hidden" name = "pid" value = "${details.p_id }" id="p_id">
+			</div>
+		</div>
+		<input type = "hidden" name = "pid" value = "${details.p_id }" id="p_id">
 	<input type = "hidden" name = "uid" value = "${sessionScope.curuser.u_id}">
+	<input type="hidden" name="pageNo" id="curPage" value="${page.getPageNum()}">
+  	<input type="hidden" name="pageSize" id="pSize" value="${page.getPageSize()}">
 </div>
 
 </body>

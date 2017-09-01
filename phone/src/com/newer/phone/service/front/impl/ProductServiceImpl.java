@@ -30,20 +30,13 @@ public class ProductServiceImpl implements ProductService{
 	
 	//根据商品类别查询商品 、查询所有商品   以及模糊查询 以及根据价格或者销量进行排序 
 	public PageInfo<Product> getByBrand(
-			Integer b_id,String p_name,
+			Integer b_id,
 			String sort,String order,
 			Integer pageNo,Integer pageSize) {
-		
-		String name = null;
-		if (p_name != null && p_name != "") {
-			name = "%"+p_name+"%";
-		}
-		
 		pageNo = pageNo == null?1:pageNo;
-	    pageSize = pageSize == null?1:pageSize;
+	    pageSize = pageSize == null?6:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
-		List<Product> products = productMapper.findByBrand(b_id,name,sort, order);
-//		System.out.println("----------"+products.get(0).getBrand().getB_id());
+		List<Product> products = productMapper.findByBrand(b_id,sort, order);
 		PageInfo<Product> page = new PageInfo<Product>(products);
 		return page;
 	}
@@ -68,11 +61,9 @@ public class ProductServiceImpl implements ProductService{
 		if (p_name != null && p_name != "") {
 			name = "%"+p_name+"%";
 		}
-		System.out.println("----------"+start);
-		System.out.println("----------"+end);
 		System.out.println(sort);
 		pageNo = pageNo == null?1:pageNo;
-	    pageSize = pageSize == null?2:pageSize;
+	    pageSize = pageSize == null?6:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
 		List<Product> products = productMapper.findAllProduct(name,sort, order,start,end);
 		PageInfo<Product> page = new PageInfo<Product>(products);
@@ -85,6 +76,7 @@ public class ProductServiceImpl implements ProductService{
 		Product product = productMapper.findById(p_id);
 		List<Image> images = imageMapper.getImage(p_id);
 		List<Review> reviews = reviewMapper.getReview(p_id);
+		System.out.println(reviews.size());
 		product.setImages(images);
 		product.setReviews(reviews);
 		return product;
@@ -101,34 +93,13 @@ public class ProductServiceImpl implements ProductService{
 	    PageInfo<Brand> page = new PageInfo<Brand>(list);
 		return page;
 	}
-	
-	//测试分页方法
-	@Override
-	public PageInfo<Brand> queryPage(Integer pageNo, Integer pageSize) {
-		 	pageNo = pageNo == null?1:pageNo;
-		    pageSize = pageSize == null?6:pageSize;
-		    PageHelper.startPage(pageNo, pageSize);
-		    List<Brand> list = productMapper.findAllBrand();
-		    //用PageInfo对结果进行包装
-		    PageInfo<Brand> page = new PageInfo<Brand>(list);
-		    
-		    //测试PageInfo全部属性
-		    System.out.println("--------------");
-		    for(Brand brand:list){
-		    	System.out.println(brand.getB_name()+"--"+brand.getB_logo());
-		    }
-		    System.out.println(page.getPageNum());
-		    System.out.println(page.getPageSize());
-		    System.out.println(page.getStartRow());
-		    System.out.println(page.getEndRow());
-		    System.out.println(page.getTotal());
-		    System.out.println(page.getPages());
-		    System.out.println(page.getFirstPage());
-		    System.out.println(page.getLastPage());
-		    System.out.println(page.isHasPreviousPage());
-		    System.out.println(page.isHasNextPage());
-		    return page;
+	public PageInfo<Review> queryPage(Integer p_id,Integer pageNo,Integer pageSize){
+		pageNo = pageNo == null?1:pageNo;
+	    pageSize = pageSize == null?1:pageSize;
+	    PageHelper.startPage(pageNo, pageSize);
+	    List<Review> reviews = reviewMapper.getReview(p_id);
+	    PageInfo<Review> page = new PageInfo<Review>(reviews);
+	    return page;
 	}
-
 
 }

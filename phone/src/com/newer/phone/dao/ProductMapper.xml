@@ -47,7 +47,7 @@
     </select>
 
         
-  	<!-- 查询所有商品的sql语句  可暂时不要-->
+  	<!-- 查询所有商品的sql语句  包括模糊搜索以排序-->
   	<select id="findAllProduct" resultMap="product-result">
   		select *
   			from product 
@@ -59,7 +59,7 @@
   		<include refid="orderBy" />
   	</select> 
   	
-  	<!-- 根据商品类别查询商品的sql语句  -->
+  	<!-- 根据商品类别查询商品的sql语句  包括排序 -->
   	<select id="findByBrand" resultMap="product-result">
   		select <!-- p.p_id,p.p_name,p.p_info,p.p_price,p.p_sale,p.p_status,p_image,p.b_id
   			from product p --> 
@@ -69,10 +69,6 @@
   		<if test="b_id != 1">
   			and b_id = #{b_id} 
   		</if>
-<!--   		<if test="p_name != null and p_name != ''">
-  			and p_name like #{p_name}
-  		</if> -->
-
   		<include refid="orderBy" />
   	</select>
   	
@@ -91,5 +87,22 @@
   	<select id="findById" resultMap="product-result" parameterType="int">
  		select p.p_id,p.p_name,p.p_sale,p.p_info,p.p_price,p_stock,p_status
  			from product p where p_status = 1 and p_id = #{p_id}
-  	</select> 
+  	</select>
+  	
+		<!-- 增加商品 -->
+  	   <insert id="addProduct" parameterType="com.newer.phone.pojo.Product">
+       insert into brand(p_name,p_import,p_price,p_stock,p_sale,p_info,b_id,p_image) 
+       values(#{p_name},#{p_import},#{p_price},#{p_stock},#{p_sale},#{p_info}, 
+       #{b_id},#{p_image})
+    </insert>
+    <!-- 修改商品 -->
+    <update id = "updateProduct" parameterType="int">
+    	update product set p_name = #{p_name},p_import = #{p_import},p_price = #{p_price},
+    	p_stock = #{p_stock},p_sale = #{p_sale},p_info = #{p_info},p_status = #{p_status},
+    	p_image = #{p_image} where p_id = #{p_id}
+    </update>
+    <!-- 删除商品 -->
+    <update id = "removeProduct" parameterType="int">
+    	update product set p_status = 0 where p_id = #{p_id}
+    </update>
   </mapper>

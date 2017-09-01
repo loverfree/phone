@@ -4,6 +4,7 @@ import java.util.List;
 import com.github.pagehelper.PageInfo;
 import com.newer.phone.pojo.Brand;
 import com.newer.phone.pojo.Product;
+import com.newer.phone.pojo.Review;
 
 public interface ProductService {
 	
@@ -13,7 +14,7 @@ public interface ProductService {
 	
 	//根据商品类别查询商品列表
 	PageInfo<Product> getByBrand(
-			Integer b_id,String p_name,
+			Integer b_id,
 			String sort,String order,
 			Integer pageNo,Integer pageSize);
 	
@@ -28,6 +29,6 @@ public interface ProductService {
 	Product getById(Integer p_id);
 	
 	//测试分页方法
-	PageInfo<Brand> queryPage(Integer pageNo,Integer pageSize);
+	PageInfo<Review> queryPage(Integer p_id,Integer pageNo,Integer pageSize);
 
 }

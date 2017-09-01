@@ -21,7 +21,9 @@
          <td>${brand.b_id }</td>
          <td>${brand.b_name }</td>
          <td>${brand.b_status }</td>
-         <td><a href="${pageContext.request.contextPath }/brand/removeBrand/${brand.b_id}">删除</a></td>
+         <td><a href="${pageContext.request.contextPath }/brand/removeBrand/${brand.b_id}">删除</a>
+         ||<a href = "${pageContext.request.contextPath }/product/addProduct/${brand.b_id}">添加商品</a>
+         </td>
         </tr>
       </c:forEach>
    </table>

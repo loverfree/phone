@@ -19,21 +19,28 @@ import com.newer.phone.pojo.Product;
 public interface ProductMapper {
 	//查询所有商品品牌
 	List<Brand> findAllBrand();
-	//查询所有商品
+	//查询所有商品 包含价格搜索以及模糊查询以及排序
 	List<Product> findAllProduct(
 			@Param("p_name") String p_name,
 			@Param("sort")String sort,
 			@Param("order")String order,
 			@Param("start")Integer start,
 			@Param("end")Integer end);
-	//根据商品类别查询商品
+	//根据商品类别查询商品 包含排序
 	List<Product> findByBrand(
 			@Param("b_id")Integer b_id,
-			@Param("p_name")String p_name,
 			@Param("sort")String sort,
 			@Param("order")String order);
 	//根据商品id查询商品详细
 	Product findById(@Param("p_id")Integer p_id);
-	//根据用户输入的关键字进行模糊查询
-	List<Product> findBySelect(@Param("p_name")String p_name);
+	
+	//增加商品
+	int addProduct(Product product);
+	
+	//对商品内容进行修改
+	int updateProduct(Product product);
+	
+	//对商品进行删除即将商品状态修改为0
+	int removeProduct(@Param("p_id") Integer p_id);
+	
 }
