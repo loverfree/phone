@@ -22,73 +22,71 @@
   });
 </script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css ">
+
+
 </head>
 <body>
 <div id="searchBar">
 <img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 </div>
-<div>商品详情</div>
-	<div style="background-color: #EDEDED">
-		<div style="float:left; margin-left: 15%;">
+<div style="background-color: #EDEDED">商品详情</div>
+	<div style="background-color: white">
+		<div style="float:left; margin-left: 15%;margin-top: 2%">
 			<c:forEach items="${details.images }" var="image">
 	 			<img src = "../../${image.i_path }" height="150px" width="120px">
 	 		</c:forEach>
 		</div>
-				<div class="panel panel-default" ; style="margin-left: 45%;margin-right: 25% ;border: 0" >
-					<div class="panel-heading">商品名：${details.p_name }</div>
+				<div class="panel panel-default"  style="margin-top: 2%;margin-left: 45%;margin-right: 25% ;border: 0" >
+					<div class="panel-heading" style="font-size: 18px">${details.p_name }</div>
 					<div class="panel-body">
-						<p>商品描述：${details.p_info }</p>
+						<p style="font-size:22px ;font-weight: bolder;">${details.p_info }</p>
 					</div>
 					<ul class="list-group">
-						<li class="list-group-item">商品价格：${details.p_price }</li>
-						<li class="list-group-item">商品销量：${details.p_sale }</li>
-						<li class="list-group-item">商品库存：${details.p_stock }</li>
+						<li class="list-group-item" style="font-size: 18px">商	城	价：<font color="red">￥${details.p_price }</font></li>
+						<li class="list-group-item" style="font-size: 18px">销		量：<font color="#b3d1ea">${details.p_sale }</font></li>
+						<li class="list-group-item">商品库存：${details.p_sale }</li>
 						<li class="list-group-item">购买数量：
 						<input type=button value="-" id="sub" onClick="javascript:void(0);">
-						<input type=text name="amount" id="amount" value="1" size="5">
+						<input type=text name="amount" id="amount" value="1" size="5" style="text-align: center;">
 						<!-- <input type="text" class="form-control" id="amount" name="amount" width="5px"> -->
 						<input type=button value="+" id="add" onClick="javascript:void(0);">
 						</li>
 						
 					</ul>
-					<button type="button" class="btn btn-info" id="addCart" style="margin-left: 30%">加入购物车</button>
+					<button type="button" class="btn btn-info" id="addCart">加入购物车</button>
 				</div>
-		<div>
-			<div class="panel panel-info"
-				style="margin-top: 10%; margin-left: 16%; margin-right: 16%">
+				
+				
+				<div>
+					<div class="panel panel-info" style="margin-top:10%;  margin-left: 16%;margin-right: 16%">
+						
+						<div class="panel-body">
+							<table class="table table table-hover">
+								<thead>
+									<tr style="background-color: #9DEDF6">
+										<th>评论详情</th>
+										<th>评论人</th>
+										<th>评论时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${details.reviews }" var="review">
+										<tr>
+											<td>${review.r_info}</td>
+											<td>${review.user.u_name }</td>
+											<td>${review.r_time }</td>
+										</tr>
+									</c:forEach>
 
-				<div class="panel-body">
-					<table class="table table table-hover">
-						<thead>
-							<tr style="background-color: #9DEDF6">
-								<th>评论详情</th>
-								<th>评论人</th>
-								<th>评论时间</th>
-							</tr>
-						</thead>
-						<tbody id="example">
-							<c:forEach items="${details.reviews }" var="review">
-								<tr>
-									<td>${review.r_info}</td>
-									<td>${review.user.u_name }</td>
-									<td>${review.r_time }</td>
-								</tr>
-							</c:forEach>
-
-						</tbody>
-						<c:if test="${empty page.getList()}">
-							<tr>
-								<td colspan="6">没有更多数据！</td>
-							</tr>
-						</c:if>
-					</table>
+								</tbody>
+								
+							</table>
+							
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<input type = "hidden" name = "pid" value = "${details.p_id }" id="p_id">
+	<input type = "hidden" name = "pid" value = "${details.p_id }" id="p_id">
 	<input type = "hidden" name = "uid" value = "${sessionScope.curuser.u_id}">
-	<input type="hidden" name="pageNo" id="curPage" value="${page.getPageNum()}">
-  	<input type="hidden" name="pageSize" id="pSize" value="${page.getPageSize()}">
 </div>
 
 </body>
