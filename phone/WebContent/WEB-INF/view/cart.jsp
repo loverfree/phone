@@ -12,6 +12,17 @@
 <link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/userMenu.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
+ <script type="text/javascript">
+/*     $(function(){
+    	$("#pay").on("click",function(){
+    		$.post("${pageContext.request.contextPath}/cart/payCart",
+    				JSON.stringify([1,2,3]),
+    				function(data){
+    			
+    		});
+    	});
+    }); */
+ </script>
 </head>
 <style type="text/css">
 #DQ,#title th{
@@ -48,20 +59,24 @@
 						<th>操作</th>
 					</tr>
 					<c:forEach items="${carts }" var="cart">
+					  <input type="hidden" name="p_id" value="${cart.product.p_id }" class="p_id">
 						<tr>
 							<td id="DQ"><input type="checkbox"></td>
 							<td width="75px"><img style="width: 100%; height: 10%"
 								src="${pageContext.request.contextPath }/${cart.product.p_image}"></td>
 							<td id="DQ">${cart.product.p_name }</td>
 							<td id="DQ">${cart.product.p_price }</td>
-							<td id="DQ">${cart.c_amount }</td>
+							<td id="DQ" class="c_amount">${cart.c_amount }</td>
 							<td id="DQ"><a
 								href="${pageContext.request.contextPath }/cart/removeCart/${cart.product.p_id}">删除</a></td>
 						</tr>
 					</c:forEach>
+					<tr><td>总价：${o_total }</td></tr>
 					<tr>
+					 
 						<td colspan="6"><a style="float: right; width: 9.1%"
-							class="button button-highlight button-pill button-small">结算</a></td>
+							class="button button-highlight button-pill button-small" id="pay"
+							href="${pageContext.request.contextPath }/cart/payCart/${o_total}">结算</a></td>
 					</tr>
 				</table>
 			</c:if>

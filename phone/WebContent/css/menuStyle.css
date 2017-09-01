@@ -15,6 +15,7 @@ li{
     list-style-type: none;
     border-top: 1px solid #EDEDED;
     font-family: Î¢ÈíÑÅºÚ;
+    width: auto;
 }
 
 li:first-child {border-top: none;}
@@ -29,7 +30,7 @@ li:first-child {border-top: none;}
 .search{
 	border-radius:10px;
 	border: 2px solid #E6E6E6;
-	width: 50%;
+	width: 45%;
 	height: 40%;
 	margin-left:22%;
 	position: absolute;
@@ -45,7 +46,7 @@ li:first-child {border-top: none;}
 }
 
 .submit{
-	margin-left: 73%;
+	margin-left: 68%;
 	width:5%;
 	height:30px;
 	position: absolute;
@@ -136,7 +137,7 @@ div.curuser{
     line-height:32px;   
     overflow:hidden;   
 	color: white;
-	width: 35%;
+	width: 20%;
 	height: 32px;
 	vertical-align: middle;
 	display: inline-block;

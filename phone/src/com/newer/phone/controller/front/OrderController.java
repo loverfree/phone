@@ -4,9 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.newer.phone.pojo.Orders;
+import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.OrdersService;
 
 @Controller
@@ -22,23 +26,11 @@ public class OrderController {
 	 * @author samluby
 	 */
 	@RequestMapping("/")
-	public String getOrderByUser(){
-		Integer u_id = 1;//前端传入的用户id
-		List<Orders> orders = ordersService.getOrderByUser(u_id);
-		if(orders.size()!=0){
-			System.out.println("OK");
-			System.out.println(orders.get(0).getA_city()+"   "+
-					orders.get(0).getO_id()+"   "+
-					orders.get(0).getO_time()+"  "
-					+orders.get(0).getO_total()+"  "+
-					orders.get(0).getUser().getU_id()+"    "+
-					orders.get(0).getUser().getU_name()+"   "+
-					orders.get(0).getP_os().get(0).getC_amount()+"    "+
-					orders.get(0).getP_os().get(0).getProduct().getP_name());
-		}else {
-			System.out.println("lose");
-		}
-		return "index";
+	public String getOrderByUser(@SessionAttribute("curuser") User user,Model model){
+//		Integer u_id = 1;//前端传入的用户id
+		List<Orders> orders = ordersService.getOrderByUser(user.getU_id());
+		model.addAttribute("orders",orders);
+		return "orderList";
 	}
 	
 	/**
@@ -48,13 +40,28 @@ public class OrderController {
 	 * @return
 	 * @author samluby
 	 */
-	@RequestMapping("removeOrders")
-	public String removeOrderById(){
-		Integer u_id = 1;
-		Integer o_id = 2;
-		int isTrue = ordersService.removeOrderById(u_id, o_id);
+	@RequestMapping("removeOrders/{o_id}")
+	public String removeOrderById(@PathVariable("o_id")Integer o_id,
+			                      @SessionAttribute("curuser")User user){
+//		Integer u_id = 1;
+//		Integer o_id = 2;
+		int isTrue = ordersService.removeOrderById(user.getU_id(), o_id);
 		System.out.println(isTrue);
-		return "index";
+		return "redirect:../";
 	}
 
+	/**
+	 * 付款
+	 * @return
+	 * @author samluby
+	 */
+	@RequestMapping("pay")
+	public String pay(Orders order,@SessionAttribute("curuser")User user){
+		order.setUser(user);
+		boolean flag = ordersService.addOrder(order);
+		if(flag==true){
+			return "paySucceed";
+		}
+		return "payLose";
+	}
 }

@@ -28,7 +28,7 @@ $(function() {
                          top:("-"+(0.1 * $(this).height())/2)}, 1000);
                          fontSize: '20px';
      }).mouseout(function(){  
-         $(this).animate({width: "35%",  
+         $(this).animate({width: "20%",  
                                       height: "32",  
                                       left:"0px",  
                                       top:"0px"}, 1000 );  

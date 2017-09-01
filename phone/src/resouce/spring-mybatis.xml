@@ -43,10 +43,16 @@ http://www.springframework.org/schema/util/spring-util.xsd">
     <!-- 自动增长个数-->
     <property name="acquireIncrement" value="2"/>
   </bean>
+  <!-- 事务管理 -->
+  <bean id="transactionManager" 
+  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"></property>
+  </bean>
+  <tx:annotation-driven transaction-manager="transactionManager"/>
   
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-      <property name="mapperLocations" value="classpath:com/newer/phone/dao/*.xml"></property>
+      <property name="mapperLocations" value="classpath:com/newer/phone/dao/*.xml"></property> 
 
 		<!-- pageHelper 分页插件 -->
 	<property name="plugins">

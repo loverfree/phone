@@ -1,10 +1,15 @@
 package com.newer.phone.service.front.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.newer.phone.dao.CartMapper;
 import com.newer.phone.dao.OrdersMapper;
 import com.newer.phone.pojo.Orders;
 import com.newer.phone.service.front.OrdersService;
@@ -14,6 +19,9 @@ public class OrderServiceImpl implements OrdersService{
 
 	@Autowired
 	private OrdersMapper ordersMapper;
+	
+	@Autowired
+	private CartMapper cartMapper;
 	@Override
 	public List<Orders> getOrderByUser(Integer u_id) {
 		List<Orders> orders = ordersMapper.getOrderByUser(u_id);
@@ -23,6 +31,19 @@ public class OrderServiceImpl implements OrdersService{
 	@Override
 	public int removeOrderById(Integer u_id, Integer o_id) {
 		return ordersMapper.removeOrderById(u_id, o_id);
+	}
+
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED,isolation=Isolation.READ_COMMITTED)
+	public boolean addOrder(Orders order) {
+		order.setO_time(new Date());
+		order.setO_status(1);//付款了，未发货
+		int isTrue = ordersMapper.addOrders(order);
+		int isOK = cartMapper.removeCartAll(order.getUser().getU_id());
+		if(isTrue>0 && isOK>0){
+			return true;
+		}
+		return false;
 	}
 
 }

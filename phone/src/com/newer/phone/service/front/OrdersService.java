@@ -10,4 +10,6 @@ public interface OrdersService {
 	List<Orders> getOrderByUser(Integer u_id);
 	
 	int removeOrderById(Integer u_id,Integer o_id);
+
+	boolean addOrder(Orders order);
 }
