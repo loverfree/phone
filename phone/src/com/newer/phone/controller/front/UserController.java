@@ -121,6 +121,11 @@ public class UserController {
 		return "addrUpdate";
 	}
 	
+	@RequestMapping("/card")
+	public String cardMenu() {
+		return "card";
+	}
+	
 	@RequestMapping(value="/addAddr",method = RequestMethod.POST) 
 	public String addAddr(@ModelAttribute("curuser")User user,SessionStatus ss,Address addr) {
 		addr.setUser(user);
