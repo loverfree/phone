@@ -18,6 +18,20 @@ public class P_O implements Serializable {
 	private Product product;
 	private Orders order;
 	private Integer c_amount;
+	private Integer p_id;
+	public Integer getP_id() {
+		return p_id;
+	}
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
+	}
+	public Integer getU_id() {
+		return u_id;
+	}
+	public void setU_id(Integer u_id) {
+		this.u_id = u_id;
+	}
+	private Integer u_id;
 	public Product getProduct() {
 		return product;
 	}

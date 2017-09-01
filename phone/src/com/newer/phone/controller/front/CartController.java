@@ -1,5 +1,6 @@
 package com.newer.phone.controller.front;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.newer.phone.pojo.Address;
 import com.newer.phone.pojo.Cart;
+import com.newer.phone.pojo.Orders;
+import com.newer.phone.pojo.P_O;
 import com.newer.phone.pojo.Product;
 import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.CartService;
@@ -32,8 +36,23 @@ public class CartController {
 	 * @return OK
 	 * @author samluby
 	 */
+//	@RequestMapping("/")
+//	public String getCartByUser(Model model){
+////		System.out.println(user.getU_id());
+//		Integer u_id = 1;//前端传过来的参数用户id u_id
+//		List<Cart> carts = cartService.getCartByUser(u_id);
+//		System.out.println(carts.size());
+//		BigDecimal o_total = new BigDecimal(0);
+//		for (Cart cart : carts) {
+//			o_total = o_total.add(cart.getProduct().getP_price());
+//		}
+//		model.addAttribute("o_total", o_total);
+//		model.addAttribute("carts",carts);
+//		return "cart";
+//	}
+	
 	@RequestMapping("/")
-	public String getCartByUser(Model model,@SessionAttribute("curuser")User user){
+	public String getCartByUser(Model model,@SessionAttribute("curuser") User user){
 		System.out.println(user.getU_id());
 //		Integer u_id = 1;//前端传过来的参数用户id u_id
 		List<Cart> carts = cartService.getCartByUser(user.getU_id());
@@ -116,9 +135,21 @@ public class CartController {
 	
 	//由顶当单累结算
 	//购物车结算
-	@RequestMapping("payCart")
-	public String payByCart(){
-		return "index";
+	@RequestMapping("payCart/{o_total}")
+	public String payByCart(@SessionAttribute("curuser")User user,
+			                 @PathVariable("o_total")BigDecimal o_total,
+			                 Model model){
+//		System.out.println(user.getU_id());
+//		Integer u_id = 1;//前端传过来的参数用户id u_id
+		List<Cart> carts = cartService.getCartByUser(user.getU_id());
+		System.out.println(carts.size());
+//		for (Cart cart : carts) {
+//			Product p = cart.getProduct();
+//			System.out.println(p.toString());
+//		}
+		model.addAttribute("carts",carts);
+		model.addAttribute("o_total", o_total);
+		return "orders";
 	}
 
 	

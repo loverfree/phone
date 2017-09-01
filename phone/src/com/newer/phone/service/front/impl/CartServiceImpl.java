@@ -1,14 +1,19 @@
 package com.newer.phone.service.front.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.newer.phone.dao.CartMapper;
+import com.newer.phone.dao.OrdersMapper;
 import com.newer.phone.dao.ProductMapper;
+import com.newer.phone.pojo.Address;
 import com.newer.phone.pojo.Cart;
+import com.newer.phone.pojo.Orders;
 import com.newer.phone.pojo.Product;
+import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.CartService;
 
 @Service
@@ -18,6 +23,8 @@ public class CartServiceImpl implements CartService{
 	private CartMapper cartMapper;
 	@Autowired
 	private ProductMapper productMapper;
+	@Autowired
+	private OrdersMapper ordersMapper;
 	
 	/**
 	 * 查看购物车：根据前端传的参数用户id u_id，从session中获得，去查询CART中u_id=参数的所有记录。
@@ -72,6 +79,13 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int removeCartAll(Integer u_id) {
 		return cartMapper.removeCartAll(u_id);
+	}
+
+	@Override
+	public boolean payByCart(User user, Address address, BigDecimal o_total) {
+		List<Cart> carts = cartMapper.getCartByUser(user.getU_id());
+		Boolean flag = false;
+		return flag;
 	}
 
 }

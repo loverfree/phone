@@ -32,4 +32,6 @@ public interface OrdersMapper {
 	 * @author samluby
 	 */
 	int removeOrderById(@Param("u_id") Integer u_id, @Param("o_id") Integer o_id);
+	
+	int addOrders(Orders order);
 }
