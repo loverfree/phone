@@ -43,4 +43,6 @@ public interface ProductMapper {
 	//对商品进行删除即将商品状态修改为0
 	int removeProduct(@Param("p_id") Integer p_id);
 	
+	List<Product> getAllProduct();
+	
 }

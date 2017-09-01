@@ -44,6 +44,8 @@ public class ProdcutController {
 				b_id,sort, order, pageNo, pageSize);
 		model.addAttribute("page", page);
 		model.addAttribute("bid",b_id);
+		System.out.println("sort"+sort);
+		System.out.println("order"+order);
 		List<Product> products=page.getList(); 
 		for(int i = 0;i < products.size();i++ ){
 			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+

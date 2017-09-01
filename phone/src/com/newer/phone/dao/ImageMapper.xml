@@ -14,5 +14,9 @@
   	<select id="getImage" resultMap="image-result">
   		select i_path from image where p_id = #{p_id} 
   	</select>
-  </mapper>
+  	  	<insert id = "addImage" parameterType = "int">
+  		insert into image(i_path,p_id)values(#{i_path},#{p_id})
+  	</insert>
+
+</mapper>
   

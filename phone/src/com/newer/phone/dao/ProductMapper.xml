@@ -9,6 +9,7 @@
   		<result property="p_name" column="p_name"/>
   		<result property="p_sale" column="p_sale"/>
   		<result property="p_info" column="p_info"/>
+  		<result property="p_import" column="p_import"/>
   		<result property="p_price" column="p_price"/>
   		<result property="p_status" column="p_status"/>
   		<result property="p_stock" column="p_stock"/>
@@ -85,8 +86,8 @@
 
   	<!-- 根据商品id查询单个商品详细的sql语句 -->
   	<select id="findById" resultMap="product-result" parameterType="int">
- 		select p.p_id,p.p_name,p.p_sale,p.p_info,p.p_price,p_stock,p_status
- 			from product p where p_status = 1 and p_id = #{p_id}
+ 		SELECT p.p_id,p.p_name,p.p_import,p.p_price,p.p_sale,p.p_info,p.p_price,p_stock,p_status,b.b_name 
+ 			FROM product p ,brand  b WHERE p_status = 1 AND p_id = #{p_id} AND b.b_id = p.b_id 
   	</select>
   	
 		<!-- 增加商品 -->
@@ -96,13 +97,17 @@
        #{b_id},#{p_image})
     </insert>
     <!-- 修改商品 -->
-    <update id = "updateProduct" parameterType="int">
+    <update id = "updateProduct" parameterType="com.newer.phone.pojo.Product">
     	update product set p_name = #{p_name},p_import = #{p_import},p_price = #{p_price},
-    	p_stock = #{p_stock},p_sale = #{p_sale},p_info = #{p_info},p_status = #{p_status},
-    	p_image = #{p_image} where p_id = #{p_id}
+    	p_stock = #{p_stock},p_sale = #{p_sale},p_info = #{p_info} 
+    	where p_id = #{p_id}
     </update>
     <!-- 删除商品 -->
     <update id = "removeProduct" parameterType="int">
     	update product set p_status = 0 where p_id = #{p_id}
     </update>
+    
+    <select id="getAllProduct" resultMap="product-result">
+    	SELECT product.*,brand.b_name FROM product,brand WHERE product.b_id = brand.b_id  and product.p_status = 1
+    </select>
   </mapper>

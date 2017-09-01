@@ -6,7 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>手机商城</title>
+
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js "></script>
+<link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css ">
 <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" >
@@ -14,6 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/paging.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/sort.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
 </head>
 <style type="text/css">
 	#sinput{
@@ -28,8 +31,7 @@
 <h2>我们的商品</h2>
 <%-- <jsp:include page="LeftNavi.jsp"></jsp:include> --%>
 <div id="rightPanel" style="margin-left: 15%">
-		<form id="seach"
-			action="${pageContext.request.contextPath }/product/fuzzy/list"
+		<form id="seach" action="${pageContext.request.contextPath }/product/${bid}/list"
 			method="post">
 			<div class="pure-menu pure-menu-horizontal" style="display: inline;margin-left: 5%">
 				<ul class="pure-menu-list">
@@ -48,14 +50,13 @@
 								class="btn btn-info" value="搜索"
 								style="height: 26px; width: 50px; font-size: 11px">
 						</div>
-				<input type="hidden" name="order" id="order"> <input type="hidden" name="sort" id="sort">
+				<input type="hidden" name="order" id="order"> 
+				<input type="hidden" name="sort" id="sort">
 			</div>
 
 		</form>
 
 		<form id="pageForm" action="${pageContext.request.contextPath }/product/${bid}/list" method="post">
-
-
 <table border="0" cellspacing="5px" width="80%">
 	<c:set var="total" value="${page.getList().size() }"></c:set>
 			
@@ -66,7 +67,7 @@
 	  	 <td><img src ="${pageContext.request.contextPath }/${product.p_image}">
 	  	 	<br>
 	  	 	<a href = "../${product.p_id}/details">${product.p_name } 
-			&nbsp;&nbsp;&nbsp;&nbsp;<label style="color: #FF6F3B">¥${product.p_price }</label></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;<font style="color: #FF6F3B">¥${product.p_price }</font></a>
 	  	 </td>
 
 	  	 <c:if test="${abc.count%3== 0 || abc.count==total}">
@@ -94,6 +95,6 @@
   	<input type="hidden" name="pageSize" id="pSize" value="${page.getPageSize()}">
 </form>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/clickFont.js"></script>
+
 </body>
 </html>

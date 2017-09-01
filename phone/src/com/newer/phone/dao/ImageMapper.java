@@ -16,4 +16,7 @@ public interface ImageMapper {
 	
 	//根据商品id查询商品的图片
 	List<Image> getImage(@Param("p_id") Integer p_id);
+	//根据添加图片
+	int addImage(Image image);
+	
 }
