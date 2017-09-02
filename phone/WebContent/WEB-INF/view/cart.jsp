@@ -47,7 +47,7 @@
 		<div class="panel-body">
 
 			<a href="${pageContext.request.contextPath }/cart/emptyCart"></a>
-			<c:if test="${empty carts }">无数据</c:if>
+			<c:if test="${empty carts }">购物车是空的呢~买点什么吧</c:if>
 			<c:if test="${not empty carts }">
 				<table class="table table-hover">
 					<tr id="title" style="background-color: #F5F5F5">

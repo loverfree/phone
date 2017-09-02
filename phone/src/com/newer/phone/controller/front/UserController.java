@@ -119,6 +119,15 @@ public class UserController {
 		return "addrUpdate";
 	}
 	
+	@RequestMapping(value="delAddr",method = RequestMethod.POST)
+	public @ResponseBody List<String>  delAddr(Integer a_id) {
+		System.out.println("删除成功");
+		userService.delAddr(a_id);
+		List<String> del = new ArrayList<>();
+		del.add("删除成功！");
+		return del;
+	}
+	
 	@RequestMapping("/card")
 	public String cardMenu() {
 		return "card";

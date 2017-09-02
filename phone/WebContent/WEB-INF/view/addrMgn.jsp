@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/province.js"></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/userMenu.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/delAddr.js"  charset="gb2312" ></script>
 </head>
 <script type="text/javascript">
 $(function() {
@@ -26,18 +27,20 @@ $(function() {
 		<div class="panel-heading">地址管理</div>
 		<div class="panel-body" style="margin-top: -3%">
 			<h4 class="page-header">已有地址</h4>
-			<table class="table table-hover">
-				<thead>
-					<tr style="background-color: #FEA268">
-						<th>省份</th>
-						<th>城市</th>
-						<th>街道</th>
-						<th>收件人</th>
-						<th>联系电话</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
+			<c:if test="${empty alist }">没地址怎么收货呢~</c:if>
+			<c:if test="${not empty alist }">
+				<table id="adr" class="table table-hover">
+					<thead>
+						<tr style="background-color: #FEA268">
+							<th>省份</th>
+							<th>城市</th>
+							<th>街道</th>
+							<th>收件人</th>
+							<th>联系电话</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
 						<c:forEach items="${alist }" var="it">
 							<tr>
 								<td>${it.a_province}</td>
@@ -45,13 +48,16 @@ $(function() {
 								<td>${it.a_street }</td>
 								<td>${it.a_recv }</td>
 								<td>${it.a_recvtel }</td>
-								<td><input id="check" type="checkbox" />
-								<label for="check"></label>|
-								删除</td>
+								<td>
+									<button id="delAddr" type="button" class="btn btn-warning"
+										onclick="delAddr(${it.a_id},this)">删除</button>
+								</td>
 							</tr>
 						</c:forEach>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</c:if>
+			<div id="result"></div>
 			<h4 id="addAddr" class="page-header">添加新地址</h4>
 			<form action="addAddr" method="post">
 			<table id="addAddr" class="table table-condensed" style="border: 1px solid #EDEDED">

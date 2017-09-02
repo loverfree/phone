@@ -27,6 +27,9 @@ public interface UserService {
 	// 用户添加地址
 	int addAddr(Address addr);
 	
+	// 用户删除地址
+	int delAddr(@Param("a_id")Integer a_id);
+	
 	// 用户上传头像（存入数据库的是地址）
 	int addPic(@Param("u_pic")String u_pic,@Param("u_id")Integer u_id);
 }

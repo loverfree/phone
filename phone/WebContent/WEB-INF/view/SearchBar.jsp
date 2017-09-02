@@ -8,10 +8,10 @@
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/menuStyle.css" />
 <link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://purecss.io/js/menus.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mouseOver.js"></script>
 <body>
 <div id="searchBar"><img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
@@ -43,27 +43,29 @@
 		</ul>
 
 	</div> --%>
-		<div class="dropdown" style="position: absolute; top: 7.5%; transform: translateY(-50%); margin-left: 74%;width: 270px">
-			<button class="btn btn-primary dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				我的信息
-				<span class="caret"></span>
-			</button>
-		<ul class="dropdown-menu"
-			style="font-size: 15px;white-space: nowrap;overflow: hidden;line-height: 300%;padding-left: 20px;padding-right: 2px;width: 270px">
-			<li>
-				<div class="curuser">用户名</div> &nbsp;&nbsp;&nbsp;&nbsp;<span
-				style="display: inline-block; vertical-align: middle; font-size: 18px">${sessionScope.curuser.u_nickname}
-			</span>
-			</li>
-			<li><span>查看订单</span> </li>
-			<li><span><a href="../../user/userUpdate"> 个人信息</a> </span></li>
-			<li>
-				<form action="${pageContext.request.contextPath }/user/logout"
-					method="post">
-					<input type="submit" class="button button-pill button-tiny"
-						value="注销" >
-				</form>
+	<div class="pure-menu pure-menu-horizontal"
+		style="position: absolute; top: 7.5%; transform: translateY(-50%); margin-left: 74%; width: 270px;">
+
+		<ul class="pure-menu-list" style="line-height: 300%;">
+			<li
+				class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+				<a href="#" id="menuLink1" class="pure-menu-link">我的信息</a>
+				<ul class="pure-menu-children" style="border: 2px solid #A6C0D6;width: 240px">
+					<li class="pure-menu-item"><div class="curuser" style="margin-left: 5%">用户名</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;<span
+						style="display: inline-block; vertical-align: middle; font-size: 18px">${sessionScope.curuser.u_nickname}
+					</span></li>
+					<li class="pure-menu-item"><a href="#" class="pure-menu-link"><span>查看订单</span></a></li>
+					<li class="pure-menu-item"><a href="../../user/userUpdate"
+						class="pure-menu-link">个人信息</a></li>
+					<li class="pure-menu-item">
+						<form action="${pageContext.request.contextPath }/user/logout"
+							method="post">
+							<input type="submit" class="button button-pill button-small"
+								value="注销">
+						</form>
+					</li>
+				</ul>
 			</li>
 		</ul>
 	</div>

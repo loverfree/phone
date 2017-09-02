@@ -75,5 +75,12 @@ public class UserServiceImpl implements UserService{
 		userMapper.addPic(u_pic, u_id);
 		return count;
 	}
+
+	@Override
+	public int delAddr(Integer a_id) {
+		int count = 0;
+		count = userMapper.delAddr(a_id);
+		return count;
+	}
 	
 }

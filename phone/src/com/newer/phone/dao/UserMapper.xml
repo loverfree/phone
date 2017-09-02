@@ -66,11 +66,18 @@
        select * from user where u_id=#{u_id}
      </select>
 
+	<!-- 用户增加一个收货地址 -->
 	<insert id="addAddr" parameterType="com.newer.phone.pojo.Address">
 		INSERT INTO address VALUES 
 		(NULL,#{a_province},#{a_city},#{a_street},#{a_recv},#{a_recvtel},#{user.u_id})
 	</insert>
 	
+	<!-- 用户删除一个收货地址 -->
+	<delete id="delAddr" parameterType="com.newer.phone.pojo.Address">
+		delete from address where a_id = #{a_id}
+	</delete>
+	
+	<!-- 用户上传头像 -->
 	<update id="addPic" parameterType="com.newer.phone.pojo.User">
 		UPDATE USER SET u_pic = #{u_pic} WHERE u_id = #{u_id}
 	</update>

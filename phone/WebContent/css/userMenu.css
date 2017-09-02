@@ -31,6 +31,7 @@ img#shopLogo{
 img#head{
 	margin-left: 72%;
 	position: absolute;
+	margin-top: 1%;
 }
 
 .editPanel{
@@ -39,5 +40,12 @@ img#head{
 	background-color: white;	
 	width: 76%;
 	height: auto;
+}
+
+div#result{
+	text-align: center;
+	font-weight: bolder;
+	font-size: 20px;
+	color: #FE4042
 }
 
