@@ -59,7 +59,7 @@ public class CartController {
 		System.out.println(carts.size());
 		BigDecimal o_total = new BigDecimal(0);
 		for (Cart cart : carts) {
-			o_total = o_total.add(cart.getProduct().getP_price());
+			o_total = o_total.add(cart.getProduct().getP_price().multiply(new BigDecimal(cart.getC_amount())));
 		}
 		model.addAttribute("carts",carts);
 		model.addAttribute("o_total", o_total);

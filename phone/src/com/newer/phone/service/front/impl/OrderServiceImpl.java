@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.newer.phone.dao.CartMapper;
 import com.newer.phone.dao.OrdersMapper;
+import com.newer.phone.dao.ProductMapper;
 import com.newer.phone.pojo.Cart;
 import com.newer.phone.pojo.Orders;
 import com.newer.phone.service.front.OrdersService;
@@ -22,6 +23,8 @@ public class OrderServiceImpl implements OrdersService{
 	private OrdersMapper ordersMapper;
 	@Autowired
 	private CartMapper cartMapper;
+	@Autowired
+	private ProductMapper productMapper;
 	@Override
 	public List<Orders> getOrderByUser(Integer u_id) {
 		List<Orders> orders = ordersMapper.getOrderByUser(u_id);
@@ -40,6 +43,7 @@ public class OrderServiceImpl implements OrdersService{
 		order.setO_status(1);//付款了，未发货
 		int isTrue = ordersMapper.addOrders(order);
 		int isOp = 0;
+		int isUp = 0;
 //		Orders or = ordersMapper.findOrder(order.getO_time());
 //		System.out.println(or.getO_id());
 		Integer o_id = ordersMapper.findOrder();
@@ -47,6 +51,7 @@ public class OrderServiceImpl implements OrdersService{
 		System.out.println(carts.size());
 		for (int i = 0; i < carts.size(); i++) {
 			isOp = isOp+ordersMapper.addPO(carts.get(i).getProduct().getP_id(), o_id, carts.get(i).getC_amount());
+			isUp = isUp+productMapper.updateProductByAmount(carts.get(i).getC_amount(), carts.get(i).getProduct().getP_id());
 		}
 		int isOK = cartMapper.removeCartAll(order.getUser().getU_id());
 		if(isTrue>0 && isOK>0){

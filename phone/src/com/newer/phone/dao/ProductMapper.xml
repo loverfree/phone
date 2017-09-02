@@ -110,4 +110,9 @@
     <select id="getAllProduct" resultMap="product-result">
     	SELECT product.*,brand.b_name FROM product,brand WHERE product.b_id = brand.b_id  and product.p_status = 1
     </select>
+    
+    <!-- 根据订单中每个商品的数量来修改商品的库存和销量 -->
+    <update id="updateProductByAmount">
+         update product set p_stock=p_stock-#{c_amount},p_sale=p_sale+#{c_amount} where p_id=#{p_id}
+    </update>
   </mapper>

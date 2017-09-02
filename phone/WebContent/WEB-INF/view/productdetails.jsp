@@ -44,7 +44,7 @@
 					<ul class="list-group">
 						<li class="list-group-item" style="font-size: 18px">商	城	价：<font color="red">¥${details.p_price }</font></li>
 						<li class="list-group-item" style="font-size: 18px">销		量：<font color="#b3d1ea">${details.p_sale }</font></li>
-						<li class="list-group-item">商品库存：${details.p_sale }</li>
+						<li class="list-group-item">商品库存：${details.p_stock }</li>
 						<li class="list-group-item">购买数量：
 						<input type=button value="-" id="sub" onClick="javascript:void(0);">
 						<input type=text name="amount" id="amount" value="1" size="5" style="text-align: center;">
@@ -113,7 +113,7 @@
 		if (keyCode != 8) {
 			var numVal = parseInt($("#amount").val()) || 0;
 			numVal = numVal < 1 ? 1 : numVal;
-			numVal = numVal > ${details.p_sale } ? ${details.p_sale }:numVal;
+			numVal = numVal > ${details.p_stock } ? ${details.p_stock }:numVal;
 		$("#amount").val(numVal);
 			}
 		}).blur(function() {
@@ -125,7 +125,7 @@
 //增加
 	$("#add").click(function() {
 		var num = parseInt($("#amount").val()) || 0;
-		num = num > ${details.p_sale } ? ${details.p_sale }:num;
+		num = num > ${details.p_stock } ? ${details.p_stock }:num;
 	$("#amount").val(num + 1);
 	});
 //减去

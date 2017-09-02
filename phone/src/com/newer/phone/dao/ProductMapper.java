@@ -45,4 +45,7 @@ public interface ProductMapper {
 	
 	List<Product> getAllProduct();
 	
+	int updateProductByAmount(@Param("c_amount")Integer c_amount,
+			                  @Param("p_id")Integer p_id);
+	
 }
