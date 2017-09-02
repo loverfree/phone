@@ -58,5 +58,10 @@ public class ProductServiceBackImpl implements ProductServiceBack{
 		Product product = productMapper.findById(p_id);
 		return product;
 	}
+
+	@Override
+	public Integer findPid() {
+		return productMapper.findPid();
+	}
 	
 }

@@ -28,4 +28,6 @@ public interface ProductServiceBack {
 	int removeProduct(Integer p_id);
 	
 	Product selectProduct(Integer p_id);
+	
+	Integer findPid();
 }

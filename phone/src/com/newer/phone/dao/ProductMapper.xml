@@ -93,9 +93,9 @@
   	
 		<!-- 增加商品 -->
   	   <insert id="addProduct" parameterType="com.newer.phone.pojo.Product">
-       insert into brand(p_name,p_import,p_price,p_stock,p_sale,p_info,b_id,p_image) 
+       insert into product(p_name,p_import,p_price,p_stock,p_sale,p_info,b_id,p_image) 
        values(#{p_name},#{p_import},#{p_price},#{p_stock},#{p_sale},#{p_info}, 
-       #{b_id},#{p_image})
+       #{brand.b_id},#{p_image})
     </insert>
     <!-- 修改商品 -->
     <update id = "updateProduct" parameterType="com.newer.phone.pojo.Product">
@@ -116,4 +116,8 @@
     <update id="updateProductByAmount">
          update product set p_stock=p_stock-#{c_amount},p_sale=p_sale+#{c_amount} where p_id=#{p_id}
     </update>
+    
+     <select id="findPid" resultType="java.lang.Integer">
+        select max(p_id) o_id from product
+     </select>
   </mapper>

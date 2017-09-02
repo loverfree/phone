@@ -45,9 +45,14 @@ public interface ProductMapper {
 	//对商品进行删除即将商品状态修改为0
 	int removeProduct(@Param("p_id") Integer p_id);
 	
+	//插叙所有商品
 	List<Product> getAllProduct();
 	
+	//根据订单数量修改库存以及销量
 	int updateProductByAmount(@Param("c_amount")Integer c_amount,
 			                  @Param("p_id")Integer p_id);
+	
+	//获取最后一个商品id
+	Integer findPid();
 	
 }

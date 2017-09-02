@@ -49,11 +49,7 @@ public class ProdcutController {
 		System.out.println("sort"+sort);
 		System.out.println("order"+order);
 		List<Product> products=page.getList(); 
-		for(int i = 0;i < products.size();i++ ){
-			System.out.println("商品名："+products.get(i).getP_name()+"---价格："+
-					products.get(i).getP_price()+"--描述："+products.get(i).getP_info()+
-					"--销量："+products.get(i).getP_sale()+"--图片："+products.get(i).getP_image());
-		}
+
 		return "product";
 	}
 	
@@ -88,6 +84,7 @@ public class ProdcutController {
 	@RequestMapping(value = "/{p_id}/details",method = RequestMethod.GET)
 	public String getById(@PathVariable Integer p_id,Model model){
 		Product products = productService.getById(p_id);
+		System.out.println(p_id);
 		model.addAttribute("details", products);
 			System.out.println("商品id:"+products.getP_id()+"商品名："+products.getP_name()+"---价格："+
 					products.getP_price()+"--描述："+products.getP_info()+

@@ -5,17 +5,17 @@
   
   <mapper namespace="com.newer.phone.dao.ImageMapper">
   	<!-- 商品图片结果集 -->
-  	<resultMap type="com.newer.phone.pojo.Image" id="image-result">
+   	<resultMap type="com.newer.phone.pojo.Image" id="image-result">
   		<id property="i_id" column="i_id"/>
   		<result property="i_path" column="i_path"/>
-  		
+  		<!-- <association property="product" column="p_id" javaType="com.newer.phone.pojo.Product" resultMap="product-result"/> -->
   	</resultMap>
   
   	<select id="getImage" resultMap="image-result">
   		select i_path from image where p_id = #{p_id} 
   	</select>
-  	  	<insert id = "addImage" parameterType = "int">
-  		insert into image(i_path,p_id)values(#{i_path},#{p_id})
+  	  	<insert id = "addImage" parameterType = "com.newer.phone.pojo.Image">
+  		insert into image(i_path,p_id)values(#{i_path},#{product.p_id})
   	</insert>
 
 </mapper>
