@@ -1,5 +1,6 @@
 package com.newer.phone.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -34,4 +35,10 @@ public interface OrdersMapper {
 	int removeOrderById(@Param("u_id") Integer u_id, @Param("o_id") Integer o_id);
 	
 	int addOrders(Orders order);
+	
+	Integer findOrder();
+	
+	int addPO(@Param("p_id")Integer p_id,
+			  @Param("o_id")Integer o_id,
+			  @Param("c_amount")Integer c_amount);
 }

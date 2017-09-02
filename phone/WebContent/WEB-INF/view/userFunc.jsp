@@ -24,7 +24,7 @@
         <li class="list-group-item"><a href="${pageContext.request.contextPath }/user/addrUpdate">📬&nbsp;账户收货地址</a></li>
         <li class="list-group-item"><a href="${pageContext.request.contextPath }/user/card">🏧&nbsp;绑定/更改银行卡</a></li>
         <li class="list-group-item"><a href="${pageContext.request.contextPath }/cart/">🛒&nbsp;购物车</a></li>
-        <li class="list-group-item"><a  >💰&nbsp;我的订单</a></li>
+        <li class="list-group-item"><a href="${pageContext.request.contextPath }/orders/" >💰&nbsp;我的订单</a></li>
     </ul>
 	</div>
 </div>

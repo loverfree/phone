@@ -29,6 +29,11 @@ public class OrderController {
 	public String getOrderByUser(@SessionAttribute("curuser") User user,Model model){
 //		Integer u_id = 1;//前端传入的用户id
 		List<Orders> orders = ordersService.getOrderByUser(user.getU_id());
+		System.out.println(orders.size());
+		for (Orders orders2 : orders) {
+			System.out.println(orders2.getP_os().size());
+			System.out.println(orders2.getA_city());
+		}
 		model.addAttribute("orders",orders);
 		return "orderList";
 	}

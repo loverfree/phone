@@ -42,7 +42,7 @@
 						<p style="font-size:22px ;font-weight: bolder;">${details.p_info }</p>
 					</div>
 					<ul class="list-group">
-						<li class="list-group-item" style="font-size: 18px">商	城	价：<font color="red">￥${details.p_price }</font></li>
+						<li class="list-group-item" style="font-size: 18px">商	城	价：<font color="red">¥${details.p_price }</font></li>
 						<li class="list-group-item" style="font-size: 18px">销		量：<font color="#b3d1ea">${details.p_sale }</font></li>
 						<li class="list-group-item">商品库存：${details.p_sale }</li>
 						<li class="list-group-item">购买数量：

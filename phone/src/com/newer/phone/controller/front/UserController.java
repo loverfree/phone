@@ -66,8 +66,6 @@ public class UserController {
 	
 	@RequestMapping(value="/loginUser",method=RequestMethod.POST) 
 	public String loginUser(Model model,String uname,String password) {
-		model.addAttribute("uname", uname);
-		model.addAttribute("password", password);
 		User user = userService.loginUser(uname,password);
 		if (user != null) {   
 			System.out.println("µÇÂ¼³É¹¦");

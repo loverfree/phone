@@ -25,9 +25,9 @@
 
 	<div id="panel">
 		<br><br><br><br>
-		<span id="loginInfo">欢迎光临！</span>
+		<span id="loginInfo">欢迎光临</span>
 		<br><br><br>
-		<form action="loginUser" method="post">
+		<form action="loginUser" method="POST">
 			<table id="regBlank" border="0">
 
 				<tr>
@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input id="password" type="password"
-						value="密码" name="password" /></td>
+						 value="密码" name="password" /></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -49,7 +49,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td><input id="reset" type="button" value="重置" />
+					<td><input id="reset" type="reset" value="重置" />
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input id="sign" type="submit" value="登录" /></td>
 				</tr>

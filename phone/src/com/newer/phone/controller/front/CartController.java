@@ -57,11 +57,12 @@ public class CartController {
 //		Integer u_id = 1;//前端传过来的参数用户id u_id
 		List<Cart> carts = cartService.getCartByUser(user.getU_id());
 		System.out.println(carts.size());
-//		for (Cart cart : carts) {
-//			Product p = cart.getProduct();
-//			System.out.println(p.toString());
-//		}
+		BigDecimal o_total = new BigDecimal(0);
+		for (Cart cart : carts) {
+			o_total = o_total.add(cart.getProduct().getP_price());
+		}
 		model.addAttribute("carts",carts);
+		model.addAttribute("o_total", o_total);
 		return "cart";
 	}
 	

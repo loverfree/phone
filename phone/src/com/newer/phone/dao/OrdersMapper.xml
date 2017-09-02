@@ -12,22 +12,9 @@
      
      <!-- 根据当前用户的id来查询该用户的所有订单 -->
      <select id="getOrderByUser" parameterType="int" resultMap="orders-result">
-        select b.*,user.u_name,user.u_id from
-        (select a.*,review.r_id,review.r_info,review.r_time from 
-		(select d.*,
-		product.p_name,product.P_IMPORT,
-		product.P_PRICE,product.P_STOCK,product.p_image
-		product.p_sale,product.P_INFO,product.B_ID 
-        from product,
-        (select a.*,p.p_id,p.c_amount from 
-        p_o p join 
-        (select o.*,
-        u.u_name,u.U_NICKNAME,u.U_PIC,u.U_PWD,u.U_CARD 
-        from orders o join user u on o.u_id=1 and o.u_id=u.u_id)a
-        on p.o_id=a.o_id)d 
-        where product.p_id=d.p_id)a,review
-		where a.p_id=review.p_id)b 
-		join user on user.u_id=b.u_id;
+        SELECT p.p_name,p.p_import,p.p_price,p.p_stock,p.p_sale,p.p_info,p.p_status,p.p_image,b.* FROM product p JOIN(
+SELECT p_o.`C_AMOUNT`,p_o.`P_ID`,a.*FROM p_o JOIN (SELECT orders.* FROM orders WHERE u_id=#{u_id})a on p_o.`O_ID`=a.o_id)b
+ON p.p_id=b.p_id;
      </select>
      
      <!-- ORDERS订单的结果集 -->
@@ -105,8 +92,16 @@
      <!-- 付款添加订单 -->
      <insert id="addOrders">
         insert into orders(
-        o_total,a_province,a_city,a_street,a_recv,a_recvtal,o_status,o_time,u_id)
+        o_total,a_province,a_city,a_street,a_recv,a_recvtel,o_status,o_time,u_id)
         values(#{o_total},#{a_province},#{a_city},#{a_street},
-        #{a_recv},#{a_recvtal},#{o_status},#{o_time},#{user.u_id})
+        #{a_recv},#{a_recvtel},#{o_status},#{o_time},#{user.u_id})
+     </insert>
+     
+     <select id="findOrder" resultType="java.lang.Integer">
+        select max(o_id) o_id from orders
+     </select>
+     
+     <insert id="addPO">
+        insert into p_o values(#{p_id},#{o_id},#{c_amount})
      </insert>
   </mapper>
