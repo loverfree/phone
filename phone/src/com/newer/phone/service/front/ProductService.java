@@ -16,7 +16,8 @@ public interface ProductService {
 	PageInfo<Product> getByBrand(
 			Integer b_id,
 			String sort,String order,
-			Integer pageNo,Integer pageSize);
+			Integer pageNo,Integer pageSize,
+			Integer start,Integer end);
 	
 	//查询所有商品
 	PageInfo<Product> getAllProrduct(

@@ -30,7 +30,9 @@ public interface ProductMapper {
 	List<Product> findByBrand(
 			@Param("b_id")Integer b_id,
 			@Param("sort")String sort,
-			@Param("order")String order);
+			@Param("order")String order,
+			@Param("start")Integer start,
+			@Param("end")Integer end);
 	//根据商品id查询商品详细
 	Product findById(@Param("p_id")Integer p_id);
 	

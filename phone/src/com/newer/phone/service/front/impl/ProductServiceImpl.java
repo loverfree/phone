@@ -32,11 +32,22 @@ public class ProductServiceImpl implements ProductService{
 	public PageInfo<Product> getByBrand(
 			Integer b_id,
 			String sort,String order,
-			Integer pageNo,Integer pageSize) {
+			Integer pageNo,Integer pageSize,
+			Integer start,Integer end) {
+		if (start == null || end  == null ) {
+			start = 0;
+			end = 1000000;
+		}
+		if (sort == null || sort == "") {
+			sort = "p_price";
+		}
+		if (order == null || order == "") {
+			order = "asc";
+		}
 		pageNo = pageNo == null?1:pageNo;
 	    pageSize = pageSize == null?6:pageSize;
 	    PageHelper.startPage(pageNo, pageSize);
-		List<Product> products = productMapper.findByBrand(b_id,sort, order);
+		List<Product> products = productMapper.findByBrand(b_id,sort, order,start,end);
 		PageInfo<Product> page = new PageInfo<Product>(products);
 		return page;
 	}

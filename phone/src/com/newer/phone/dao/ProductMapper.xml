@@ -70,6 +70,7 @@
   		<if test="b_id != 1">
   			and b_id = #{b_id} 
   		</if>
+  		and p_price between #{start} and #{end} 
   		<include refid="orderBy" />
   	</select>
   	

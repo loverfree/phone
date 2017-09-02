@@ -38,12 +38,14 @@ public class ProdcutController {
 			@PathVariable Integer b_id,
 			Integer pageNo, Integer pageSize,
 			String sort,String order,
+			Integer start,Integer end,
 			Model model){
 		
 		PageInfo<Product> page = productService.getByBrand(
-				b_id,sort, order, pageNo, pageSize);
+				b_id,sort, order, pageNo, pageSize,start,end);
 		model.addAttribute("page", page);
 		model.addAttribute("bid",b_id);
+		System.out.println(page);
 		System.out.println("sort"+sort);
 		System.out.println("order"+order);
 		List<Product> products=page.getList(); 

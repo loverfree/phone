@@ -36,10 +36,10 @@
 			<div class="pure-menu pure-menu-horizontal" style="display: inline;margin-left: 5%">
 				<ul class="pure-menu-list">
 				<li class="pure-menu-item pure-menu-disabled">排序方式</li>
-				<li class="pure-menu-item"><a href="javascript:goSort('p_price')" class="pure-menu-link">价格</a></li>
-				<li class="pure-menu-item"><a href="javascript:goSort('p_sale')" class="pure-menu-link">销量</a></li>
-				<li class="pure-menu-item"><a href="javascript:goSort('asc')" class="pure-menu-link">升序</a></li>
-				<li class="pure-menu-item"><a href="javascript:goSort('desc')" class="pure-menu-link">降序</a></li>
+				<li class="pure-menu-item"><a href="javascript:goSort('p_price升序')" class="pure-menu-link">价格↑</a></li>
+				<li class="pure-menu-item"><a href="javascript:goSort('p_price降序')" class="pure-menu-link">价格↓</a></li>
+				<li class="pure-menu-item"><a href="javascript:goSort('p_sale升序')" class="pure-menu-link">销量↑</a></li>
+				<li class="pure-menu-item"><a href="javascript:goSort('p_sale降序')" class="pure-menu-link">销量↓</a></li>
 				</ul>
 			</div>
 			<div style="bottom: 2%;display: inline;">
