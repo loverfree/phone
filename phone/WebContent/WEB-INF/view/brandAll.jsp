@@ -34,6 +34,7 @@
 			</div>
 		</div>
 		<br>
+		<!-- 后台类别模块主页面 -->
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><a href="${pageContext.request.contextPath }/brand/goadd">添加类别</a></h3>

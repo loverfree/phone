@@ -28,7 +28,7 @@
 	</div>
 	<div id="rightFunc">
 	<br>
-	<!-- 后台修改用户信息界面 -->
+	<!-- 后台添加品牌信息界面 -->
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">添加商品</h3>
@@ -39,12 +39,12 @@
 				method="post" enctype="multipart/form-data">
 					<fieldset>
 						<div class="pure-control-group">
-							<label for="pname">商品类别名</label>
+							<label for="pname">品牌类别名</label>
 							<input type="text" name="b_name">
 						</div>
 
 						<div class="pure-control-group">
-							<label for="price">商品LOGO</label> 
+							<label for="price">品牌LOGO</label> 
 							<input type="file" name="b_logo">
 						</div>
 						
