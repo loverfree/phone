@@ -2,6 +2,7 @@ package com.newer.phone.service.back;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.newer.phone.pojo.User;
 
 /**
@@ -11,7 +12,7 @@ import com.newer.phone.pojo.User;
  */
 public interface UserServiceBack {
 	//查看所有用户
-	List<User> findUserAll();
+	PageInfo<User> findUserAll(Integer pageNo,Integer pageSize);
 	//编辑用户信息
 	int updateUser(User user);
 	//根据id查找用户

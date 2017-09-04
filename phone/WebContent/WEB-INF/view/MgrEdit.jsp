@@ -28,30 +28,42 @@
 	</div>
 	<div id="rightFunc">
 	<br>
+	<!-- 后台修改用户信息界面 -->
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">添加商品</h3>
 			</div>
 			<div class="panel-body">
-				<form class="pure-form pure-form-aligned">
+				<form class="pure-form pure-form-aligned" 
+				action="${pageContext.request.contextPath }/bUser/updateUser"
+				method="post">
 					<fieldset>
 						<div class="pure-control-group">
-							<label for="pname">商品名称</label> <input id="pname" type="text"> 
+							<label for="pname">用户id</label>
+							<input type="text" name="u_id" readonly="readonly" value="${user.u_id }"> 
 						</div>
 
 						<div class="pure-control-group">
-							<label for="price">商品售价</label> <input id="price"
-								type="text" >
+							<label for="price">用户名</label> 
+							<input type="text" name="u_name" readonly="readonly" value="${user.u_name }">
 						</div>
 
 						<div class="pure-control-group">
-							<label for="pstock">商品库存</label> <input id="pstock"
-								type="text" >
+							<label for="pstock">密码</label>
+							 <input type="text" name="u_pwd" value="${user.u_pwd }">
+						</div>
+						<div class="pure-control-group">
+							<label for="pstock">昵称</label> 
+							<input type="text" name="u_nickname" value="${user.u_nickname }">
+						</div>
+						<div class="pure-control-group">
+							<label for="pstock">用户卡号</label>
+							<input type="text" name="u_card" value="${user.u_card }">
 						</div>
 						
 						<div class="pure-control-group">
 						
-						  <button type="submit" class="pure-button pure-button-primary" style="margin-left: 14.5%">上传</button>
+						  <button type="submit" class="pure-button pure-button-primary" style="margin-left: 14.5%">提交</button>
 						  
 						</div>
 

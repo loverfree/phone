@@ -34,36 +34,30 @@
 				<table class="table table-hover">
 					<thead style="font-weight: bolder; background-color: #FAFCF6">
 						<tr>
-							<th>用户id</th>
-							<th>用户手机</th>
-							<th>用户昵称</th>
-							<th>操作</th>
+							<th>用户ID</th>
+                            <th>用户名</th>
+                             <th>密码</th>
+                            <th>昵称</th>
+                        <th>用户卡号</th>
+                      <th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${page.getList() }" var="user">
 						<tr>
-							<td>1</td>
-							<td>187</td>
-							<td>Tina</td>
-							<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑|
+							<td>${user.u_id }</td>
+         <td>${user.u_name }</td>
+         <td>${user.u_pwd }</td>
+         <td>${user.u_nickname }</td>
+         <td>${user.u_card }</td>
+							<td><a class="fa fa-pencil-square-o" aria-hidden="true" 
+							href="${pageContext.request.contextPath }/bUser/update/${user.u_id}"></a>编辑|
 								<i class="fa fa-trash-o" aria-hidden="true"></i>删除</td>
 						</tr>
+						</c:forEach>
 						<tr>
-							<td>2</td>
-							<td>165</td>
-							<td>紫苑</td>
-							<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑|
-								<i class="fa fa-trash-o" aria-hidden="true"></i>删除</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>136</td>
-							<td>猫咪52</td>
-							<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑|
-								<i class="fa fa-trash-o" aria-hidden="true"></i>删除</td>
-						</tr>
-						<tr>
-							<td colspan="3">分页</td>
+							<td colspan="3"><a>上页</a></td>
+							<td colspan="3"><a>下页</a></td>
 						</tr>
 					</tbody>
 				</table>

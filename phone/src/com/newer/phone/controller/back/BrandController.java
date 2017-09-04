@@ -74,6 +74,12 @@ public class BrandController {
 		return "redirect:../list";
 	}
 	
+	/**
+	 * 查看所有类型
+	 * @param model
+	 * @return
+	 * @author samluby
+	 */
 	@RequestMapping("list")
 	public String getAllBrand(Model model){
 	    List<Brand> list = brandService.getAllBrand();

@@ -26,7 +26,9 @@
 			<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
 				<a href="#" id="uptMenu" class="pure-menu-link">商品管理</a>
 				<ul id="infoMenu" class="pure-menu-children">
-					<li class="pure-menu-item"><a href="#" class="pure-menu-link">品牌管理</a></li>
+					<li class="pure-menu-item">
+					<a href="${pageContext.request.contextPath }/brand/list" 
+					class="pure-menu-link">品牌管理</a></li>
 					<li class="pure-menu-item"><a href="#" class="pure-menu-link">商品管理</a></li>
 				</ul>
 			</li>
