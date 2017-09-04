@@ -25,8 +25,17 @@ public interface UserMapper {
 	// 用户登录
 	User loginUser(@Param("u_name")String u_name,@Param("u_pwd")String u_pwd);
 	
+	// 登录后根据id获得用户信息
+	User getUserInfo(@Param("u_id")Integer u_id);
+	
 	// 用户修改自己的信息
 	int updateUser(User user);
+	
+	// 获得银行卡号
+	User getCard(@Param("u_id")Integer u_id);
+	
+	// 用户添加银行卡
+	int addCard(@Param("u_card")String u_card,@Param("u_id")Integer u_id);
 	
 	// 获取用户的地址信息
 	List<Address> getUserAddr(@Param("u_id")Integer u_id);

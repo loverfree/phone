@@ -9,7 +9,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +34,7 @@ public class UserController {
 	
 	@RequestMapping("/mgr")
 	public String enterMge() {
-		return "MgrEdit";
+		return "MgrIndex";
 	}
 	
 	@RequestMapping("/main")
@@ -78,7 +77,6 @@ public class UserController {
 		if (user != null) {   
 			System.out.println("登录成功");
 			model.addAttribute("curuser", user );
-			model.addAttribute("originPwd", password);
 			System.out.println("用户id:"+user.getU_id());
 			System.out.println("用户昵称:"+user.getU_nickname());
 			System.out.println("图片路径："+user.getU_pic());
@@ -98,25 +96,31 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/upt",method = RequestMethod.POST)
-	public String updateUser(Model m,Integer uid,String nickname,String password,String url) {
+	public String updateUser(Model m,Integer uid,String nickname,String password) {
 		User newInfo = new User();
+		while (password == "") {
+			System.out.println("密码不能为空");
+			return "redirect:userUpdate";
+		}
 		newInfo.setU_id(uid);
 		newInfo.setU_nickname(nickname);
 		newInfo.setU_pwd(password);
-		newInfo.setU_pic(url);
 		System.out.println("传递过来的昵称:"+nickname);
 		System.out.println("传递过来的密码:"+password);
-		System.out.println("传递过来的链接:"+url);
 		int count = userService.updateUser(newInfo);
 		if(count == 1) {
 		System.out.println("修改成功");
 		return "login";
 		}
-		return "userUpdate";
+		return "redirect:userUpdate";
 	}
 	
 	@RequestMapping(value="/userUpdate")
-	public String enterUserUpdate() {
+	public String enterUserUpdate(Model m,@SessionAttribute("curuser")User user) {
+		User nowUser = userService.getUserInfo(user.getU_id());
+		m.addAttribute("pic", nowUser.getU_pic());
+		m.addAttribute("nowName", nowUser.getU_name());
+		m.addAttribute("nowNick", nowUser.getU_nickname());
 		return "userUpdate";
 	}
 	
@@ -137,8 +141,27 @@ public class UserController {
 	}
 	
 	@RequestMapping("/card")
-	public String cardMenu() {
+	public String cardMenu(Model m,@SessionAttribute("curuser")User user) {
+		User userCard = userService.getCard(user.getU_id());
+		String noCard = "请添加一张卡";
+		m.addAttribute("userCard", userCard);
+		m.addAttribute("noCard", noCard);
 		return "card";
+	}
+	
+	@RequestMapping(value="/addCard",method = RequestMethod.POST)
+	public String addCard(String ucard,Integer uid,Model m) {
+		System.out.println("分割前卡号："+ucard);
+		String[] arrays = ucard.split("\\s+");
+		StringBuffer sb = new StringBuffer();
+		for(String card : arrays) {
+			System.out.println("分割后卡号（未合并）："+card);
+			sb.append(card);
+			String afterCard = sb.toString();
+			System.out.println("分割后卡号（已合并）："+afterCard);
+			userService.addCard(afterCard, uid);
+		}
+		return "redirect:card";
 	}
 	
 	@RequestMapping(value="/addAddr",method = RequestMethod.POST) 
@@ -149,12 +172,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/upPic",method = RequestMethod.POST)
-	public String upPic(@RequestParam("url")MultipartFile file,Integer uid,Model m,
-			HttpServletRequest request) {
+	public String upPic(@RequestParam("url")MultipartFile file,Integer uid,Model m,HttpServletRequest request) {
 		String fileName = UUID.randomUUID()+file.getOriginalFilename();
 		System.out.println(file.getOriginalFilename());
 		String pString = request.getSession().getServletContext().getRealPath("image");
 		File dest = new File(pString,fileName);
+		System.out.println(pString);
 		System.out.println(file.getContentType());
 		try {
 			file.transferTo(dest);
@@ -170,7 +193,7 @@ public class UserController {
 		System.out.println("上传成功！");
 		String msg = "上传成功！";
 		m.addAttribute("msg", msg);
-		return "userUpdate";
+		return "redirect:userUpdate";
 	}
 	
 }

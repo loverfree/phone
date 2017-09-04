@@ -45,10 +45,28 @@
     	where u_name = #{u_name} and u_pwd = #{u_pwd} 
     </select>
     
+    <!-- 登录后根据用户id获得用户信息 -->
+    <select id="getUserInfo" resultMap="user-result" parameterType="com.newer.phone.pojo.User">
+    	select * from USER
+    	where u_id = #{u_id}
+    </select>
+    
     <!-- 用户编辑自己的信息 -->
     <update id="updateUser" parameterType="com.newer.phone.pojo.User">
     	UPDATE USER SET u_pwd = #{u_pwd},u_nickname = #{u_nickname},u_card = #{u_card} 
     	WHERE u_id = #{u_id}
+    </update>
+    
+    <!-- 根据用户名查找银行卡 -->
+    <select id="getCard" resultMap="user-result" parameterType="com.newer.phone.pojo.User">
+    	select u_card from user
+    	where u_id = #{u_id}
+    </select>
+    
+    <!-- 用户添加银行卡号 -->
+    <update id="addCard" parameterType="com.newer.phone.pojo.User">
+    	update user set u_card = #{u_card}
+    	where u_id = #{u_id}
     </update>
     
     <!-- 用户查看收货地址 -->
@@ -58,7 +76,7 @@
     
     <!-- 后台查询所有用户信息 -->
     <select id="findUserAll" resultMap="user-result">
-        select * from user
+        select * from user;
     </select>
   
     <!-- 后台根据用户id查找用户 -->

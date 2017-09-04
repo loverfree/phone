@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +14,16 @@
 <script src="${pageContext.request.contextPath }/resources/js/fileinput.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/zh.js"></script>
 </head>
+<script type="text/javascript">
+
+function checkPwd() {
+	var pwdVal =document.getElementById("pwd"); 
+	if (pwdVal.value.length==0) {
+		alert('密码不能为空');
+	}
+}
+
+</script>
 <body>
 	<div class="panel panel-default" style="margin-left: 3%;width: 76%;height: auto;float: left; font-family: Microsoft Yahei">
 	<div class="panel-heading" >
@@ -28,17 +39,15 @@
 				<div class="input-group" style="margin-left: 33%">
 					<span class="input-group-addon">当前昵称 </span> <input name="nickname"
 						type="text" class="form-control"
-						value="${sessionScope.curuser.u_nickname} " style="width: 50%">
+						value="${nowNick} " style="width: 50%">
 				</div>
 				<br>
 				<div class="input-group" style="margin-left: 33%">
-					<span class="input-group-addon">新的密码 </span> <input name="password"
-						value="${sessionScope.originPwd} " class="form-control"
-						type="text" style="width: 50%">
+					<span class="input-group-addon">新的密码 </span> <input id="pwd" name="password"
+						class="form-control" type="text" style="width: 50%">
 				</div>
-
 				<br> <input id="change" name="change" class="btn" type="submit"
-					value="提交" style="float: right;">
+					value="提交" style="float: right;" onclick="checkPwd()">
 			</form>
 			<br>
 			<hr>

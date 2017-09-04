@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +54,7 @@
 				<ul class="pure-menu-children" style="border: 2px solid #A6C0D6;width: 240px">
 					<li class="pure-menu-item"><div class="curuser" style="margin-left: 5%">用户名</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;<span
-						style="display: inline-block; vertical-align: middle; font-size: 18px">${sessionScope.curuser.u_nickname}
+						style="display: inline-block; vertical-align: middle; font-size: 18px">${curuser.u_nickname}
 					</span></li>
 					<li class="pure-menu-item"><a href="#" class="pure-menu-link"><span>查看订单</span></a></li>
 					<li class="pure-menu-item"><a href="../../user/userUpdate"

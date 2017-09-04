@@ -41,6 +41,11 @@ public class UserServiceImpl implements UserService{
 		User user = userMapper.loginUser(u_name,sha_pwd);
 	    return user;
 	}
+	
+	@Override
+	public User getUserInfo(Integer u_id) {
+		return userMapper.getUserInfo(u_id);
+	}
 
 	@Override
 	public int updateUser(User user) {
@@ -83,4 +88,16 @@ public class UserServiceImpl implements UserService{
 		return count;
 	}
 	
+	@Override
+	public User getCard(Integer u_id) {
+		return userMapper.getCard(u_id);
+	}
+
+	@Override
+	public int addCard(String u_card, Integer u_id) {
+		int count = 0;
+		count = userMapper.addCard(u_card, u_id);
+		return count;
+	}
+
 }
