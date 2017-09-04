@@ -1,0 +1,38 @@
+#leftFunc{
+	width: 11.5%;
+	height: 100%;
+	background-color:#191818;
+	float: left;
+}
+
+#rightFunc{
+	margin-left: 0.1%;
+	width: 88%;
+	background-color:#EDEDED;
+	float: left;
+}
+
+#topBar{
+	height: 8%;
+}
+
+a#panTitle{
+	font-size: 20px;
+	color: white;
+	padding-left:15px;
+	font-family: Microsoft Yahei;
+	text-decoration: none;
+}
+
+ul li {
+	font-size: 18px;
+	line-height: 300%;
+}
+
+.nav li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 15px;
+	font-size: 1.5em;
+	
+}

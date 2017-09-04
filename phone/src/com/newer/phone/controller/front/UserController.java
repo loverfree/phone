@@ -30,6 +30,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping("/mgr")
+	public String enterMge() {
+		return "MgrIndex";
+	}
+	
 	@RequestMapping("/main")
 	public String enterReg() {
 		return "reg";

@@ -51,7 +51,7 @@
 			<c:if test="${not empty carts }">
 				<table class="table table-hover">
 					<tr id="title" style="background-color: #F5F5F5">
-						<th></th>
+
 						<th>商品图片</th>
 						<th>商品名</th>
 						<th>商品单价</th>
@@ -59,9 +59,10 @@
 						<th>操作</th>
 					</tr>
 					<c:forEach items="${carts }" var="cart">
-					  <input type="hidden" name="p_id" value="${cart.product.p_id }" class="p_id">
+						<input type="hidden" name="p_id" value="${cart.product.p_id }"
+							class="p_id">
 						<tr>
-							<td id="DQ"><input type="checkbox"></td>
+
 							<td width="75px"><img style="width: 100%; height: 10%"
 								src="${pageContext.request.contextPath }/${cart.product.p_image}"></td>
 							<td id="DQ">${cart.product.p_name }</td>
@@ -71,9 +72,10 @@
 								href="${pageContext.request.contextPath }/cart/removeCart/${cart.product.p_id}">删除</a></td>
 						</tr>
 					</c:forEach>
-					<tr><td>总价：${o_total }</td></tr>
 					<tr>
-					 
+						<td colspan="5" align="right">总价：${o_total }</td>
+					</tr>
+					<tr>
 						<td colspan="6"><a style="float: right; width: 9.1%"
 							class="button button-highlight button-pill button-small" id="pay"
 							href="${pageContext.request.contextPath }/cart/payCart/${o_total}">结算</a></td>
