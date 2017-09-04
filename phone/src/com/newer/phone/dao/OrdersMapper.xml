@@ -101,6 +101,10 @@ ON p.p_id=b.p_id;
         select max(o_id) o_id from orders
      </select>
      
+     <select id = "findAll" resultMap="orders-result">
+     	select * from orders
+     </select>
+     
      <insert id="addPO">
         insert into p_o values(#{p_id},#{o_id},#{c_amount})
      </insert>

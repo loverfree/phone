@@ -44,22 +44,25 @@ public class BrandController {
 	 * @throws IOException 
 	 * @throws IllegalStateException 
 	 */
+	
 	@RequestMapping(value="addBrand",method=RequestMethod.POST)
 	public String addBrand(@RequestParam("b_name")String b_name,
 			               @RequestParam("b_logo")MultipartFile file,
 			               HttpServletRequest request) throws IllegalStateException, IOException{
-		String fileName = file.getOriginalFilename()+UUID.randomUUID();
-		File dest = new File(fileName);
+		String fileName = UUID.randomUUID()+file.getOriginalFilename();
+		String path = "resources/image/";
+		String pString = request.getSession().getServletContext().getRealPath("image");
+		String b_logo = path + fileName;
+		File dest = new File(pString,fileName);
 		System.out.println(file.getContentType());
 		file.transferTo(dest);
 		Brand brand = new Brand();
 		brand.setB_name(b_name);
-		brand.setB_logo(fileName);
+		brand.setB_logo(b_logo);
 		brandService.addBrand(brand);
 		System.out.println("OK");
 		return "redirect:list";
 	}
-	
 	/**
 	 * 后台商品类型的删除管理，根据类别id来执行sql语句，但不对数据库进行delete语语。用update语句来删除，
 	 * 集将类别的状态b_status从1(上架)更新为0(下架)

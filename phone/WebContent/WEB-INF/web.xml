@@ -39,7 +39,7 @@
     <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>
     <multipart-config>
-      <location>F:/git/phone/WebContent/image/</location>
+<!--       <location>C:/Users/Xujianhuan/git/phone/phone/WebContent/image/</location> -->
       <max-file-size>5242880</max-file-size>
       <max-request-size>10485760</max-request-size>
       <file-size-threshold>0</file-size-threshold>

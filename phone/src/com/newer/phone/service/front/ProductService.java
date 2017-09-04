@@ -19,7 +19,7 @@ public interface ProductService {
 			Integer pageNo,Integer pageSize,
 			Integer start,Integer end);
 	
-	//查询所有商品
+	//查询所有商品包括排序模糊查询 以及价格搜索
 	PageInfo<Product> getAllProrduct(
 			String p_name,
 			String sort,String order,

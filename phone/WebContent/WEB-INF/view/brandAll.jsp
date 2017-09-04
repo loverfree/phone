@@ -46,6 +46,7 @@
         <th>类别编号</th>
         <th>类别名</th>
         <th>类别状态</th>
+        <th>LOGO</th>
         <th>操作</th>
       </tr>
 					</thead>
@@ -56,8 +57,9 @@
          <td>${brand.b_id }</td>
          <td>${brand.b_name }</td>
          <td>${brand.b_status }</td>
+         <td><img src = "${pageContext.request.contextPath }/${brand.b_logo }" height="30px" width="30px" ></td>
 							<td><a class="fa fa-pencil-square-o" aria-hidden="true" 
-							href="${pageContext.request.contextPath }/brand/removeBrand/${brand.b_id}"></a>删除|
+							href="${pageContext.request.contextPath }/brand/removeBrand/${brand.b_id}">下架</a>|
 								<a href = "${pageContext.request.contextPath }/product/addProduct/${brand.b_id}"><i class="fa fa-trash-o" aria-hidden="true"
 								></i>添加商品</a></td>
 						</tr>
@@ -69,13 +71,7 @@
 					</tbody>
 				</table></div>
 		</div>
-		<br>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">订单管理</h3>
-			</div>
-			<div class="panel-body">面板内容</div>
-		</div>
+		
 	</div>
 </body>
 </html>

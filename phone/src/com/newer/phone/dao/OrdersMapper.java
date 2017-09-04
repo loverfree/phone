@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
 import com.newer.phone.pojo.Orders;
@@ -41,4 +42,5 @@ public interface OrdersMapper {
 	int addPO(@Param("p_id")Integer p_id,
 			  @Param("o_id")Integer o_id,
 			  @Param("c_amount")Integer c_amount);
+	List<Orders> findAll();
 }

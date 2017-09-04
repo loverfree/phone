@@ -35,10 +35,12 @@
 					<thead style="font-weight: bolder; background-color: #FAFCF6">
 						<tr>
 							<th>用户ID</th>
+							<th>头像</th>
                             <th>用户名</th>
                              <th>密码</th>
                             <th>昵称</th>
                         <th>用户卡号</th>
+                   
                       <th>操作</th>
 						</tr>
 					</thead>
@@ -46,13 +48,13 @@
 					<c:forEach items="${page.getList() }" var="user">
 						<tr>
 							<td>${user.u_id }</td>
+							<td><img src = "${pageContext.request.contextPath }/${user.u_pic }" height="30px" width="30px"></td>
          <td>${user.u_name }</td>
          <td>${user.u_pwd }</td>
          <td>${user.u_nickname }</td>
          <td>${user.u_card }</td>
 							<td><a class="fa fa-pencil-square-o" aria-hidden="true" 
-							href="${pageContext.request.contextPath }/bUser/update/${user.u_id}"></a>编辑|
-								<i class="fa fa-trash-o" aria-hidden="true"></i>删除</td>
+							href="${pageContext.request.contextPath }/bUser/update/${user.u_id}">编辑</a></td>
 						</tr>
 						</c:forEach>
 						<tr>

@@ -44,7 +44,7 @@ public class BackUserController {
 	public String update(@PathVariable("u_id")Integer u_id,Model model){
 		User user = userService.getUserById(u_id);
 		model.addAttribute("user",user);
-		return "backUser";
+		return "MgrEdit";
 	}
 	
 	/**

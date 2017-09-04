@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +35,7 @@ public class UserController {
 	
 	@RequestMapping("/mgr")
 	public String enterMge() {
-		return "MgrIndex";
+		return "MgrEdit";
 	}
 	
 	@RequestMapping("/main")
@@ -146,10 +149,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/upPic",method = RequestMethod.POST)
-	public String upPic(@RequestParam("url")MultipartFile file,Integer uid,Model m) {
+	public String upPic(@RequestParam("url")MultipartFile file,Integer uid,Model m,
+			HttpServletRequest request) {
 		String fileName = UUID.randomUUID()+file.getOriginalFilename();
 		System.out.println(file.getOriginalFilename());
-		File dest = new File(fileName);
+		String pString = request.getSession().getServletContext().getRealPath("image");
+		File dest = new File(pString,fileName);
 		System.out.println(file.getContentType());
 		try {
 			file.transferTo(dest);
@@ -157,7 +162,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		User user = new User();
-		String path = "resources/image/head/";
+		String path = "resources/image/";
 		String u_pic = path + fileName;
 		user.setU_pic(u_pic);
 		user.setU_id(uid);
