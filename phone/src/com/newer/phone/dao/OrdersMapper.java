@@ -43,4 +43,18 @@ public interface OrdersMapper {
 			  @Param("o_id")Integer o_id,
 			  @Param("c_amount")Integer c_amount);
 	List<Orders> findAll();
+	List<Orders> findOne();
+	List<Orders> findTwo();
+	List<Orders> findThree();
+	List<Orders> findFour();
+
+	List<Orders> confirmOrder(Integer u_id);
+
+	int confirmOk(Integer o_id);
+
+	void addInform(Integer o_id, Integer o_status, Integer u_id);
+
+	int updateStatus(Integer o_status,Integer o_id);
+
+	int setInform(int i, Integer o_id);
 }

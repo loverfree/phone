@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
  */
 
 import com.newer.phone.pojo.Address;
+import com.newer.phone.pojo.Inform;
 import com.newer.phone.pojo.User;
 @Repository
 public interface UserMapper {
@@ -52,4 +53,7 @@ public interface UserMapper {
 	List<User> findUserAll();
 
 	User getUserById(Integer u_id);
+	
+	//获得确认收货的通知
+	List<Inform> getInform(Integer u_id);
 }

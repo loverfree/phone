@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.newer.phone.pojo.Address;
+import com.newer.phone.pojo.Inform;
 import com.newer.phone.pojo.User;
 
 public interface UserService {
@@ -41,4 +42,7 @@ public interface UserService {
 	
 	// 用户上传头像（存入数据库的是地址）
 	int addPic(@Param("u_pic")String u_pic,@Param("u_id")Integer u_id);
+	
+	//获取确认收货的通知
+	List<Inform> getInform(Integer u_id);
 }
