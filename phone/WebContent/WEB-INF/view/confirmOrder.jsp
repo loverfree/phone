@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>个人用户查看他的所有订单</title>
+<title>个人用户查看他的确认收货订单页面</title>
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,9 +20,6 @@
 		<img id="shopLogo"
 			onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'"
 			src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
-		
-		<img id="head" src="${pageContext.request.contextPath }/${sessionScope.curuser.u_pic}" class="img-circle" width="5%" height="10%" > 
-		
 	</div>
 	<h2 style="margin-left: 2%">功能菜单</h2>
 	<jsp:include page="userFunc.jsp"></jsp:include>
@@ -59,7 +56,8 @@
 							<fmt:formatDate value="${order.o_time }" pattern="yyyy-MM-dd hh:mm"/>
 							</td>
 							<td><a
-								href="${pageContext.request.contextPath }/orders/removeOrders/${order.o_id}">删除</a></td>
+								href="${pageContext.request.contextPath }/orders/removeOrders/${order.o_id}">删除</a>|
+								<a href="${pageContext.request.contextPath }/orders/confirmOk/${order.o_id}">确认收货</a></td>
 						</tr>
 					
 				</tbody>

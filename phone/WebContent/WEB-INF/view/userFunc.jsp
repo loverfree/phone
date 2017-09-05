@@ -25,6 +25,7 @@
         <li class="list-group-item"><a href="${pageContext.request.contextPath }/user/card">🏧&nbsp;绑定/更改银行卡</a></li>
         <li class="list-group-item"><a href="${pageContext.request.contextPath }/cart/">🛒&nbsp;购物车</a></li>
         <li class="list-group-item"><a href="${pageContext.request.contextPath }/orders/" >💰&nbsp;我的订单</a></li>
+         <li class="list-group-item"><a href="${pageContext.request.contextPath }/user/logout" >🛌&nbsp;退出</a></li>
     </ul>
 	</div>
 </div>

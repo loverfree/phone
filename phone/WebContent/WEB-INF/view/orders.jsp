@@ -24,7 +24,8 @@
 	<div class="Navi">
 		<img id="shopLogo"
 			onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'"
-			src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
+			src="${pageContext.request.contextPath }/resources/image/shopLogo.png"> <img id="head" src="${pageContext.request.contextPath }/${sessionScope.curuser.u_pic}"
+			class="img-circle" width="5%" height="10%">
 	</div>
 
 	<div class="panel panel-default"

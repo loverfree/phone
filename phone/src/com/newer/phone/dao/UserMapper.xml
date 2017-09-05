@@ -99,5 +99,15 @@
 	<update id="addPic" parameterType="com.newer.phone.pojo.User">
 		UPDATE USER SET u_pic = #{u_pic} WHERE u_id = #{u_id}
 	</update>
+	
   
+    <select id="getInform" resultMap="inform-result">
+       select * from inform where u_id=#{u_id}
+    </select>
+    
+    <resultMap type="com.newer.phone.pojo.Inform" id="inform-result">
+        <result property="o_id" column="o_id"/>
+        <result property="o_status" column="o_status"/>
+        <result property="u_id" column="u_id"/>
+    </resultMap>
   </mapper>

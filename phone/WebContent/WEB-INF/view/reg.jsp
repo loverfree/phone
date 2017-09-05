@@ -55,6 +55,9 @@
 				<tr>
 					<td></td>
 				</tr>
+				<tr>
+					<td align="center">已经是会员了？<a id="backPwd" href="login">立即登录！</a></td>				
+				</tr>
 			</table>
 		</form>
 	</div>

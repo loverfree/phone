@@ -10,10 +10,10 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
-<link href="${pageContext.request.contextPath }/resources/css/css.css" type="text/css" rel="stylesheet">	
+<link href="${pageContext.request.contextPath }/resources/css/css.css" type="text/css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">	
 <%-- <script src="${pageContext.request.contextPath }/resources/js/jquery-1.2.6.pack.js" type=text/javascript></script> --%>
 <script src="${pageContext.request.contextPath }/resources/js/base.js" type=text/javascript></script> 
-
 <script src="${pageContext.request.contextPath }/resources/js/lib.js" type=text/javascript></script>
 <script src="${pageContext.request.contextPath }/resources/js/zzsc.js" type=text/javascript></script> 
 <script type="text/javascript">
@@ -69,8 +69,25 @@
 </head>
 <body>
 <div id="searchBar">
-<img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
-</div>
+<img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png"> 
+			
+		   <i class="fa fa-user fa-2x" 
+			style="position: absolute; right: 13%; top: 5%" aria-hidden="true"
+			onclick="javascript:window.location.href='${pageContext.request.contextPath }/user/userUpdate'"></i>
+			
+			<i class="fa fa-shopping-cart fa-2x" 
+			style="position: absolute; right: 9.2%; top: 5%" aria-hidden="true"
+			onclick="javascript:window.location.href='${pageContext.request.contextPath }/cart/'" ></i>
+			<caution style="position: absolute; right: 8%; top: 4%">6</caution>
+			
+			<i class="fa fa-shopping-bag fa-2x" 
+			style="position: absolute; right: 5.2%; top: 5%" aria-hidden="true"></i>
+			<caution style="position: absolute; right: 4%; top: 4%">2</caution>
+			
+			<i class="fa fa-sign-out fa-2x"
+			style="position: absolute; right: 1%; top: 5%" aria-hidden="true"
+			onclick="javascript:window.location.href='${pageContext.request.contextPath }/user/logout'"></i>
+	</div>
 
 	<div style="background-color: #EDEDED;height: 60px;">
 		<h3 style="padding-left: 10px;padding-top: 20px">${details.p_name }</h3>

@@ -48,13 +48,17 @@ public interface OrdersMapper {
 	List<Orders> findThree();
 	List<Orders> findFour();
 
-	List<Orders> confirmOrder(Integer u_id);
+	List<Orders> confirmOrder(@Param("u_id")Integer u_id);
 
-	int confirmOk(Integer o_id);
+	int confirmOk(@Param("o_id")Integer o_id);
 
-	void addInform(Integer o_id, Integer o_status, Integer u_id);
+	void addInform(@Param("o_id")Integer o_id, 
+			       @Param("o_status")Integer o_status,
+			       @Param("u_id")Integer u_id);
 
-	int updateStatus(Integer o_status,Integer o_id);
+	int updateStatus(@Param("o_status")Integer o_status,
+			         @Param("o_id")Integer o_id);
 
-	int setInform(int i, Integer o_id);
+	int setInform(@Param("o_status")int o_status,
+			      @Param("o_id")Integer o_id);
 }
