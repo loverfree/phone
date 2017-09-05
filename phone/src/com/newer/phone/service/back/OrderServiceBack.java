@@ -13,4 +13,8 @@ import com.newer.phone.pojo.Orders;
 public interface OrderServiceBack {
 	//²é¿´¶©µ¥
 	PageInfo<Orders> findAllOrders(Integer pageNo,Integer pageSize);
+	PageInfo<Orders> findOrdersOne(Integer pageNo,Integer pageSize);
+	PageInfo<Orders> findOrdersTwo(Integer pageNo,Integer pageSize);
+	PageInfo<Orders> findOrdersThree(Integer pageNo,Integer pageSize);
+	PageInfo<Orders> findOrdersFour(Integer pageNo,Integer pageSize);
 }

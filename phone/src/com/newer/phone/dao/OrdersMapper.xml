@@ -105,6 +105,22 @@ ON p.p_id=b.p_id;
      	SELECT orders.*,user.u_name FROM orders ,USER WHERE orders.`U_ID` = user.`U_ID` 
      </select>
      
+     <select id = "findOne" resultMap="orders-result">
+     	SELECT orders.*,user.u_name FROM orders ,USER WHERE o_status = 0 and orders.`U_ID` = user.`U_ID` 
+     </select>
+     
+     <select id = "findTwo" resultMap="orders-result">
+     	SELECT orders.*,user.u_name FROM orders ,USER WHERE o_status = 1 and orders.`U_ID` = user.`U_ID` 
+     </select>
+     
+     <select id = "findThree" resultMap="orders-result">
+     	SELECT orders.*,user.u_name FROM orders ,USER WHERE o_status = 2 and orders.`U_ID` = user.`U_ID` 
+     </select>
+     
+     <select id = "findFour" resultMap="orders-result">
+     	SELECT orders.*,user.u_name FROM orders ,USER WHERE o_status = 3 and orders.`U_ID` = user.`U_ID` 
+     </select>
+     
      <insert id="addPO">
         insert into p_o values(#{p_id},#{o_id},#{c_amount})
      </insert>

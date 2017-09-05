@@ -76,7 +76,7 @@
     
     <!-- 后台查询所有用户信息 -->
     <select id="findUserAll" resultMap="user-result">
-        select * from user;
+        select * from user
     </select>
   
     <!-- 后台根据用户id查找用户 -->

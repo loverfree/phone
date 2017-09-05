@@ -30,5 +30,42 @@ public class OrderServiceBackImpl implements OrderServiceBack{
 		PageInfo<Orders> page = new PageInfo<Orders>(list);
 		return page;
 	}
+	@Override
+	public PageInfo<Orders> findOrdersOne(Integer pageNo, Integer pageSize) {
+		pageNo = pageNo == null?1:pageNo;
+		pageSize = pageSize == null ? 5:pageSize;
+		PageHelper.startPage(pageNo, pageSize);
+		List<Orders> list = orderMapper.findOne();
+		PageInfo<Orders> page = new PageInfo<Orders>(list);
+		return page;
+	}
+	@Override
+	public PageInfo<Orders> findOrdersTwo(Integer pageNo, Integer pageSize) {
+		pageNo = pageNo == null?1:pageNo;
+		pageSize = pageSize == null ? 5:pageSize;
+		PageHelper.startPage(pageNo, pageSize);
+		List<Orders> list = orderMapper.findTwo();
+		PageInfo<Orders> page = new PageInfo<Orders>(list);
+		return page;
+	}
+	@Override
+	public PageInfo<Orders> findOrdersThree(Integer pageNo, Integer pageSize) {
+		pageNo = pageNo == null?1:pageNo;
+		pageSize = pageSize == null ? 5:pageSize;
+		PageHelper.startPage(pageNo, pageSize);
+		List<Orders> list = orderMapper.findThree();
+		System.out.println(list.size());
+		PageInfo<Orders> page = new PageInfo<Orders>(list);
+		return page;
+	}
+	@Override
+	public PageInfo<Orders> findOrdersFour(Integer pageNo, Integer pageSize) {
+		pageNo = pageNo == null?1:pageNo;
+		pageSize = pageSize == null ? 5:pageSize;
+		PageHelper.startPage(pageNo, pageSize);
+		List<Orders> list = orderMapper.findFour();
+		PageInfo<Orders> page = new PageInfo<Orders>(list);
+		return page;
+	}
 	
 }

@@ -43,4 +43,8 @@ public interface OrdersMapper {
 			  @Param("o_id")Integer o_id,
 			  @Param("c_amount")Integer c_amount);
 	List<Orders> findAll();
+	List<Orders> findOne();
+	List<Orders> findTwo();
+	List<Orders> findThree();
+	List<Orders> findFour();
 }
