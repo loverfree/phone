@@ -18,4 +18,10 @@ public interface OrdersService {
 
 	//删除通知
 	int confirmOk(Integer o_id);
+	
+	//更新订单状态
+	int updateStatus(Integer o_status,Integer o_id);
+
+	//更新通知
+	int setInform(int i, Integer o_id);
 }

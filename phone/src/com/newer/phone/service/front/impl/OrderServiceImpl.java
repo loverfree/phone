@@ -73,4 +73,15 @@ public class OrderServiceImpl implements OrdersService{
 		return ordersMapper.confirmOk(o_id);
 	}
 
+	@Override
+	public int updateStatus(Integer o_status,Integer o_id) {
+		return ordersMapper.updateStatus(o_status,o_id);
+	}
+
+	@Override
+	public int setInform(int i, Integer o_id) {
+		return ordersMapper.setInform(i,o_id);
+		
+	}
+
 }

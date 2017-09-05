@@ -94,6 +94,8 @@ public class OrderController {
 			                Model model){
 		//删除通知
 		int isTrue = ordersService.confirmOk(o_id);
+		//更新订单的状态
+		int i = ordersService.updateStatus(3,o_id);
 		//更新session
 		List<Inform> informs = userService.getInform(user.getU_id());
 		int count = informs.size();

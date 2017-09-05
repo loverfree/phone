@@ -53,4 +53,8 @@ public interface OrdersMapper {
 	int confirmOk(Integer o_id);
 
 	void addInform(Integer o_id, Integer o_status, Integer u_id);
+
+	int updateStatus(Integer o_status,Integer o_id);
+
+	int setInform(int i, Integer o_id);
 }

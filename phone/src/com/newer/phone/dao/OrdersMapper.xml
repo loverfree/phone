@@ -138,4 +138,12 @@ ON p.p_id=b.p_id;
      <delete id="confirmOk">
         delete from inform where o_id=#{o_id}
      </delete>
+     
+     <update id="updateStatus">
+        update orders set o_status=#{o_status} where o_id=#{o_id}
+     </update>
+     
+     <update id="setInform">
+        update inform set o_status=#{o_status} where o_id=#{o_id}
+     </update>
   </mapper>
