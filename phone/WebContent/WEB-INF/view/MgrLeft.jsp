@@ -29,7 +29,7 @@
 					<a href="${pageContext.request.contextPath }/brand/list" 
 					class="pure-menu-link">品牌管理</a></li>
 					<li class="pure-menu-item">
-					<a href="${pageContext.request.contextPath }/product/backlist" class="pure-menu-link">商品管理</a> class="pure-menu-link">商品管理</a></li>
+					<a href="${pageContext.request.contextPath }/product/backlist" class="pure-menu-link">商品管理</a></li>
 				</ul>
 			</li>
 			<li

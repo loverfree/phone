@@ -71,32 +71,37 @@
 <div id="searchBar">
 <img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 </div>
-<div id=preview style="margin-left: 10% ;float: left" >
-	<div class=jqzoom id=spec-n1 >
-	<c:forEach items="${details.images }" var="image" step="1" begin="1" end="1">
-				<li><img src = "../../${image.i_path }" jqimg="../../${image.i_path }" height=320" width=300> </li>
-			</c:forEach>
+
+	<div style="background-color: #EDEDED;height: 60px;">
+		<h3 style="padding-left: 10px;padding-top: 20px">${details.p_name }</h3>
 	</div>
-	<div id=spec-n5>
-		<div class=control id=spec-left>
-			<img src="${pageContext.request.contextPath }/resources/image/left.jpg" />
-		</div>
-		<div id=spec-list>
-			<ul class=list-h>
-			<c:forEach items="${details.images }" var="image">
-				<li><img src = "../../${image.i_path }"> </li>
+	<div id=preview style="margin-left: 10%;float: left">
+		<div class=jqzoom id=spec-n1>
+			<c:forEach items="${details.images }" var="image" step="1" begin="1"
+				end="1">
+				<li><img src="../../${image.i_path }"
+					jqimg="../../${image.i_path }" height=320 " width=300></li>
 			</c:forEach>
-			</ul>
 		</div>
-		<div class=control id=spec-right>
-			<img src="${pageContext.request.contextPath }/resources/image/right.jpg" />
+		<div id=spec-n5>
+			<div class=control id=spec-left>
+				<img
+					src="${pageContext.request.contextPath }/resources/image/left.jpg" />
+			</div>
+			<div id=spec-list>
+				<ul class=list-h>
+					<c:forEach items="${details.images }" var="image">
+						<li><img src="../../${image.i_path }"></li>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class=control id=spec-right>
+				<img
+					src="${pageContext.request.contextPath }/resources/image/right.jpg" />
+			</div>
 		</div>
-		</div>
-    </div>
-
-
-<div style="background-color: #EDEDED">商品详情</div>
-<%-- 	<div style="background-color: white">
+	</div>
+	<%-- 	<div style="background-color: white">
 		<div style="float:left; margin-left: 15%;margin-top: 2%">
 			<c:forEach items="${details.images }" var="image">
 	 			<img src = "../../${image.i_path }" height="150px" width="120px">
