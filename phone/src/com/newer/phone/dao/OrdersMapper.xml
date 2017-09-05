@@ -102,7 +102,7 @@ ON p.p_id=b.p_id;
      </select>
      
      <select id = "findAll" resultMap="orders-result">
-     	select * from orders
+     	SELECT orders.*,user.u_name FROM orders ,USER WHERE orders.`U_ID` = user.`U_ID` 
      </select>
      
      <insert id="addPO">

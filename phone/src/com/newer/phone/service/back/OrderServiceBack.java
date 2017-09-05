@@ -2,6 +2,7 @@ package com.newer.phone.service.back;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.newer.phone.pojo.Orders;
 
 /**
@@ -11,5 +12,5 @@ import com.newer.phone.pojo.Orders;
  */
 public interface OrderServiceBack {
 	//²é¿´¶©µ¥
-	List<Orders> findAllOrders();
+	PageInfo<Orders> findAllOrders(Integer pageNo,Integer pageSize);
 }

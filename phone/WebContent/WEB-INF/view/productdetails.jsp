@@ -10,6 +10,12 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+<link href="${pageContext.request.contextPath }/resources/css/css.css" type="text/css" rel="stylesheet">	
+<%-- <script src="${pageContext.request.contextPath }/resources/js/jquery-1.2.6.pack.js" type=text/javascript></script> --%>
+<script src="${pageContext.request.contextPath }/resources/js/base.js" type=text/javascript></script> 
+
+<script src="${pageContext.request.contextPath }/resources/js/lib.js" type=text/javascript></script>
+<script src="${pageContext.request.contextPath }/resources/js/zzsc.js" type=text/javascript></script> 
 <script type="text/javascript">
   $(function(){
 	  $("#addCart").on("click",function(){
@@ -19,6 +25,42 @@
 					  alert(date);
 				  });
 	  });
+	  
+	  $(".jqzoom").jqueryzoom({
+			xzoom:400,
+			yzoom:400,
+			offset:10,
+			position:"right",
+			preload:1,
+			lens:1
+		});
+		$("#spec-list").jdMarquee({
+			deriction:"left",
+			width:350,
+			height:56,
+			step:2,
+			speed:4,
+			delay:10,
+			control:true,
+			_front:"#spec-right",
+			_back:"#spec-left"
+		});
+		$("#spec-list img").bind("mouseover",function(){
+			var src=$(this).attr("src");
+			$("#spec-n1 img").eq(0).attr({
+				src:src.replace("\/n5\/","\/n1\/"),
+				jqimg:src.replace("\/n5\/","\/n0\/")
+			});
+			$(this).css({
+				"border":"2px solid #ff6600",
+				"padding":"1px"
+			});
+		}).bind("mouseout",function(){
+			$(this).css({
+				"border":"1px solid #ccc",
+				"padding":"2px"
+			});
+		});
   });
 </script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css ">
@@ -29,18 +71,42 @@
 <div id="searchBar">
 <img id="shopLogo" onclick="window.location.href='${pageContext.request.contextPath }/product/brand/list'" src="${pageContext.request.contextPath }/resources/image/shopLogo.png">
 </div>
+<div id=preview style="margin-left: 10% ;float: left" >
+	<div class=jqzoom id=spec-n1 >
+	<c:forEach items="${details.images }" var="image" step="1" begin="1" end="1">
+				<li><img src = "../../${image.i_path }" jqimg="../../${image.i_path }" height=320" width=300> </li>
+			</c:forEach>
+	</div>
+	<div id=spec-n5>
+		<div class=control id=spec-left>
+			<img src="${pageContext.request.contextPath }/resources/image/left.jpg" />
+		</div>
+		<div id=spec-list>
+			<ul class=list-h>
+			<c:forEach items="${details.images }" var="image">
+				<li><img src = "../../${image.i_path }"> </li>
+			</c:forEach>
+			</ul>
+		</div>
+		<div class=control id=spec-right>
+			<img src="${pageContext.request.contextPath }/resources/image/right.jpg" />
+		</div>
+		</div>
+    </div>
+
+
 <div style="background-color: #EDEDED">商品详情</div>
-	<div style="background-color: white">
+<%-- 	<div style="background-color: white">
 		<div style="float:left; margin-left: 15%;margin-top: 2%">
 			<c:forEach items="${details.images }" var="image">
 	 			<img src = "../../${image.i_path }" height="150px" width="120px">
 	 		</c:forEach>
-		</div>
+		</div> --%>
 				<div class="panel panel-default"  style="margin-top: 2%;margin-left: 45%;margin-right: 25% ;border: 0" >
 					<div class="panel-heading" style="font-size: 18px">${details.p_name }</div>
-					<div class="panel-body">
+					<!-- <div class="panel-body"> -->
 						<p style="font-size:22px ;font-weight: bolder;">${details.p_info }</p>
-					</div>
+					<!-- </div> -->
 					<ul class="list-group">
 						<li class="list-group-item" style="font-size: 18px">商	城	价：<font color="red">¥${details.p_price }</font></li>
 						<li class="list-group-item" style="font-size: 18px">销		量：<font color="#b3d1ea">${details.p_sale }</font></li>

@@ -19,8 +19,7 @@
 				<a href="#" id="infoMenu" class="pure-menu-link" >信息查看</a>
 				<ul id="infoMenu" class="pure-menu-children">
 					<li class="pure-menu-item"><a href="${pageContext.request.contextPath }/bUser/list" class="pure-menu-link">用户信息</a></li>
-					<li class="pure-menu-item"><a href="#" class="pure-menu-link">商品库存</a></li>
-					<li class="pure-menu-item"><a href="#" class="pure-menu-link">订单查询</a></li>
+					<li class="pure-menu-item"><a href="${pageContext.request.contextPath }/order/list" class="pure-menu-link">订单查询</a></li>
 				</ul>
 			</li>
 			<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">

@@ -25,15 +25,7 @@
 		</span>
 	</div>
 	<div id="rightFunc">
-	<br>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">注册用户</h3>
-			</div>
-			<div class="panel-body">用户内容
-			</div>
-		</div>
-		<br>
+
 		<!-- 后台类别模块主页面 -->
 		<div class="panel panel-primary">
 			<div class="panel-heading">
