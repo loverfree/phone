@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.newer.phone.dao.UserMapper;
 import com.newer.phone.pojo.Address;
+import com.newer.phone.pojo.Inform;
 import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.UserService;
 import com.newer.phone.util.PwdEncrypt;
@@ -98,6 +99,11 @@ public class UserServiceImpl implements UserService{
 		int count = 0;
 		count = userMapper.addCard(u_card, u_id);
 		return count;
+	}
+
+	@Override
+	public List<Inform> getInform(Integer u_id) {
+		return userMapper.getInform(u_id);
 	}
 
 }

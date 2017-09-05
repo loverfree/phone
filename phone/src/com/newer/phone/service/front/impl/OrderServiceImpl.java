@@ -47,6 +47,8 @@ public class OrderServiceImpl implements OrdersService{
 //		Orders or = ordersMapper.findOrder(order.getO_time());
 //		System.out.println(or.getO_id());
 		Integer o_id = ordersMapper.findOrder();
+		//插入通知未发货
+		ordersMapper.addInform(o_id, order.getO_status(), order.getUser().getU_id());
 		List<Cart> carts = cartMapper.getCartByUser(order.getUser().getU_id());
 		System.out.println(carts.size());
 		for (int i = 0; i < carts.size(); i++) {
@@ -58,6 +60,17 @@ public class OrderServiceImpl implements OrdersService{
 			return true;
 		}
 		return false;
+	}
+
+	//处理确认收货订单用户
+	@Override
+	public List<Orders> confirmOrder(Integer u_id) {
+		return ordersMapper.confirmOrder(u_id);
+	}
+
+	@Override
+	public int confirmOk(Integer o_id) {
+		return ordersMapper.confirmOk(o_id);
 	}
 
 }

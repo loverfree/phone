@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.newer.phone.pojo.Inform;
 import com.newer.phone.pojo.Orders;
 import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.OrdersService;
+import com.newer.phone.service.front.UserService;
 
 @Controller
 @RequestMapping("orders")
@@ -19,6 +21,9 @@ public class OrderController {
 
 	@Autowired
 	private OrdersService ordersService;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * 根据当前用户的id来查看这个用户的所有订单，4中状态的都包括
@@ -68,5 +73,33 @@ public class OrderController {
 			return "paySucceed";
 		}
 		return "payLose";
+	}
+	
+	/**
+	 * 用户处理确认收货订单
+	 */
+	@RequestMapping("confirm")
+	public String confirmInform(@SessionAttribute("curuser")User user,Model model){
+		List<Orders> orders = ordersService.confirmOrder(user.getU_id());
+		model.addAttribute("orders", orders);
+		return "confirmOrder";
+	}
+	
+	/**
+	 * 确认收货完成
+	 */
+	@RequestMapping("confirmOk/{o_id}")
+	public String confirmOk(@SessionAttribute("curuser")User user,
+			                @PathVariable("o_id")Integer o_id,
+			                Model model){
+		//删除通知
+		int isTrue = ordersService.confirmOk(o_id);
+		//更新session
+		List<Inform> informs = userService.getInform(user.getU_id());
+		int count = informs.size();
+		user.setInfrorms(informs);
+		user.setCount(count);
+		model.addAttribute("curuser", user);
+		return "redirect:../confirm";
 	}
 }

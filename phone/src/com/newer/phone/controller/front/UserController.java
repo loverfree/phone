@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import com.newer.phone.pojo.Address;
+import com.newer.phone.pojo.Inform;
 import com.newer.phone.pojo.User;
 import com.newer.phone.service.front.UserService;
 
@@ -76,6 +77,10 @@ public class UserController {
 		User user = userService.loginUser(uname,password);
 		if (user != null) {   
 			System.out.println("登录成功");
+			List<Inform> informs = userService.getInform(user.getU_id());
+			int count = informs.size();
+			user.setCount(count);
+			user.setInfrorms(informs);
 			model.addAttribute("curuser", user );
 			System.out.println("用户id:"+user.getU_id());
 			System.out.println("用户昵称:"+user.getU_nickname());

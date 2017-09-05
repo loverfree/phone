@@ -124,4 +124,18 @@ ON p.p_id=b.p_id;
      <insert id="addPO">
         insert into p_o values(#{p_id},#{o_id},#{c_amount})
      </insert>
+     
+     <select id="confirmOrder" parameterType="int" resultMap="orders-result">
+         SELECT p.p_name,p.p_import,p.p_price,p.p_stock,p.p_sale,p.p_info,p.p_status,p.p_image,b.* FROM product p JOIN(
+SELECT p_o.`C_AMOUNT`,p_o.`P_ID`,a.*FROM p_o JOIN (SELECT orders.* FROM orders WHERE u_id=#{u_id} and o_status=2)a on p_o.`O_ID`=a.o_id)b
+ON p.p_id=b.p_id;
+     </select>
+     
+     <insert id="addInform">
+         insert into inform values(#{o_id},#{o_status},#{u_id})
+     </insert>
+     
+     <delete id="confirmOk">
+        delete from inform where o_id=#{o_id}
+     </delete>
   </mapper>

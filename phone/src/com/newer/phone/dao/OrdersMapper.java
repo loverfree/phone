@@ -47,4 +47,10 @@ public interface OrdersMapper {
 	List<Orders> findTwo();
 	List<Orders> findThree();
 	List<Orders> findFour();
+
+	List<Orders> confirmOrder(Integer u_id);
+
+	int confirmOk(Integer o_id);
+
+	void addInform(Integer o_id, Integer o_status, Integer u_id);
 }

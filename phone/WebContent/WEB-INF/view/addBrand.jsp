@@ -57,7 +57,7 @@
 					</fieldset>
 				</form>
 				
-				<hr>
+<!-- 				<hr>
 				添加图片
 				<form action="upPic" method="post" enctype="multipart/form-data">
 					<div class="input-group" style="margin-left: 7%; width: 33%">
@@ -72,7 +72,7 @@
 					<br> <input id="upPic" name="upPic" class="btn" type="submit"
 						value="上传" style="float: right;">
 				</form>
-
+ -->
 			</div>
 		</div>
 </div>

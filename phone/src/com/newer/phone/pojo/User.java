@@ -33,6 +33,8 @@ public class User implements Serializable {
 	private List<Orders> orders;
 	private List<Cart> carts;
 	private List<Review> reviews;
+	private List<Inform> infrorms;
+	private Integer count;
 
 	public Integer getU_id() {
 		return u_id;
@@ -113,5 +115,23 @@ public class User implements Serializable {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
+
+	public List<Inform> getInfrorms() {
+		return infrorms;
+	}
+
+	public void setInfrorms(List<Inform> infrorms) {
+		this.infrorms = infrorms;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	
+	
 
 }
